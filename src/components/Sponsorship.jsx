@@ -68,6 +68,102 @@ const packages = [
   },
 ];
 
+const SponsorCard = ({ pkg }) => {
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; 
+    const y = e.clientY - rect.top;  
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const rotateX = ((y - centerY) / centerY) * -15; // Max 15 degree tilt
+    const rotateY = ((x - centerX) / centerX) * 15;
+
+    gsap.to(card, {
+      rotateX,
+      rotateY,
+      duration: 0.4,
+      ease: "power2.out",
+      transformPerspective: 1000,
+      transformOrigin: "center center"
+    });
+  };
+
+  const handleMouseLeave = () => {
+    if (!cardRef.current) return;
+    gsap.to(cardRef.current, {
+      rotateX: 0,
+      rotateY: 0,
+      duration: 0.7,
+      ease: "power3.out",
+    });
+  };
+
+  return (
+    <div 
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ transformStyle: "preserve-3d" }}
+      className={`package-card relative flex flex-col p-1 rounded-xl bg-black border-2 ${pkg.borderGlow} transition-all duration-500 hover:-translate-y-2 group`}
+    >
+      {/* Inner Container */}
+      <div 
+        className={`h-full w-full flex flex-col p-8 rounded-lg bg-[#0d0a07] border border-pirate-white/5 ${pkg.bgHover} transition-colors duration-500`}
+        style={{ transform: "translateZ(30px)" }}
+      >
+        {/* Decorative Corners */}
+        <div className="absolute top-3 left-3 opacity-30 group-hover:opacity-60 transition-opacity">
+          <Anchor className="w-5 h-5 text-pirate-gold" />
+        </div>
+        <div className="absolute top-3 right-3 opacity-30 group-hover:opacity-60 transition-opacity">
+          <Anchor className="w-5 h-5 text-pirate-gold" />
+        </div>
+        <div className="absolute bottom-3 left-3 opacity-30 group-hover:opacity-60 transition-opacity">
+          <Anchor className="w-5 h-5 text-pirate-gold" />
+        </div>
+        <div className="absolute bottom-3 right-3 opacity-30 group-hover:opacity-60 transition-opacity">
+          <Anchor className="w-5 h-5 text-pirate-gold" />
+        </div>
+
+        {/* Header */}
+        <div className="flex flex-col items-center text-center border-b border-pirate-white/10 pb-6 mb-6">
+          {pkg.icon}
+          <h3 className="font-pirate text-2xl sm:text-3xl text-pirate-white tracking-widest mb-2">
+            {pkg.title}
+          </h3>
+          <div className="px-4 py-1 rounded bg-black/60 border border-pirate-gold/20">
+            <p className="font-inter font-bold text-pirate-gold tracking-wider">
+              {pkg.price}
+            </p>
+          </div>
+        </div>
+
+        {/* Benefits List */}
+        <ul className="flex-1 flex flex-col gap-4">
+          {pkg.benefits.map((benefit, bIdx) => (
+            <li key={bIdx} className="flex items-start gap-3">
+              <span className="text-pirate-gold mt-1 text-[10px] drop-shadow-md">✦</span>
+              <span className="font-inter text-pirate-white/80 leading-snug text-sm sm:text-base">
+                {benefit}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Bottom Glow Element */}
+        <div className="absolute bottom-0 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-pirate-gold/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      </div>
+    </div>
+  );
+};
+
 const Sponsorship = () => {
   const sectionRef = useRef(null);
   const perksRef = useRef(null);
@@ -203,58 +299,9 @@ const Sponsorship = () => {
           </div>
 
           {/* Packages Grid */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 items-stretch">
+          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 items-stretch" style={{ perspective: "1000px" }}>
             {packages.map((pkg, idx) => (
-              <div 
-                key={idx} 
-                className={`package-card relative flex flex-col p-1 rounded-xl bg-black border-2 ${pkg.borderGlow} transition-all duration-500 hover:-translate-y-2 group`}
-              >
-                {/* Inner Container */}
-                <div className={`h-full w-full flex flex-col p-8 rounded-lg bg-[#0d0a07] border border-pirate-white/5 ${pkg.bgHover} transition-colors duration-500`}>
-                  
-                  {/* Decorative Corners */}
-                  <div className="absolute top-3 left-3 opacity-30 group-hover:opacity-60 transition-opacity">
-                    <Anchor className="w-5 h-5 text-pirate-gold" />
-                  </div>
-                  <div className="absolute top-3 right-3 opacity-30 group-hover:opacity-60 transition-opacity">
-                    <Anchor className="w-5 h-5 text-pirate-gold" />
-                  </div>
-                  <div className="absolute bottom-3 left-3 opacity-30 group-hover:opacity-60 transition-opacity">
-                    <Anchor className="w-5 h-5 text-pirate-gold" />
-                  </div>
-                  <div className="absolute bottom-3 right-3 opacity-30 group-hover:opacity-60 transition-opacity">
-                    <Anchor className="w-5 h-5 text-pirate-gold" />
-                  </div>
-
-                  {/* Header */}
-                  <div className="flex flex-col items-center text-center border-b border-pirate-white/10 pb-6 mb-6">
-                    {pkg.icon}
-                    <h3 className="font-pirate text-2xl sm:text-3xl text-pirate-white tracking-widest mb-2">
-                      {pkg.title}
-                    </h3>
-                    <div className="px-4 py-1 rounded bg-black/60 border border-pirate-gold/20">
-                      <p className="font-inter font-bold text-pirate-gold tracking-wider">
-                        {pkg.price}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Benefits List */}
-                  <ul className="flex-1 flex flex-col gap-4">
-                    {pkg.benefits.map((benefit, bIdx) => (
-                      <li key={bIdx} className="flex items-start gap-3">
-                        <span className="text-pirate-gold mt-1 text-[10px] drop-shadow-md">✦</span>
-                        <span className="font-inter text-pirate-white/80 leading-snug text-sm sm:text-base">
-                          {benefit}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* Bottom Glow Element */}
-                  <div className="absolute bottom-0 left-1/4 right-1/4 h-[2px] bg-gradient-to-r from-transparent via-pirate-gold/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              </div>
+              <SponsorCard key={idx} pkg={pkg} />
             ))}
           </div>
 
