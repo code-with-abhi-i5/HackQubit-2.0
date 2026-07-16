@@ -1,11 +1,13 @@
-import { Hero, About, Sponsorship } from "./components";
+import { Hero, About, Sponsorship, Footer, ScrollToTop } from "./components";
 
 function App() {
   return (
-    <main className="bg-pirate-bg min-h-screen">
+    <main className="bg-pirate-bg min-h-screen relative">
       <Hero />
       <About />
       <Sponsorship />
+      <Footer />
+      <ScrollToTop />
     </main>
   );
 }

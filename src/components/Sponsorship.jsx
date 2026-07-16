@@ -3,6 +3,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Anchor, Flag, Coins, Crown, Medal, Shield } from "lucide-react";
 import sponsorTitleImg from "../assets/images/our sponsore.png";
+import sponsorPackImg from "../assets/images/our pack.png";
+import izzkiLogo from "../assets/images/izzki tech.jpg";
+import hdfcLogo from "../assets/images/hdfc.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,7 +78,7 @@ const Sponsorship = () => {
       // Perks Animation
       gsap.from(".perk-card", {
         scrollTrigger: { trigger: perksRef.current, start: "top 80%" },
-        y: 50, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out",
+        y: 50, opacity: 0, duration: 1, ease: "power3.out",
       });
       gsap.from(".perks-title", {
         scrollTrigger: { trigger: perksRef.current, start: "top 85%" },
@@ -85,7 +88,7 @@ const Sponsorship = () => {
       // Packages Animation
       gsap.from(".package-card", {
         scrollTrigger: { trigger: packagesRef.current, start: "top 80%" },
-        y: 50, opacity: 0, duration: 1, stagger: 0.2, ease: "power3.out",
+        y: 50, opacity: 0, duration: 1, ease: "power3.out",
       });
       gsap.from(".packages-title", {
         scrollTrigger: { trigger: packagesRef.current, start: "top 85%" },
@@ -197,15 +200,12 @@ const Sponsorship = () => {
         <div ref={packagesRef} className="w-full flex flex-col items-center">
           
           {/* Packages Title Banner */}
-          <div className="packages-title relative inline-block mb-16 px-12 py-4 bg-[#14100C] border-y-2 border-pirate-gold/40 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
-            <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('data:image/svg+xml,%3Csvg viewBox=\\'0 0 200 200\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cfilter id=\\'noiseFilter\\'%3E%3CfeTurbulence type=\\'fractalNoise\\' baseFrequency=\\'0.8\\' numOctaves=\\'3\\' stitchTiles=\\'stitch\\'/%3E%3C/filter%3E%3Crect width=\\'100%25\\' height=\\'100%25\\' filter=\\'url(%23noiseFilter)\\'/%3E%3C/svg%3E')]" />
-            <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-black/80 to-transparent" />
-            <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-black/80 to-transparent" />
-            <h2 className="font-pirate text-3xl sm:text-4xl md:text-5xl text-pirate-gold tracking-[0.15em] text-shadow-cinematic flex items-center justify-center gap-4">
-              <span className="text-2xl sm:text-4xl drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] filter contrast-125">💰</span>
-              SPONSORSHIP PACKAGES
-              <span className="text-2xl sm:text-4xl drop-shadow-[0_0_10px_rgba(212,175,55,0.8)] filter contrast-125">💰</span>
-            </h2>
+          <div className="packages-title mb-16 w-full flex justify-center">
+            <img 
+              src={sponsorPackImg} 
+              alt="Sponsorship Packages" 
+              className="w-full max-w-[700px] h-auto object-contain drop-shadow-[0_5px_25px_rgba(212,175,55,0.25)] animate-float"
+            />
           </div>
 
           {/* Packages Grid */}
@@ -256,6 +256,55 @@ const Sponsorship = () => {
             ))}
           </div>
 
+        </div>
+
+        {/* =========================================
+            ROW 3: PAST SPONSORS
+            ========================================= */}
+        <div className="w-full flex flex-col items-center mt-8 border-t border-pirate-gold/20 pt-16 relative">
+          {/* Decorative Top Glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-pirate-gold/60 to-transparent shadow-[0_0_15px_rgba(212,175,55,0.8)]" />
+
+          <div className="relative inline-block mb-12 px-8 sm:px-12 py-3 sm:py-4 bg-[#14100C] border-y-2 border-pirate-gold/40 shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+            <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('data:image/svg+xml,%3Csvg viewBox=\\'0 0 200 200\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cfilter id=\\'noiseFilter\\'%3E%3CfeTurbulence type=\\'fractalNoise\\' baseFrequency=\\'0.8\\' numOctaves=\\'3\\' stitchTiles=\\'stitch\\'/%3E%3C/filter%3E%3Crect width=\\'100%25\\' height=\\'100%25\\' filter=\\'url(%23noiseFilter)\\'/%3E%3C/svg%3E')]" />
+            <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-black/80 to-transparent" />
+            <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-black/80 to-transparent" />
+            <h3 className="font-pirate text-2xl sm:text-3xl md:text-4xl text-pirate-gold tracking-[0.15em] text-shadow-cinematic flex items-center justify-center gap-4 uppercase">
+              Our Past Sponsors
+            </h3>
+          </div>
+
+          <div className="flex flex-wrap justify-center items-center gap-12 sm:gap-20 opacity-90">
+            {/* Izzki Tech */}
+            <div className="flex items-center gap-4 cursor-pointer transition-all duration-500 hover:-translate-y-1">
+              <div className="rounded-lg overflow-hidden border border-pirate-gold/60 shadow-[0_0_10px_rgba(212,175,55,0.2)] transition-all">
+                <img src={izzkiLogo} alt="Izzki Tech Pvt Ltd" className="h-14 sm:h-16 object-contain" />
+              </div>
+              <span className="font-cinzel text-xl sm:text-2xl font-bold text-pirate-gold tracking-wider">
+                Izzki Tech Pvt Ltd
+              </span>
+            </div>
+
+            {/* HDFC */}
+            <div className="flex items-center gap-4 cursor-pointer transition-all duration-500 hover:-translate-y-1">
+              <div className="rounded-lg overflow-hidden border border-[#ED232A]/60 shadow-[0_0_10px_rgba(237,35,42,0.2)] transition-all bg-white/5 p-1">
+                <img src={hdfcLogo} alt="HDFC Bank" className="h-14 sm:h-16 object-contain" />
+              </div>
+              <span className="font-cinzel text-xl sm:text-2xl font-bold text-[#ED232A] tracking-wider">
+                HDFC Bank
+              </span>
+            </div>
+
+            {/* Orbinger */}
+            <div className="flex items-center gap-4 cursor-pointer transition-all duration-500 hover:-translate-y-1">
+              <div className="p-3 bg-black/50 border border-[#00E5FF]/60 rounded-lg shadow-[0_0_10px_rgba(0,229,255,0.2)] transition-all">
+                <span className="text-3xl filter contrast-125">🌐</span>
+              </div>
+              <span className="font-cinzel text-xl sm:text-2xl font-bold text-[#00E5FF] tracking-wider">
+                Orbinger
+              </span>
+            </div>
+          </div>
         </div>
 
       </div>

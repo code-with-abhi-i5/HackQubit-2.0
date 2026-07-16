@@ -7,3 +7,5 @@ export { default as ScrollIndicator } from "./ScrollIndicator";
 export { default as Buttons } from "./Buttons";
 export { default as About } from "./About";
 export { default as Sponsorship } from "./Sponsorship";
+export { default as Footer } from "./Footer";
+export { default as ScrollToTop } from "./ScrollToTop";
