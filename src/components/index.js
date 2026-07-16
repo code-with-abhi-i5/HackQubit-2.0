@@ -1,0 +1,9 @@
+export { default as Navbar } from "./Navbar";
+export { default as Hero } from "./Hero";
+export { default as HeroContent } from "./HeroContent";
+export { default as Stats } from "./Stats";
+export { default as SocialIcons } from "./SocialIcons";
+export { default as ScrollIndicator } from "./ScrollIndicator";
+export { default as Buttons } from "./Buttons";
+export { default as About } from "./About";
+export { default as Sponsorship } from "./Sponsorship";
