@@ -88,12 +88,18 @@ const Footer = () => {
               Navigation Map
             </h3>
             <ul className="flex flex-col gap-3 font-inter text-pirate-white/60">
-              {['Home Base', 'The Treasures', 'Our Sponsors', 'FAQ & Rules', 'Register Crew'].map((link, i) => (
+              {[
+                { label: 'Home Base', href: '#home' },
+                { label: 'The Treasures', href: '#treasures' },
+                { label: 'Our Sponsors', href: '#sponsorship' },
+                { label: 'FAQ & Rules', href: '#faq' },
+                { label: 'Register Crew', href: '#register' }
+              ].map((link, i) => (
                 <li key={i}>
-                  <a href="#" className="hover:text-pirate-gold transition-colors duration-300 flex items-center gap-2 group">
+                  <a href={link.href} className="hover:text-pirate-gold transition-colors duration-300 flex items-center gap-2 group">
                     <span className="text-pirate-gold/0 group-hover:text-pirate-gold transition-all duration-300 transform -translate-x-2 group-hover:translate-x-0">✦</span>
                     <span className="transform -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
-                      {link}
+                      {link.label}
                     </span>
                   </a>
                 </li>
@@ -177,7 +183,7 @@ const Footer = () => {
             &copy; {new Date().getFullYear()} HackQubit 2.0. All treasures reserved.
           </p>
           <p className="font-inter text-pirate-white/50 text-xs sm:text-sm text-center sm:text-right flex items-center gap-1">
-            Forged with <span className="text-[#ED232A] animate-pulse">❤️</span> by the HackQubit Crew
+            Created with <span className="text-[#ED232A] animate-pulse">❤️</span> by Helix
           </p>
         </div>
 

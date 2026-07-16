@@ -6,7 +6,7 @@ import HeroContent from "./HeroContent";
 import Stats from "./Stats";
 import SocialIcons from "./SocialIcons";
 import ScrollIndicator from "./ScrollIndicator";
-import heroBg from "../assets/images/hero-bg.jpg";
+import heroBg from "../assets/images/hero-bg.png";
 
 const Hero = () => {
   const parallax = useMouseParallax(0.015);

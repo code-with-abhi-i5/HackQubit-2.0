@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Anchor, Flag, Coins, Crown, Medal, Shield } from "lucide-react";
+import { Anchor, Flag, Coins, Crown, Medal, Shield, Swords } from "lucide-react";
 import sponsorTitleImg from "../assets/images/our sponsore.png";
 import sponsorPackImg from "../assets/images/our pack.png";
 import izzkiLogo from "../assets/images/izzki tech.jpg";
@@ -187,12 +187,6 @@ const Sponsorship = () => {
           </div>
         </div>
 
-        {/* Decorative Divider */}
-        <div className="w-full max-w-3xl flex items-center justify-center opacity-70">
-           <div className="flex-1 h-[2px] bg-gradient-to-r from-transparent via-pirate-bronze to-transparent" />
-           <div className="mx-6 text-pirate-gold text-3xl drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]">⚔️</div>
-           <div className="flex-1 h-[2px] bg-gradient-to-l from-transparent via-pirate-bronze to-transparent" />
-        </div>
 
         {/* =========================================
             ROW 2: SPONSORSHIP PACKAGES
@@ -219,10 +213,18 @@ const Sponsorship = () => {
                 <div className={`h-full w-full flex flex-col p-8 rounded-lg bg-[#0d0a07] border border-pirate-white/5 ${pkg.bgHover} transition-colors duration-500`}>
                   
                   {/* Decorative Corners */}
-                  <div className="absolute top-2 left-2 text-pirate-gold/30 text-sm">⚜️</div>
-                  <div className="absolute top-2 right-2 text-pirate-gold/30 text-sm">⚜️</div>
-                  <div className="absolute bottom-2 left-2 text-pirate-gold/30 text-sm">⚜️</div>
-                  <div className="absolute bottom-2 right-2 text-pirate-gold/30 text-sm">⚜️</div>
+                  <div className="absolute top-3 left-3 opacity-30 group-hover:opacity-60 transition-opacity">
+                    <Anchor className="w-5 h-5 text-pirate-gold" />
+                  </div>
+                  <div className="absolute top-3 right-3 opacity-30 group-hover:opacity-60 transition-opacity">
+                    <Anchor className="w-5 h-5 text-pirate-gold" />
+                  </div>
+                  <div className="absolute bottom-3 left-3 opacity-30 group-hover:opacity-60 transition-opacity">
+                    <Anchor className="w-5 h-5 text-pirate-gold" />
+                  </div>
+                  <div className="absolute bottom-3 right-3 opacity-30 group-hover:opacity-60 transition-opacity">
+                    <Anchor className="w-5 h-5 text-pirate-gold" />
+                  </div>
 
                   {/* Header */}
                   <div className="flex flex-col items-center text-center border-b border-pirate-white/10 pb-6 mb-6">
