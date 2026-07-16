@@ -259,3 +259,18 @@
     transform: scale(1.08);
   }
 }
+
+@keyframes lanternFlicker {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  25% { opacity: 0.85; filter: brightness(0.9); }
+  50% { opacity: 0.95; filter: brightness(1.1); }
+  75% { opacity: 0.8; filter: brightness(0.85); }
+}
+
+@keyframes dustFloat {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  25% { opacity: 0.8; }
+  50% { transform: translateY(-20px) translateX(10px) scale(1.1); opacity: 0.6; }
+  75% { opacity: 0.4; }
+  100% { transform: translateY(-40px) translateX(-5px) scale(0.9); opacity: 0; }
+}
