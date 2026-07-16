@@ -41,13 +41,13 @@ export const STATS_DATA = [
 ];
 
 export const HERO_CONTENT = {
-  subtitle: "Sail Beyond The Horizon",
+  subtitle: "Navigate the Oceans of Tech",
   heading: {
     line1: "PIRATES",
     line2: "OF THE SEA",
   },
   description:
-    "The ocean is our kingdom, adventure is our legacy, and legends are our story.",
+    "Set sail into a 24-hour coding voyage where only the boldest programmers unearth the greatest technical treasures.",
   primaryBtn: "Explore Now",
   secondaryBtn: "Watch Trailer",
 };
