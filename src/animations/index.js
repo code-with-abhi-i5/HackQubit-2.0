@@ -32,8 +32,8 @@ export const animateHeroEntrance = (refs) => {
   if (refs.headingLine1) {
     tl.fromTo(
       refs.headingLine1,
-      { y: 80, opacity: 0, clipPath: "inset(100% 0% 0% 0%)" },
-      { y: 0, opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 1 },
+      { y: 80, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1 },
       0.5
     );
   }
@@ -42,8 +42,8 @@ export const animateHeroEntrance = (refs) => {
   if (refs.headingLine2) {
     tl.fromTo(
       refs.headingLine2,
-      { y: 80, opacity: 0, clipPath: "inset(100% 0% 0% 0%)" },
-      { y: 0, opacity: 1, clipPath: "inset(0% 0% 0% 0%)", duration: 1 },
+      { y: 80, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1 },
       0.7
     );
   }

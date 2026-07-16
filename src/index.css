@@ -277,3 +277,67 @@
   75% { opacity: 0.4; }
   100% { transform: translateY(-40px) translateX(-5px) scale(0.9); opacity: 0; }
 }
+
+/* Pirate Navigation UI Styles */
+.bone-texture {
+  background: linear-gradient(to bottom, #d4af37 0%, #a67c00 40%, #ffd700 50%, #a67c00 60%, #8b6b3f 100%);
+  border-radius: 10px;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), inset 0 -2px 6px rgba(0, 0, 0, 0.6), 0 4px 10px rgba(0, 0, 0, 0.9);
+  position: relative;
+  overflow: visible;
+}
+.bone-texture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(0,0,0,0.15) 8px, rgba(0,0,0,0.15) 10px);
+  opacity: 0.6;
+  border-radius: 10px;
+}
+.bone-end-left-top, .bone-end-left-bottom, .bone-end-right-top, .bone-end-right-bottom {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: radial-gradient(circle at 30% 30%, #ffd700, #a67c00);
+  border-radius: 50%;
+  box-shadow: inset 0 -2px 4px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.5);
+  z-index: -1;
+}
+.bone-end-left-top { left: -4px; top: -2px; }
+.bone-end-left-bottom { left: -4px; bottom: -2px; }
+.bone-end-right-top { right: -4px; top: -2px; }
+.bone-end-right-bottom { right: -4px; bottom: -2px; }
+
+.map-sidebar {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.015' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E"), 
+              linear-gradient(135deg, #3d2b1f 0%, #2a1c11 40%, #1a1008 100%);
+  background-blend-mode: overlay;
+  border-left: 2px solid #8b6b3f;
+  box-shadow: -15px 0 40px rgba(0,0,0,0.9), inset 0 0 80px rgba(0,0,0,0.9);
+  position: relative;
+}
+.map-sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  box-shadow: inset 10px 0 30px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+
+.nav-item-wood {
+  background: linear-gradient(to bottom, rgba(43,31,19,0.95) 0%, rgba(26,18,11,0.98) 100%);
+  box-shadow: inset 0 1px 2px rgba(212,175,55,0.4), inset 0 -2px 5px rgba(0,0,0,0.9), 0 6px 10px rgba(0,0,0,0.7);
+  border: 1px solid rgba(212,175,55,0.5);
+}
+.nav-item-wood::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 5px, rgba(0,0,0,0.3) 5px, rgba(0,0,0,0.3) 6px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.skull-glow {
+  filter: drop-shadow(0 0 12px rgba(212,175,55,0.8));
+}

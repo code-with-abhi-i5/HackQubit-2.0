@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import { gsap } from "gsap";
 import { useMouseParallax } from "../hooks";
 import { animateHeroEntrance } from "../animations";
 import Navbar from "./Navbar";
@@ -25,20 +26,22 @@ const Hero = () => {
   const bgRef = useRef(null);
 
   useEffect(() => {
-    const tl = animateHeroEntrance({
-      navbar: navbarRef.current,
-      subtitle: subtitleRef.current,
-      headingLine1: headingLine1Ref.current,
-      headingLine2: headingLine2Ref.current,
-      skullIcon: skullIconRef.current,
-      description: descriptionRef.current,
-      buttons: buttonsRef.current,
-      social: socialRef.current,
-      stats: statsRef.current,
-      scrollIndicator: scrollIndicatorRef.current,
+    const ctx = gsap.context(() => {
+      animateHeroEntrance({
+        navbar: navbarRef.current,
+        subtitle: subtitleRef.current,
+        headingLine1: headingLine1Ref.current,
+        headingLine2: headingLine2Ref.current,
+        skullIcon: skullIconRef.current,
+        description: descriptionRef.current,
+        buttons: buttonsRef.current,
+        social: socialRef.current,
+        stats: statsRef.current,
+        scrollIndicator: scrollIndicatorRef.current,
+      });
     });
 
-    return () => tl.kill();
+    return () => ctx.revert();
   }, []);
 
   return (

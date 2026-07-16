@@ -3,7 +3,7 @@ import { Skull, Anchor } from "lucide-react";
 import { NAV_LINKS, SITE_NAME } from "../constants";
 import { useScrollPosition } from "../hooks";
 import { gsap } from "gsap";
-
+import { BoneToggle, PirateMobileMenu } from "./PirateMobileNav";
 const Navbar = forwardRef((props, ref) => {
   const isScrolled = useScrollPosition(50);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -28,14 +28,15 @@ const Navbar = forwardRef((props, ref) => {
   };
 
   return (
-    <nav
-      ref={ref}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
-        isScrolled
-          ? "glass-navbar shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
-          : "bg-transparent"
-      }`}
-    >
+    <>
+      <nav
+        ref={ref}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-700 ${
+          isScrolled
+            ? "glass-navbar shadow-[0_4px_30px_rgba(0,0,0,0.5)]"
+            : "bg-transparent"
+        }`}
+      >
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 lg:px-16">
         <div className="flex items-center justify-between h-20 lg:h-24">
           {/* Logo */}
@@ -89,61 +90,15 @@ const Navbar = forwardRef((props, ref) => {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="lg:hidden flex flex-col gap-1.5 p-2 group"
-            aria-label="Toggle menu"
-          >
-            <span
-              className={`w-6 h-[1.5px] bg-pirate-gold transition-all duration-500 ${
-                isMobileOpen ? "rotate-45 translate-y-[5px]" : ""
-              }`}
-            />
-            <span
-              className={`w-6 h-[1.5px] bg-pirate-gold transition-all duration-500 ${
-                isMobileOpen ? "opacity-0 scale-0" : ""
-              }`}
-            />
-            <span
-              className={`w-6 h-[1.5px] bg-pirate-gold transition-all duration-500 ${
-                isMobileOpen ? "-rotate-45 -translate-y-[5px]" : ""
-              }`}
-            />
-          </button>
+          {/* Mobile Menu Button - The AAA Bone Toggle */}
+          <BoneToggle isOpen={isMobileOpen} toggle={() => setIsMobileOpen(!isMobileOpen)} />
         </div>
       </div>
+      </nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={`lg:hidden overflow-hidden transition-all duration-700 ease-in-out ${
-          isMobileOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="glass-navbar px-6 py-6 border-t border-pirate-gold/10">
-          <div className="flex flex-col gap-1">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setIsMobileOpen(false)}
-                className="font-inter text-sm text-pirate-white/80 tracking-wide py-3 px-4 rounded transition-all duration-300 hover:bg-pirate-gold/5 hover:text-pirate-gold hover:pl-6"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#crew"
-              onClick={() => setIsMobileOpen(false)}
-              className="mt-4 flex items-center justify-center gap-2 px-6 py-3 border border-pirate-gold/50 rounded font-cinzel text-sm text-pirate-gold tracking-wider hover:bg-pirate-gold/10 transition-all duration-300"
-            >
-              <span>Join The Crew</span>
-              <Anchor className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </nav>
+      {/* Mobile Menu - The Slide-in Map */}
+      <PirateMobileMenu isOpen={isMobileOpen} close={() => setIsMobileOpen(false)} />
+    </>
   );
 });
 
