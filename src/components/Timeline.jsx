@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, useMemo } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
@@ -93,14 +93,14 @@ const PirateShipSVG = () => (
 );
 
 /* ─── Island Card ─── */
-const IslandCard = ({ milestone, index }) => {
+const IslandCard = ({ milestone, index, side }) => {
   const IconComp = milestone.icon;
   const isFinal = milestone.isFinal;
 
   return (
     <motion.div
-      className="timeline-card relative flex justify-start w-full"
-      initial={{ opacity: 0, x: 40, y: 20 }}
+      className={`timeline-card relative flex w-full ${side === "left" ? "md:justify-end" : "md:justify-start"}`}
+      initial={{ opacity: 0, x: side === "left" ? -40 : 40, y: 20 }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -201,10 +201,8 @@ const IslandCard = ({ milestone, index }) => {
 const Timeline = () => {
   const sectionRef = useRef(null);
   const pathRef = useRef(null);
-  const shipRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
-  const [shipY, setShipY] = useState(0);
 
   // Gold particles
   const particles = useMemo(() =>
@@ -249,14 +247,15 @@ const Timeline = () => {
         });
       }
 
-      // Move ship along the vertical path
-      ScrollTrigger.create({
-        trigger: sectionRef.current,
-        start: "top 60%",
-        end: "bottom 80%",
-        scrub: 0.5,
-        onUpdate: (self) => {
-          setShipY(self.progress);
+      // Move ship along the vertical path smoothly with GSAP
+      gsap.to(".pirate-ship", {
+        top: "95%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 60%",
+          end: "bottom 80%",
+          scrub: 1,
         },
       });
 
@@ -365,10 +364,10 @@ const Timeline = () => {
         </header>
 
         {/* ─── Vertical Timeline ─── */}
-        <div className="relative max-w-[800px] mx-auto mt-8">
+        <div className="relative">
 
-          {/* Vertical line (SVG for draw animation) */}
-          <div className="absolute left-6 md:left-12 top-0 bottom-0 w-[3px]">
+          {/* Central vertical line (SVG for draw animation) */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[3px] hidden md:block">
             <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 3 1000">
               {/* Background line */}
               <line x1="1.5" y1="0" x2="1.5" y2="1000" stroke="rgba(212,175,55,0.08)" strokeWidth="1" />
@@ -384,48 +383,88 @@ const Timeline = () => {
             </svg>
           </div>
 
+          {/* Mobile center line */}
+          <div className="absolute left-6 top-0 bottom-0 w-[2px] md:hidden bg-gradient-to-b from-pirate-gold/10 via-pirate-gold/20 to-pirate-gold/10" />
+
           {/* ─── Pirate Ship (moves along the path) ─── */}
           <div
-            className="absolute left-6 md:left-12 z-30 pointer-events-none"
+            className="pirate-ship absolute z-30 pointer-events-none hidden md:block"
             style={{
-              top: `${2 + shipY * 96}%`,
-              transition: "top 0.3s ease-out",
+              left: "50%",
+              top: "5%",
+              transform: "translate(-50%, -50%)",
+              width: "50px",
+              height: "42px",
             }}
           >
-            <div
-              ref={shipRef}
-              className="absolute"
-              style={{
-                transform: "translate(-50%, -50%)",
-                width: "48px",
-                height: "40px",
-              }}
-            >
-              <div className="hidden md:block absolute -inset-6 pointer-events-none" style={{
-                background: "radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 60%)",
-              }} />
-              <div style={{ animation: "shipBob 3s ease-in-out infinite" }}>
-                <PirateShipSVG />
-              </div>
+            {/* Ship glow */}
+            <div className="absolute -inset-6 pointer-events-none" style={{
+              background: "radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 60%)",
+            }} />
+            <div style={{ animation: "shipBob 3s ease-in-out infinite" }}>
+              <PirateShipSVG />
+            </div>
+          </div>
+
+          {/* Mobile ship */}
+          <div
+            className="pirate-ship absolute z-30 pointer-events-none md:hidden"
+            style={{
+              left: "6px",
+              top: "3%",
+              transform: "translate(-50%, -50%)",
+              width: "36px",
+              height: "30px",
+            }}
+          >
+            <div style={{ animation: "shipBob 3s ease-in-out infinite" }}>
+              <PirateShipSVG />
             </div>
           </div>
 
           {/* ─── Milestone Items ─── */}
           <div className="relative flex flex-col gap-16 sm:gap-20 md:gap-24">
             {MILESTONES.map((ms, i) => {
+              const side = i % 2 === 0 ? "left" : "right";
+
               return (
                 <div key={ms.id} className="relative flex items-center">
 
-                  {/* Node dot */}
-                  <div className="timeline-node absolute left-6 md:left-12 -translate-x-1/2 z-20 flex items-center justify-center">
-                    <div className="w-4 h-4 md:w-5 md:h-5 rounded-full border-2 border-pirate-gold/40 md:border-pirate-gold/50 bg-[#0a0806] flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)] group">
-                      <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-pirate-gold/50 md:bg-pirate-gold/60" />
+                  {/* Center node dot (desktop) */}
+                  <div className="timeline-node absolute left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center">
+                    <div className="w-5 h-5 rounded-full border-2 border-pirate-gold/50 bg-[#0a0806] flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)] group">
+                      <div className="w-2 h-2 rounded-full bg-pirate-gold/60" />
                     </div>
                   </div>
 
-                  {/* Card — always right */}
-                  <div className="w-full pl-16 md:pl-28 pr-4 md:pr-0">
-                    <IslandCard milestone={ms} index={i} />
+                  {/* Mobile node dot */}
+                  <div className="timeline-node absolute left-6 -translate-x-1/2 z-20 md:hidden flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full border-2 border-pirate-gold/40 bg-[#0a0806] flex items-center justify-center">
+                      <div className="w-1.5 h-1.5 rounded-full bg-pirate-gold/50" />
+                    </div>
+                  </div>
+
+                  {/* Card — desktop alternating, mobile always right */}
+                  <div className="w-full flex md:hidden pl-14">
+                    <IslandCard milestone={ms} index={i} side="right" />
+                  </div>
+
+                  <div className="hidden md:flex w-full">
+                    {side === "left" ? (
+                      <>
+                        <div className="w-1/2 pr-12 lg:pr-16 flex justify-end">
+                          <IslandCard milestone={ms} index={i} side="left" />
+                        </div>
+                        <div className="w-1/2" />
+                      </>
+                    ) : (
+                      <>
+                        <div className="w-1/2" />
+                        <div className="w-1/2 pl-12 lg:pl-16 flex justify-start">
+                          <IslandCard milestone={ms} index={i} side="right" />
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               );
@@ -434,7 +473,7 @@ const Timeline = () => {
 
           {/* Final treasure marker */}
           <motion.div
-            className="flex justify-start pl-16 md:pl-28 mt-16 sm:mt-20"
+            className="flex justify-center mt-16 sm:mt-20"
             initial={{ opacity: 0, scale: 0.5 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
