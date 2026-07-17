@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Hero, About, PrizePool, Sponsorship, Footer, ScrollToTop } from "./components";
+import { Hero, About, Timeline, PrizePool, Sponsorship, Footer, ScrollToTop } from "./components";
 
 class ErrorBoundary extends Component {
   constructor(props) {
@@ -32,6 +32,7 @@ function App() {
       <main className="bg-pirate-bg min-h-screen relative">
         <Hero />
         <About />
+        <Timeline />
         <PrizePool />
         <Sponsorship />
         <Footer />

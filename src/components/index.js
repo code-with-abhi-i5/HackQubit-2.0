@@ -6,6 +6,7 @@ export { default as SocialIcons } from "./SocialIcons";
 export { default as ScrollIndicator } from "./ScrollIndicator";
 export { default as Buttons } from "./Buttons";
 export { default as About } from "./About";
+export { default as Timeline } from "./Timeline";
 export { default as PrizePool } from "./PrizePool";
 export { default as Sponsorship } from "./Sponsorship";
 export { default as Footer } from "./Footer";
