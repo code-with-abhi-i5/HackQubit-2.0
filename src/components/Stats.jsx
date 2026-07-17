@@ -132,7 +132,7 @@ const StatCard = ({ icon, value, suffix, label, isLast }) => {
             {count}
             <span className="text-pirate-gold">{suffix}</span>
           </span>
-          <span className="font-inter text-[9px] sm:text-[10px] text-pirate-white/35 tracking-[0.2em] uppercase mt-1">
+          <span className="font-cinzel text-[9px] sm:text-[10px] text-pirate-white/35 tracking-[0.2em] uppercase mt-1">
             {label}
           </span>
         </div>

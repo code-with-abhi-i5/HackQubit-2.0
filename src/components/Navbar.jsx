@@ -55,7 +55,7 @@ const Navbar = forwardRef((props, ref) => {
               <span className="font-cinzel text-lg font-bold text-pirate-white tracking-wider">
                 {SITE_NAME.split(" ")[0]}
               </span>
-              <span className="font-inter text-[10px] text-pirate-gold/70 tracking-[0.3em] uppercase">
+              <span className="font-cinzel text-[10px] text-pirate-gold/70 tracking-[0.3em] uppercase">
                 {SITE_NAME.split(" ").slice(1).join(" ")}
               </span>
             </div>
@@ -70,7 +70,7 @@ const Navbar = forwardRef((props, ref) => {
                 href={link.href}
                 onMouseEnter={() => handleLinkHover(i)}
                 onMouseLeave={() => handleLinkLeave(i)}
-                className="relative px-5 py-2 font-inter text-sm text-pirate-white/90 tracking-wide transition-colors duration-300 group"
+                className="relative px-5 py-2 font-cinzel text-sm text-pirate-white/90 tracking-wide transition-colors duration-300 group"
               >
                 {link.label}
                 <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-gradient-to-r from-transparent via-pirate-gold to-transparent group-hover:w-4/5 transition-all duration-500" />

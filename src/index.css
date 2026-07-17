@@ -1,5 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Trade+Winds&family=Almendra+SC&family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Pirata One';
+  src: url('./assets/fonts/Pirata_One/PirataOne-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('./assets/fonts/Cinzel/Cinzel-VariableFont_wght.ttf') format('truetype');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('./assets/fonts/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cormorant Garamond';
+  src: url('./assets/fonts/Cormorant_Garamond/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+}
 
 @theme {
   --color-pirate-bg: #0B0B0B;
@@ -11,10 +42,10 @@
   --color-pirate-dark: #0D0D0D;
   --color-pirate-darker: #080808;
   --font-cinzel: 'Cinzel', serif;
-  --font-pirate: 'Trade Winds', system-ui;
-  --font-pirate-alt: 'Almendra SC', serif;
+  --font-pirata: 'Pirata One', serif;
+  --font-pirate: 'Pirata One', serif;
   --font-cormorant: 'Cormorant Garamond', serif;
-  --font-inter: 'Inter', sans-serif;
+  --font-inter: 'Cormorant Garamond', serif; /* Map inter to cormorant for global body font consistency */
 }
 
 @layer base {
@@ -27,15 +58,15 @@
     box-sizing: border-box;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
-    font-family: var(--font-inter);
+    font-family: var(--font-cormorant);
     background-color: #0B0B0B;
     color: #F8F5F2;
     overflow-x: hidden;
+    font-size: 1.125rem;
+    line-height: 1.6;
+    letter-spacing: 0.03em;
+    font-weight: 400;
   }
 
   ::selection {
@@ -68,6 +99,14 @@
 
   .text-shadow-cinematic {
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8), 0 0 60px #D4AF3715;
+  }
+
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 40%, #8B6B3F 80%, #D4AF37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
   }
 
   .gold-glow {
@@ -340,4 +379,27 @@
 
 .skull-glow {
   filter: drop-shadow(0 0 12px rgba(212,175,55,0.8));
+}
+
+/* Prize Pool Section Animations */
+@keyframes prizeParticleFloat {
+  0% {
+    transform: translateY(0) translateX(0) scale(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateY(-60px) translateX(15px) scale(0.8);
+  }
+  85% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateY(-120px) translateX(-10px) scale(0);
+    opacity: 0;
+  }
 }

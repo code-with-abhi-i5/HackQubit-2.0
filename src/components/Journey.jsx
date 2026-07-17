@@ -68,8 +68,8 @@ const Journey = () => {
 
       {/* Title */}
       <div className="absolute top-16 left-1/2 -translate-x-1/2 z-10 text-center w-full px-4">
-        <h2 className="font-pirate text-3xl sm:text-5xl text-pirate-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.4)] tracking-widest">
-          The Hackathon Journey
+        <h2 className="font-cinzel text-3xl sm:text-5xl text-gradient-gold drop-shadow-[0_0_15px_rgba(212,175,55,0.4)] tracking-widest">
+          Timeline
         </h2>
         <div className="flex items-center justify-center gap-4 mt-4 opacity-60">
           <div className="w-12 h-[1px] bg-pirate-gold" />
@@ -96,7 +96,7 @@ const Journey = () => {
 
             {/* Content Box */}
             <div className="bg-[#0d0a07] border border-pirate-white/10 p-6 rounded-lg text-center shadow-xl transition-all duration-500 group-hover:-translate-y-2 group-hover:border-pirate-gold/30">
-              <span className="inline-block px-3 py-1 bg-pirate-gold/10 border border-pirate-gold/30 rounded text-pirate-gold font-inter font-bold text-xs uppercase tracking-widest mb-4">
+              <span className="inline-block px-3 py-1 bg-pirate-gold/10 border border-pirate-gold/30 rounded text-pirate-gold font-cinzel font-bold text-xs uppercase tracking-widest mb-4">
                 {step.date}
               </span>
               <h3 className="font-cinzel text-xl sm:text-2xl text-pirate-white mb-3 tracking-wide">

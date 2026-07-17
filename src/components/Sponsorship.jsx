@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Anchor, Flag, Coins, Crown, Medal, Shield, Swords } from "lucide-react";
+import { Anchor, Flag, Coins, Crown, Medal, Shield } from "lucide-react";
 import sponsorTitleImg from "../assets/images/our sponsore.png";
 import sponsorPackImg from "../assets/images/our pack.png";
 import izzkiLogo from "../assets/images/izzki tech.jpg";
@@ -135,7 +135,7 @@ const SponsorCard = ({ pkg }) => {
         {/* Header */}
         <div className="flex flex-col items-center text-center border-b border-pirate-white/10 pb-6 mb-6">
           {pkg.icon}
-          <h3 className="font-pirate text-2xl sm:text-3xl text-pirate-white tracking-widest mb-2">
+          <h3 className="font-cinzel text-2xl sm:text-3xl text-pirate-white tracking-widest mb-2">
             {pkg.title}
           </h3>
           <div className="px-4 py-1 rounded bg-black/60 border border-pirate-gold/20">
@@ -196,7 +196,7 @@ const Sponsorship = () => {
   }, []);
 
   // Generate random dust particles
-  const dustParticles = Array.from({ length: 30 }).map((_, i) => ({
+  const dustParticles = Array.from({ length: 30 }).map(() => ({
     left: `${Math.random() * 100}%`,
     top: `${Math.random() * 100}%`,
     animationDuration: `${5 + Math.random() * 10}s`,
@@ -269,7 +269,7 @@ const Sponsorship = () => {
                   {perk.icon}
                 </div>
                 
-                <h3 className="font-pirate text-2xl sm:text-3xl text-pirate-gold tracking-wider mb-4 drop-shadow-md">
+                <h3 className="font-cinzel text-2xl sm:text-3xl text-pirate-gold tracking-wider mb-4 drop-shadow-md">
                   {perk.title}
                 </h3>
                 <p className="font-inter text-pirate-white/80 text-sm sm:text-base leading-relaxed">
@@ -318,8 +318,8 @@ const Sponsorship = () => {
             <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('data:image/svg+xml,%3Csvg viewBox=\\'0 0 200 200\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cfilter id=\\'noiseFilter\\'%3E%3CfeTurbulence type=\\'fractalNoise\\' baseFrequency=\\'0.8\\' numOctaves=\\'3\\' stitchTiles=\\'stitch\\'/%3E%3C/filter%3E%3Crect width=\\'100%25\\' height=\\'100%25\\' filter=\\'url(%23noiseFilter)\\'/%3E%3C/svg%3E')]" />
             <div className="absolute top-0 left-0 w-4 h-full bg-gradient-to-r from-black/80 to-transparent" />
             <div className="absolute top-0 right-0 w-4 h-full bg-gradient-to-l from-black/80 to-transparent" />
-            <h3 className="font-pirate text-2xl sm:text-3xl md:text-4xl text-pirate-gold tracking-[0.15em] text-shadow-cinematic flex items-center justify-center gap-4 uppercase">
-              Our Past Sponsors
+            <h3 className="font-cinzel text-2xl sm:text-3xl md:text-4xl text-gradient-gold tracking-[0.15em] text-shadow-cinematic flex items-center justify-center gap-4 uppercase">
+              Our Sponsors
             </h3>
           </div>
 

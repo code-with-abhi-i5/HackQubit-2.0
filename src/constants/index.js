@@ -64,3 +64,38 @@ export const COLORS = {
   bronze: "#8B6B3F",
   white: "#F8F5F2",
 };
+
+export const CREW_MEMBERS = [
+  {
+    id: 1,
+    name: 'Captain Blackbeard',
+    role: 'Chief Hack Judge',
+    organization: 'Web3 Pirates',
+    image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    type: 'Judge',
+  },
+  {
+    id: 2,
+    name: 'Anne Bonny',
+    role: 'AI Mentor',
+    organization: 'Tech Armada',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    type: 'Mentor',
+  },
+  {
+    id: 3,
+    name: 'Calico Jack',
+    role: 'Blockchain Expert',
+    organization: 'Crypto Seas',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    type: 'Mentor',
+  },
+  {
+    id: 4,
+    name: 'Mary Read',
+    role: 'Lead Architect',
+    organization: 'Cloud Galleons',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+    type: 'Judge',
+  }
+];

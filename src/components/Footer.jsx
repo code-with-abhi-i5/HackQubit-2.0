@@ -14,12 +14,12 @@ const Footer = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Divider expanding animation
-      gsap.fromTo(dividerRef.current, 
+      gsap.fromTo(dividerRef.current,
         { scaleX: 0, opacity: 0 },
-        { 
-          scaleX: 1, 
-          opacity: 1, 
-          duration: 1.5, 
+        {
+          scaleX: 1,
+          opacity: 1,
+          duration: 1.5,
           ease: "power3.inOut",
           scrollTrigger: {
             trigger: footerRef.current,
@@ -49,7 +49,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <footer 
+    <footer
       ref={footerRef}
       className="relative bg-[#020202] pt-20 pb-6 overflow-hidden border-t border-pirate-gold/10"
     >
@@ -68,13 +68,13 @@ const Footer = () => {
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 relative z-10">
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
-          
+
           {/* Column 1: Brand */}
           <div ref={el => colRefs.current[0] = el} className="flex flex-col gap-6">
-            <h2 className="font-pirate text-3xl sm:text-4xl text-pirate-gold tracking-widest drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
-              HACKQUBIT <span className="text-pirate-white">2.0</span>
+            <h2 className="font-cinzel text-3xl sm:text-4xl text-gradient-gold tracking-widest drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]">
+              HACKQUBIT 2.0
             </h2>
             <p className="font-inter text-pirate-white/70 text-sm leading-relaxed">
               Embark on the ultimate coding voyage. Unearth hidden tech treasures, brave the coding challenges, and forge legendary projects alongside the finest crew of developers.
@@ -117,7 +117,7 @@ const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-pirate-gold shrink-0 mt-0.5" />
                 <a href="https://www.rvscollege.ac.in/" target="_blank" rel="noopener noreferrer" className="hover:text-pirate-gold transition-colors duration-300">
-                  RVS College Of Engineering<br/>
+                  RVS College Of Engineering<br />
                   And Technology, Jamshedpur
                 </a>
               </li>
@@ -133,13 +133,13 @@ const Footer = () => {
             <div className="w-full h-32 mt-2 rounded-lg overflow-hidden border border-pirate-gold/30 shadow-[0_0_15px_rgba(212,175,55,0.15)] group relative">
               {/* Map Glow */}
               <div className="absolute inset-0 bg-pirate-gold/10 pointer-events-none group-hover:bg-transparent transition-colors z-10" />
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.693067178232!2d86.273805!3d22.805307!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e30ff76d3319%3A0x4986ace5ea086802!2sRVS%20College%20Of%20Engineering%20And%20Technology%2C%20Jamshedpur!5e0!3m2!1sen!2sin!4v1784198208951!5m2!1sen!2sin" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0, filter: "invert(100%) sepia(30%) hue-rotate(340deg) brightness(80%) contrast(120%)" }} 
-                allowFullScreen="" 
-                loading="lazy" 
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14711.693067178232!2d86.273805!3d22.805307!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e30ff76d3319%3A0x4986ace5ea086802!2sRVS%20College%20Of%20Engineering%20And%20Technology%2C%20Jamshedpur!5e0!3m2!1sen!2sin!4v1784198208951!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0, filter: "invert(100%) sepia(30%) hue-rotate(340deg) brightness(80%) contrast(120%)" }}
+                allowFullScreen=""
+                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="opacity-80 group-hover:opacity-100 transition-opacity duration-500"
               />
@@ -162,9 +162,9 @@ const Footer = () => {
                 { icon: <FaLinkedinIn className="w-5 h-5" />, label: "LinkedIn" },
                 { icon: <FaGithub className="w-5 h-5" />, label: "GitHub" }
               ].map((social, i) => (
-                <a 
+                <a
                   key={i}
-                  href="#" 
+                  href="#"
                   aria-label={social.label}
                   className="w-10 h-10 rounded-full border border-pirate-gold/30 bg-black/50 flex items-center justify-center text-pirate-white hover:text-pirate-gold hover:border-pirate-gold hover:bg-pirate-gold/10 hover:-translate-y-1 hover:shadow-[0_0_15px_rgba(212,175,55,0.4)] transition-all duration-300 group"
                 >
