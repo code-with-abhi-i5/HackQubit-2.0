@@ -74,21 +74,14 @@
     color: #D4AF37;
   }
 
+  /* Hide scrollbar */
   ::-webkit-scrollbar {
-    width: 6px;
+    display: none;
   }
-
-  ::-webkit-scrollbar-track {
-    background: #0B0B0B;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #8B6B3F;
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: #D4AF37;
+  
+  html, body {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
   }
 }
 
@@ -422,4 +415,28 @@
   0% { transform: translateX(0) scale(1); opacity: 0.03; }
   50% { transform: translateX(30px) scale(1.1); opacity: 0.06; }
   100% { transform: translateX(-20px) scale(0.95); opacity: 0.03; }
+}
+
+/* ── Gallery Section Animations ── */
+@keyframes candleFlicker {
+  0%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  25% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.95); }
+  50% { opacity: 0.9; transform: translate(-50%, -50%) scale(1.05); }
+  75% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.98); }
+}
+
+@keyframes borderShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Gallery card hover scale for active card */
+.gallery-coverflow-card img.hover\:scale-108:hover {
+  transform: scale(1.08);
+}
+
+/* Ensure cards have smooth transform transitions when not being dragged */
+.gallery-coverflow-card {
+  transition: box-shadow 0.5s ease;
 }

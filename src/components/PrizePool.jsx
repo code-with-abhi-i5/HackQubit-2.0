@@ -2,6 +2,7 @@ import { useRef, useEffect, useState, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
+import pricePoolImg from "../assets/images/price pool image.png";
 import {
   Trophy,
   Crown,
@@ -795,8 +796,12 @@ const PrizePool = () => {
               }}
             />
 
-            {/* Chest SVG */}
-            <TreasureChestSVG isHovered={chestHovered} />
+            {/* Chest Image */}
+            <img 
+              src={pricePoolImg} 
+              alt="Treasure Chest" 
+              className={`w-full h-full object-contain transition-all duration-700 ${chestHovered ? "drop-shadow-[0_0_40px_rgba(255,215,0,0.8)] scale-110" : "drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"}`} 
+            />
 
             {/* Floating coins animation around chest */}
             {chestHovered && (
