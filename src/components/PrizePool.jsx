@@ -870,7 +870,7 @@ const PrizePool = () => {
             style={{
               textShadow: "0 0 60px rgba(212,175,55,0.25), 0 4px 20px rgba(0,0,0,0.8)",
             }}
-          >
+            >
             The Treasure Awaits
           </h2>
 
