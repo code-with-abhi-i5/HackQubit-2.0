@@ -741,15 +741,20 @@ const PrizePool = () => {
           </motion.div>
 
           {/* Main Title */}
-          <h2
+          <motion.h2
             ref={titleRef}
-            className="font-pirata text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-gradient-gold tracking-wider leading-[0.95] mb-5 sm:mb-6"
+            whileHover={{
+              scale: 1.03,
+              filter: "drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 20px #FFD700) drop-shadow(0 0 40px #FFD700)",
+            }}
+            transition={{ duration: 0.25 }}
+            className="font-pirata text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-gradient-gold tracking-wider leading-[0.95] mb-5 sm:mb-6 cursor-pointer"
             style={{
               textShadow: "0 0 60px rgba(212,175,55,0.25), 0 4px 20px rgba(0,0,0,0.8)",
             }}
-          >
+            >
             The Treasure Awaits
-          </h2>
+          </motion.h2>
 
           {/* Subtitle */}
           <p
