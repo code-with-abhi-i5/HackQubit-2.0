@@ -2,73 +2,90 @@ import { useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
-import { Anchor, Skull, Compass, Flag, Crown, Swords, Code, Presentation } from "lucide-react";
+import { Anchor, Skull, Compass, Flag, Crown, Swords, Code, Presentation, Coffee, Zap, Timer } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 /* ─── MILESTONE DATA ─── */
 const MILESTONES = [
   {
-    id: "harbor",
-    emoji: "⚓",
-    title: "Harbor",
-    subtitle: "Registration",
-    date: "Coming Soon",
-    desc: "Gather your crew and sign up for the ultimate pirate adventure.",
+    id: "reg",
+    title: "Registration & Check-In",
+    subtitle: "Day 1 - October 7th",
+    date: "09:00 AM",
+    desc: "Gather your crew at the harbor and sign up for the ultimate adventure.",
     icon: Anchor,
   },
   {
-    id: "crew",
-    emoji: "🏴",
-    title: "Pirate Crew",
-    subtitle: "Team Formation",
-    date: "Coming Soon",
-    desc: "Assemble your squad of legendary coders and innovators.",
+    id: "open",
+    title: "Opening Ceremony",
+    subtitle: "Day 1 - October 7th",
+    date: "10:00 AM",
+    desc: "The captain unveils the map and sets the rules of engagement.",
     icon: Flag,
   },
   {
-    id: "orders",
-    emoji: "📜",
-    title: "Captain's Orders",
-    subtitle: "Problem Statement Reveal",
-    date: "Coming Soon",
-    desc: "The captain unveils the treasure map — your challenge awaits.",
-    icon: Compass,
-  },
-  {
-    id: "prep",
-    emoji: "⚒",
-    title: "Ship Preparation",
-    subtitle: "Mentoring & Setup",
-    date: "Coming Soon",
-    desc: "Repair the sails, sharpen the swords — mentors guide your voyage.",
-    icon: Swords,
-  },
-  {
-    id: "voyage",
-    emoji: "💻",
-    title: "Coding Voyage",
-    subtitle: "24 Hour Hackathon",
-    date: "Coming Soon",
-    desc: "Sail through the storm — 24 hours of relentless coding and innovation.",
+    id: "hack",
+    title: "Hacking Begins",
+    subtitle: "Day 1 - October 7th",
+    date: "11:00 AM",
+    desc: "Set sail! The 24-hour coding voyage officially starts.",
     icon: Code,
   },
   {
-    id: "battle",
-    emoji: "⚔",
-    title: "Final Battle",
-    subtitle: "Project Presentation",
-    date: "Coming Soon",
-    desc: "Present your creation to the judges and defend your treasure.",
+    id: "lunch",
+    title: "Lunch Break",
+    subtitle: "Day 1 - October 7th",
+    date: "01:00 PM",
+    desc: "Restock your supplies and feast before the storm.",
+    icon: Coffee,
+  },
+  {
+    id: "talks",
+    title: "Tech Talks & Mentoring",
+    subtitle: "Day 1 - October 7th",
+    date: "06:00 PM",
+    desc: "Learn from veteran pirates and navigate tricky coding waters.",
     icon: Presentation,
   },
   {
-    id: "treasure",
-    emoji: "👑",
-    title: "Hidden Treasure",
-    subtitle: "Prize Distribution",
-    date: "Coming Soon",
-    desc: "The bravest pirates claim the ultimate treasure and eternal glory.",
+    id: "dinner",
+    title: "Dinner & Networking",
+    subtitle: "Day 1 - October 7th",
+    date: "08:00 PM",
+    desc: "Share tales of the sea and refuel for the long night ahead.",
+    icon: Compass,
+  },
+  {
+    id: "midnight",
+    title: "Midnight Energy Boost",
+    subtitle: "Day 1 - October 7th",
+    date: "12:00 AM",
+    desc: "Survive the dark hours with surprise activities and snacks.",
+    icon: Zap,
+  },
+  {
+    id: "submit",
+    title: "Submission Deadline",
+    subtitle: "Day 2 - October 8th",
+    date: "09:00 AM",
+    desc: "Drop your anchors! All code must be submitted.",
+    icon: Timer,
+  },
+  {
+    id: "judge",
+    title: "Judging & Presentation",
+    subtitle: "Day 2 - October 8th",
+    date: "09:30 AM",
+    desc: "Defend your treasure before the high council of judges.",
+    icon: Swords,
+  },
+  {
+    id: "close",
+    title: "Closing Ceremony",
+    subtitle: "Day 2 - October 8th",
+    date: "10:30 AM",
+    desc: "Claim the ultimate treasure and eternal glory.",
     icon: Crown,
     isFinal: true,
   },
@@ -135,32 +152,39 @@ const IslandCard = ({ milestone, index, side }) => {
             background: "radial-gradient(ellipse at center, rgba(212,175,55,0.08) 0%, transparent 70%)",
           }} />
 
+          {/* Reached (Active) Glow Overlay */}
+          <div className="absolute inset-0 opacity-0 group-[.reached]:opacity-100 transition-opacity duration-700 pointer-events-none" style={{
+            boxShadow: "inset 0 0 40px rgba(212,175,55,0.2)",
+            border: "1px solid rgba(255,215,0,0.5)",
+            borderRadius: "0.75rem",
+          }} />
+
           <div className="relative z-10 p-5 sm:p-6">
-            {/* Top row: emoji + date */}
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-2xl drop-shadow-lg">{milestone.emoji}</span>
-              <span className="px-3 py-0.5 rounded-full text-[9px] font-cinzel font-bold tracking-[0.2em] uppercase text-pirate-gold/70 border border-pirate-gold/20 bg-pirate-gold/5">
+
+            {/* Time (Large and Prominent) */}
+            <div className="text-center mb-1">
+              <h4 className="font-pirata text-3xl sm:text-4xl text-pirate-gold tracking-widest drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]">
                 {milestone.date}
-              </span>
+              </h4>
             </div>
 
+            {/* Subtitle / Day */}
+            <p className="font-cinzel text-xs sm:text-sm font-bold text-pirate-white/50 tracking-[0.2em] uppercase text-center mb-5">
+              {milestone.subtitle}
+            </p>
+
             {/* Icon */}
-            <div className="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center border border-pirate-gold/25 group-hover:border-pirate-gold/50 transition-all duration-500" style={{
+            <div className="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center border border-pirate-gold/25 group-hover:border-pirate-gold/50 group-[.reached]:border-pirate-gold/80 transition-all duration-500" style={{
               background: "radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%)",
               boxShadow: "0 0 20px rgba(212,175,55,0.05)",
             }}>
-              <IconComp className="w-5 h-5 text-pirate-gold/70 group-hover:text-pirate-gold transition-colors duration-500" strokeWidth={1.5} />
+              <IconComp className="w-5 h-5 text-pirate-gold/70 group-hover:text-pirate-gold group-[.reached]:text-[#FFD700] transition-colors duration-500" strokeWidth={1.5} />
             </div>
 
             {/* Title */}
-            <h3 className="font-cinzel text-base sm:text-lg font-bold text-pirate-gold tracking-wider text-center mb-1">
+            <h3 className="font-cinzel text-base sm:text-lg font-bold text-pirate-white group-hover:text-pirate-gold group-[.reached]:text-pirate-gold tracking-wider text-center mb-3 transition-colors duration-300">
               {milestone.title}
             </h3>
-
-            {/* Subtitle */}
-            <p className="font-cinzel text-[9px] text-pirate-white/35 tracking-[0.2em] uppercase text-center mb-3">
-              {milestone.subtitle}
-            </p>
 
             {/* Divider */}
             <div className="w-12 h-[1px] mx-auto mb-3 bg-gradient-to-r from-transparent via-pirate-gold/30 to-transparent" />
@@ -203,6 +227,8 @@ const Timeline = () => {
   const pathRef = useRef(null);
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
+  const lineRef = useRef(null);
+  const timelineContainerRef = useRef(null);
 
   // Gold particles
   const particles = useMemo(() =>
@@ -213,7 +239,7 @@ const Timeline = () => {
       duration: 5 + Math.random() * 8,
       delay: Math.random() * 6,
     })),
-  []);
+    []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -231,35 +257,39 @@ const Timeline = () => {
         });
       }
 
-      // Draw the vertical path line
-      if (pathRef.current) {
-        const length = pathRef.current.getTotalLength();
-        gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
-        gsap.to(pathRef.current, {
-          strokeDashoffset: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 60%",
-            end: "bottom 80%",
-            scrub: 1,
-          },
-        });
+      // Draw the glowing straight line down
+      if (lineRef.current) {
+        gsap.fromTo(lineRef.current, 
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: timelineContainerRef.current,
+              start: "top 50%",
+              end: "bottom 50%",
+              scrub: 0.5,
+            },
+          }
+        );
       }
 
       // Move ship along the vertical path smoothly with GSAP
-      gsap.to(".pirate-ship", {
-        top: "95%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 60%",
-          end: "bottom 80%",
-          scrub: 1,
-        },
-      });
+      gsap.fromTo(".pirate-ship", 
+        { top: "0%" },
+        {
+          top: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: timelineContainerRef.current,
+            start: "top 50%",
+            end: "bottom 50%",
+            scrub: 0.5,
+          },
+        }
+      );
 
-      // Milestone nodes glow as they enter
+      // Milestone nodes glow as they enter viewport initially
       gsap.utils.toArray(".timeline-node").forEach((node) => {
         gsap.from(node, {
           scrollTrigger: { trigger: node, start: "top 75%" },
@@ -267,6 +297,16 @@ const Timeline = () => {
           opacity: 0,
           duration: 0.6,
           ease: "back.out(2)",
+        });
+      });
+
+      // Milestone items light up when the ship reaches them (center of screen)
+      gsap.utils.toArray(".milestone-item").forEach((item) => {
+        ScrollTrigger.create({
+          trigger: item,
+          start: "center 50%", // When exact center of item hits the center of the viewport
+          onEnter: () => item.classList.add("reached"),
+          onLeaveBack: () => item.classList.remove("reached"),
         });
       });
     }, sectionRef);
@@ -364,23 +404,18 @@ const Timeline = () => {
         </header>
 
         {/* ─── Vertical Timeline ─── */}
-        <div className="relative">
+        <div className="relative" ref={timelineContainerRef}>
 
-          {/* Central vertical line (SVG for draw animation) */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[3px] hidden md:block">
-            <svg className="w-full h-full" preserveAspectRatio="none" viewBox="0 0 3 1000">
-              {/* Background line */}
-              <line x1="1.5" y1="0" x2="1.5" y2="1000" stroke="rgba(212,175,55,0.08)" strokeWidth="1" />
-              {/* Animated draw line */}
-              <line
-                ref={pathRef}
-                x1="1.5" y1="0" x2="1.5" y2="1000"
-                stroke="rgba(212,175,55,0.35)"
-                strokeWidth="1.5"
-                strokeDasharray="8,6"
-                strokeLinecap="round"
-              />
-            </svg>
+          {/* Central Straight Line */}
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] hidden md:block z-0 pointer-events-none">
+            {/* Background static faint line */}
+            <div className="absolute inset-0 bg-gradient-to-b from-pirate-gold/10 via-pirate-gold/20 to-pirate-gold/10" />
+            
+            {/* Animated glowing line that draws downwards */}
+            <div 
+              ref={lineRef} 
+              className="absolute inset-0 bg-pirate-gold shadow-[0_0_15px_rgba(212,175,55,0.8)] origin-top" 
+            />
           </div>
 
           {/* Mobile center line */}
@@ -428,19 +463,19 @@ const Timeline = () => {
               const side = i % 2 === 0 ? "left" : "right";
 
               return (
-                <div key={ms.id} className="relative flex items-center">
+                <div key={ms.id} className="milestone-item group relative flex items-center">
 
                   {/* Center node dot (desktop) */}
-                  <div className="timeline-node absolute left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center">
-                    <div className="w-5 h-5 rounded-full border-2 border-pirate-gold/50 bg-[#0a0806] flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)] group">
-                      <div className="w-2 h-2 rounded-full bg-pirate-gold/60" />
+                  <div className="timeline-node timeline-node-center absolute left-1/2 -translate-x-1/2 z-20 hidden md:flex items-center justify-center">
+                    <div className="w-5 h-5 rounded-full border-2 border-pirate-gold/50 bg-[#0a0806] flex items-center justify-center shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all duration-500 group-[.reached]:scale-[1.4] group-[.reached]:border-pirate-gold group-[.reached]:bg-pirate-gold/20 group-[.reached]:shadow-[0_0_25px_rgba(255,215,0,0.8)]">
+                      <div className="w-2 h-2 rounded-full bg-pirate-gold/60 transition-all duration-500 group-[.reached]:bg-[#FFD700] group-[.reached]:scale-[1.5] group-[.reached]:shadow-[0_0_10px_#FFD700]" />
                     </div>
                   </div>
 
                   {/* Mobile node dot */}
                   <div className="timeline-node absolute left-6 -translate-x-1/2 z-20 md:hidden flex items-center justify-center">
-                    <div className="w-4 h-4 rounded-full border-2 border-pirate-gold/40 bg-[#0a0806] flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 rounded-full bg-pirate-gold/50" />
+                    <div className="w-4 h-4 rounded-full border-2 border-pirate-gold/40 bg-[#0a0806] flex items-center justify-center transition-all duration-500 group-[.reached]:scale-[1.4] group-[.reached]:border-pirate-gold group-[.reached]:bg-pirate-gold/20 group-[.reached]:shadow-[0_0_20px_rgba(255,215,0,0.8)]">
+                      <div className="w-1.5 h-1.5 rounded-full bg-pirate-gold/50 transition-all duration-500 group-[.reached]:bg-[#FFD700] group-[.reached]:scale-[1.5]" />
                     </div>
                   </div>
 

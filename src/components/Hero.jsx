@@ -5,8 +5,6 @@ import { animateHeroEntrance } from "../animations";
 import Navbar from "./Navbar";
 import HeroContent from "./HeroContent";
 import Stats from "./Stats";
-import SocialIcons from "./SocialIcons";
-import ScrollIndicator from "./ScrollIndicator";
 import heroBg from "../assets/images/hero-bg.png";
 
 const Hero = () => {
@@ -20,9 +18,7 @@ const Hero = () => {
   const skullIconRef = useRef(null);
   const descriptionRef = useRef(null);
   const buttonsRef = useRef(null);
-  const socialRef = useRef(null);
   const statsRef = useRef(null);
-  const scrollIndicatorRef = useRef(null);
   const bgRef = useRef(null);
 
   useEffect(() => {
@@ -35,9 +31,7 @@ const Hero = () => {
         skullIcon: skullIconRef.current,
         description: descriptionRef.current,
         buttons: buttonsRef.current,
-        social: socialRef.current,
         stats: statsRef.current,
-        scrollIndicator: scrollIndicatorRef.current,
       });
     });
 
@@ -60,7 +54,7 @@ const Hero = () => {
         <img
           src={heroBg}
           alt="Pirate ship on stormy seas"
-          className="w-full h-full object-contain object-center"
+          className="w-full h-full object-cover object-center"
           loading="eager"
         />
       </div>
@@ -102,11 +96,6 @@ const Hero = () => {
         }}
       />
 
-      {/* Social Icons */}
-      <SocialIcons ref={socialRef} />
-
-      {/* Scroll Indicator */}
-      <ScrollIndicator ref={scrollIndicatorRef} />
 
       {/* Stats Bar */}
       <Stats ref={statsRef} />

@@ -279,23 +279,48 @@ const TreasureChestSVG = ({ isHovered }) => (
   </svg>
 );
 
-/* ─── Prize Card Component ─── */
-const PrizeCard = ({ prize, index }) => {
-  const cardRef = useRef(null);
+/* ─── Hover Particles ─── */
+const HoverParticles = ({ accent }) => {
+  const particles = useMemo(() => Array.from({ length: 12 }).map((_, i) => ({
+    id: i,
+    left: `${10 + Math.random() * 80}%`,
+    delay: Math.random() * 2,
+    duration: 1.5 + Math.random() * 2,
+    size: 2 + Math.random() * 4,
+  })), []);
 
-  // Float animation offsets per card for organic feel
-  const floatDuration = 5 + index * 0.7;
-  const floatDelay = index * 0.3;
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20">
+      {particles.map(p => (
+        <div
+          key={p.id}
+          className="absolute bottom-1/4 rounded-full"
+          style={{
+            left: p.left,
+            width: p.size,
+            height: p.size,
+            background: `radial-gradient(circle, #FFD700 0%, ${accent} 70%, transparent 100%)`,
+            boxShadow: `0 0 10px ${accent}`,
+            animation: `hoverParticleUp ${p.duration}s ${p.delay}s ease-in infinite`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+/* ─── Top Prize Card (Large, Podium-style) ─── */
+const TopPrizeCard = ({ prize, index, isFirst }) => {
+  const IconComp = prize.icon;
 
   return (
     <motion.div
-      ref={cardRef}
       className="prize-card-wrapper"
-      initial={{ opacity: 0, y: 60, rotateX: 15 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
+      initial={{ opacity: 0, y: 80, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{
-        duration: 0.8,
+        duration: 1,
         delay: prize.delay,
         ease: [0.25, 0.46, 0.45, 0.94],
       }}
@@ -303,133 +328,228 @@ const PrizeCard = ({ prize, index }) => {
       <motion.div
         className="prize-card relative group cursor-pointer"
         animate={{
-          y: [0, -8, 0],
-          rotateY: [-1, 1, -1],
-          rotateX: [0.5, -0.5, 0.5],
+          y: [0, isFirst ? -12 : -6, 0],
         }}
         transition={{
-          duration: floatDuration,
-          delay: floatDelay,
+          duration: 5 + index * 0.5,
           repeat: Infinity,
           ease: "easeInOut",
         }}
         whileHover={{
-          y: -16,
-          scale: 1.04,
-          rotateY: 0,
+          y: -20,
+          scale: 1.03,
           transition: { duration: 0.4, ease: "easeOut" },
         }}
-        style={{ perspective: "1000px", transformStyle: "preserve-3d" }}
       >
+        {/* Outer glow ring for 1st place */}
+        {isFirst && (
+          <div className="absolute -inset-3 rounded-2xl pointer-events-none opacity-60 animate-pulse" style={{
+            background: "linear-gradient(135deg, rgba(255,215,0,0.15), rgba(212,175,55,0.05), rgba(255,215,0,0.15))",
+            filter: "blur(12px)",
+          }} />
+        )}
+
         {/* Card container */}
         <div
-          className="relative rounded-xl overflow-hidden transition-all duration-500"
+          className={`relative rounded-2xl overflow-hidden transition-all duration-500 ${isFirst ? "p-1" : ""}`}
           style={{
-            background: "linear-gradient(145deg, rgba(61,43,31,0.95) 0%, rgba(26,15,8,0.98) 50%, rgba(42,28,17,0.95) 100%)",
-            border: "1px solid rgba(212,175,55,0.25)",
-            boxShadow: "inset 0 0 40px rgba(0,0,0,0.8), 0 15px 40px rgba(0,0,0,0.6), 0 0 0 1px rgba(212,175,55,0.1)",
+            background: isFirst
+              ? "linear-gradient(135deg, rgba(255,215,0,0.4), rgba(212,175,55,0.15), rgba(255,215,0,0.4))"
+              : "none",
           }}
         >
-          {/* Wood grain texture overlay */}
           <div
-            className="absolute inset-0 opacity-[0.08] pointer-events-none"
+            className="relative rounded-2xl overflow-hidden"
             style={{
-              backgroundImage: `repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(139,107,63,0.3) 4px, rgba(139,107,63,0.3) 5px)`,
+              background: "linear-gradient(165deg, rgba(30,22,12,0.97) 0%, rgba(12,8,4,0.99) 50%, rgba(25,18,8,0.97) 100%)",
+              border: isFirst ? "none" : `1px solid ${prize.accent}35`,
+              boxShadow: isFirst
+                ? "inset 0 0 60px rgba(0,0,0,0.6), 0 20px 60px rgba(0,0,0,0.7), 0 0 80px rgba(255,215,0,0.08)"
+                : "inset 0 0 40px rgba(0,0,0,0.8), 0 15px 40px rgba(0,0,0,0.6)",
             }}
-          />
+          >
+            {/* Treasure Map / Vintage Wood Texture */}
+            <div className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay" style={{
+              backgroundImage: `radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%), repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(139,107,63,0.5) 4px, rgba(139,107,63,0.5) 5px)`,
+            }} />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none group-hover:opacity-[0.08] transition-opacity duration-700">
+              <Trophy className="w-64 h-64 text-pirate-gold rotate-12" strokeWidth={0.5} />
+            </div>
 
-          {/* Noise texture */}
-          <div
-            className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-color-dodge"
-            style={{
+            {/* Lamp Glow Effect */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-pirate-gold/20 blur-[50px] pointer-events-none rounded-full transform -translate-y-1/2 z-0 opacity-40 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-pirate-gold to-transparent z-10 opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
+
+            {/* Noise */}
+            <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-color-dodge" style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-            }}
-          />
+            }} />
 
-          {/* Hover glow overlay */}
-          <div
-            className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-            style={{
-              background: `radial-gradient(ellipse at center, ${prize.accent}15 0%, transparent 70%)`,
-            }}
-          />
+            {/* Hover glow */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
+              background: `radial-gradient(ellipse at center, ${prize.accent}18 0%, transparent 70%)`,
+            }} />
 
-          {/* Card content */}
-          <div className="relative z-10 p-5 sm:p-6">
-            {/* Rank badge */}
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-2xl sm:text-3xl drop-shadow-lg">{prize.rank}</span>
-              <div
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center transition-all duration-500 group-hover:scale-110"
-                style={{
-                  background: `linear-gradient(135deg, ${prize.accent}20 0%, ${prize.accent}08 100%)`,
-                  border: `1px solid ${prize.accent}30`,
-                  boxShadow: `0 0 15px ${prize.accent}10`,
-                }}
-              >
-                <prize.icon
-                  className="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-500 group-hover:scale-110"
-                  style={{ color: prize.accent }}
-                  strokeWidth={1.5}
-                />
+            {/* Hover Particles */}
+            <HoverParticles accent={prize.accent} />
+
+            {/* Content */}
+            <div className={`relative z-10 ${isFirst ? "p-8 sm:p-10" : "p-6 sm:p-8"} text-center`}>
+
+              {/* Rank label */}
+              <div className="flex justify-center mb-3">
+                <div className={`px-4 py-1 rounded-full border font-cinzel text-xs font-bold tracking-[0.25em] uppercase`} style={{
+                  borderColor: `${prize.accent}50`,
+                  color: prize.accent,
+                  background: `linear-gradient(135deg, ${prize.accent}10 0%, transparent 100%)`,
+                }}>
+                  {isFirst ? "1st Place" : index === 1 ? "2nd Place" : "3rd Place"}
+                </div>
               </div>
+
+              {/* Icon */}
+              <div className={`${isFirst ? "w-20 h-20" : "w-16 h-16"} rounded-full mx-auto mb-5 flex items-center justify-center border transition-all duration-500 group-hover:scale-110`} style={{
+                borderColor: `${prize.accent}40`,
+                background: `radial-gradient(circle, ${prize.accent}15 0%, transparent 70%)`,
+                boxShadow: `0 0 30px ${prize.accent}10`,
+              }}>
+                <IconComp className={`${isFirst ? "w-9 h-9" : "w-7 h-7"} transition-colors duration-500`} style={{ color: prize.accent }} strokeWidth={1.5} />
+              </div>
+
+              {/* Title */}
+              <h3 className={`font-cinzel ${isFirst ? "text-xl sm:text-2xl" : "text-lg sm:text-xl"} font-bold tracking-wider mb-2 transition-colors duration-300 group-hover:text-pirate-gold`} style={{ color: prize.accent }}>
+                {prize.title}
+              </h3>
+
+              {/* Subtitle */}
+              <p className="font-cinzel text-xs text-pirate-white/40 tracking-[0.2em] uppercase mb-5">
+                {prize.subtitle}
+              </p>
+
+              {/* AMOUNT — THE STAR */}
+              <div className="mb-5">
+                <span className={`font-pirata ${isFirst ? "text-5xl sm:text-6xl md:text-7xl" : "text-4xl sm:text-5xl"} font-normal tracking-wide lining-nums block`} style={{
+                  background: `linear-gradient(135deg, ${prize.accent} 0%, #FFE44D 40%, #FFD700 60%, ${prize.accent} 100%)`,
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  filter: `drop-shadow(0 0 20px ${prize.accent}40)`,
+                }}>
+                  {prize.amount}
+                </span>
+              </div>
+
+              {/* Divider */}
+              <div className="w-16 h-[1px] mx-auto mb-4" style={{
+                background: `linear-gradient(90deg, transparent, ${prize.accent}50, transparent)`,
+              }} />
+
+              {/* Description */}
+              <p className="font-cormorant text-sm sm:text-base text-pirate-white/50 leading-relaxed group-hover:text-pirate-white/70 transition-colors duration-500 max-w-[300px] mx-auto">
+                {prize.description}
+              </p>
+            </div>
+
+            {/* Bottom glow line */}
+            <div className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
+              background: `linear-gradient(90deg, transparent, ${prize.accent}80, transparent)`,
+            }} />
+
+            {/* Corner ornaments */}
+            <div className="absolute top-3 left-3 w-5 h-5 border-t border-l rounded-tl-lg group-hover:border-pirate-gold/50 transition-colors duration-500" style={{ borderColor: `${prize.accent}25` }} />
+            <div className="absolute top-3 right-3 w-5 h-5 border-t border-r rounded-tr-lg group-hover:border-pirate-gold/50 transition-colors duration-500" style={{ borderColor: `${prize.accent}25` }} />
+            <div className="absolute bottom-3 left-3 w-5 h-5 border-b border-l rounded-bl-lg group-hover:border-pirate-gold/50 transition-colors duration-500" style={{ borderColor: `${prize.accent}25` }} />
+            <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r rounded-br-lg group-hover:border-pirate-gold/50 transition-colors duration-500" style={{ borderColor: `${prize.accent}25` }} />
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+/* ─── Bottom Prize Card (Compact) ─── */
+const BottomPrizeCard = ({ prize, index }) => {
+  const IconComp = prize.icon;
+
+  return (
+    <motion.div
+      className="prize-card-wrapper"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.7, delay: prize.delay, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <motion.div
+        className="prize-card relative group cursor-pointer h-full"
+        animate={{ y: [0, -5, 0] }}
+        transition={{ duration: 5 + index * 0.5, repeat: Infinity, ease: "easeInOut" }}
+        whileHover={{ y: -12, scale: 1.03, transition: { duration: 0.3 } }}
+      >
+        <div
+          className="relative rounded-xl overflow-hidden transition-all duration-500 h-full"
+          style={{
+            background: "linear-gradient(165deg, rgba(30,22,12,0.97) 0%, rgba(12,8,4,0.99) 50%, rgba(25,18,8,0.97) 100%)",
+            border: "1px solid rgba(212,175,55,0.2)",
+            boxShadow: "inset 0 0 30px rgba(0,0,0,0.6), 0 10px 30px rgba(0,0,0,0.5)",
+          }}
+        >
+          {/* Treasure Map / Vintage Wood Texture */}
+          <div className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay" style={{
+            backgroundImage: `radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%), repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(139,107,63,0.5) 4px, rgba(139,107,63,0.5) 5px)`,
+          }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none group-hover:opacity-[0.06] transition-opacity duration-700">
+            <Trophy className="w-40 h-40 text-pirate-gold -rotate-12" strokeWidth={0.5} />
+          </div>
+
+          {/* Lamp Glow Effect */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-20 bg-pirate-gold/20 blur-[30px] pointer-events-none rounded-full transform -translate-y-1/2 z-0 opacity-40 group-hover:opacity-100 transition-opacity duration-700" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-pirate-gold/70 to-transparent z-10 opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
+
+          {/* Hover glow */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{
+            background: `radial-gradient(ellipse at center, ${prize.accent}12 0%, transparent 70%)`,
+          }} />
+
+          <div className="relative z-10 p-5 sm:p-6 text-center">
+            {/* Icon */}
+            <div className="w-12 h-12 rounded-full mx-auto mb-3 flex items-center justify-center border border-pirate-gold/25 group-hover:border-pirate-gold/50 transition-all duration-500" style={{
+              background: `radial-gradient(circle, ${prize.accent}10 0%, transparent 70%)`,
+            }}>
+              <IconComp className="w-5 h-5 text-pirate-gold/70 group-hover:text-pirate-gold transition-colors duration-500" strokeWidth={1.5} />
             </div>
 
             {/* Title */}
-            <h3
-              className="font-cinzel text-base sm:text-lg font-bold tracking-wider mb-1 transition-all duration-500"
-              style={{ color: prize.accent }}
-            >
+            <h3 className="font-cinzel text-sm sm:text-base font-bold tracking-wider mb-1 transition-colors duration-300 group-hover:text-pirate-gold" style={{ color: prize.accent }}>
               {prize.title}
             </h3>
 
-            {/* Subtitle */}
-            <p className="font-cinzel text-[10px] sm:text-xs text-pirate-white/40 tracking-[0.2em] uppercase mb-3">
+            <p className="font-cinzel text-[10px] text-pirate-white/40 tracking-[0.2em] uppercase mb-3">
               {prize.subtitle}
             </p>
 
             {/* Amount */}
-            <div className="mb-3">
-              <span
-                className="font-pirata text-2xl sm:text-3xl font-normal tracking-wide lining-nums"
-                style={{
-                  background: `linear-gradient(135deg, ${prize.accent} 0%, #FFD700 50%, ${prize.accent} 100%)`,
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  textShadow: "none",
-                }}
-              >
-                {prize.amount}
-              </span>
-            </div>
+            <span className="font-pirata text-2xl sm:text-3xl font-normal tracking-wide lining-nums block mb-2" style={{
+              background: `linear-gradient(135deg, ${prize.accent} 0%, #FFD700 50%, ${prize.accent} 100%)`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}>
+              {prize.amount}
+            </span>
 
-            {/* Divider */}
-            <div
-              className="w-full h-[1px] mb-3 transition-all duration-500 group-hover:opacity-100 opacity-40"
-              style={{
-                background: `linear-gradient(90deg, transparent, ${prize.accent}60, transparent)`,
-              }}
-            />
-
-            {/* Description */}
-            <p className="font-cormorant text-xs sm:text-sm text-pirate-white/50 leading-relaxed group-hover:text-pirate-white/70 transition-colors duration-500">
+            <p className="font-cormorant text-xs text-pirate-white/45 leading-relaxed group-hover:text-pirate-white/65 transition-colors duration-500">
               {prize.description}
             </p>
           </div>
 
-          {/* Bottom glow line */}
-          <div
-            className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-            style={{
-              background: `linear-gradient(90deg, transparent, ${prize.accent}80, transparent)`,
-            }}
-          />
+          {/* Bottom glow */}
+          <div className="absolute bottom-0 left-0 right-0 h-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{
+            background: `linear-gradient(90deg, transparent, ${prize.accent}60, transparent)`,
+          }} />
 
           {/* Corner ornaments */}
-          <div className="absolute top-0 left-0 w-5 h-5 border-t border-l border-pirate-gold/20 rounded-tl-xl group-hover:border-pirate-gold/50 transition-colors duration-500" />
-          <div className="absolute top-0 right-0 w-5 h-5 border-t border-r border-pirate-gold/20 rounded-tr-xl group-hover:border-pirate-gold/50 transition-colors duration-500" />
-          <div className="absolute bottom-0 left-0 w-5 h-5 border-b border-l border-pirate-gold/20 rounded-bl-xl group-hover:border-pirate-gold/50 transition-colors duration-500" />
-          <div className="absolute bottom-0 right-0 w-5 h-5 border-b border-r border-pirate-gold/20 rounded-br-xl group-hover:border-pirate-gold/50 transition-colors duration-500" />
+          <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-pirate-gold/15 rounded-tl-lg group-hover:border-pirate-gold/40 transition-colors duration-500" />
+          <div className="absolute top-2 right-2 w-4 h-4 border-t border-r border-pirate-gold/15 rounded-tr-lg group-hover:border-pirate-gold/40 transition-colors duration-500" />
+          <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-pirate-gold/15 rounded-bl-lg group-hover:border-pirate-gold/40 transition-colors duration-500" />
+          <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-pirate-gold/15 rounded-br-lg group-hover:border-pirate-gold/40 transition-colors duration-500" />
         </div>
       </motion.div>
     </motion.div>
@@ -448,6 +568,9 @@ const PrizePool = () => {
   const glowRef = useRef(null);
   const [chestHovered, setChestHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const topPrizes = PRIZES.slice(0, 3);
+  const bottomPrizes = PRIZES.slice(3);
 
   /* Generate particles once */
   const particles = useMemo(
@@ -713,9 +836,9 @@ const PrizePool = () => {
       <div className="absolute top-[15%] right-[4%] opacity-[0.04] pointer-events-none -rotate-15">
         <Sword className="w-24 h-24 text-pirate-gold" strokeWidth={0.5} />
       </div>
-      <div className="absolute bottom-[15%] left-[4%] opacity-[0.04] pointer-events-none rotate-45">
-        <Compass className="w-20 h-20 text-pirate-gold" strokeWidth={0.5} />
-      </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none group-hover:opacity-[0.08] transition-opacity duration-700">
+              <Trophy className="w-64 h-64 text-pirate-gold rotate-12" strokeWidth={0.5} />
+            </div>
 
       {/* Rope decorations */}
       <div className="absolute top-0 left-[15%] w-[2px] h-32 pointer-events-none opacity-20" style={{ background: "linear-gradient(to bottom, transparent, #8B6B3F, #8B6B3F, transparent)" }} />
@@ -768,131 +891,114 @@ const PrizePool = () => {
         </header>
 
         {/* ─── Treasure Chest Centerpiece ─── */}
-        <div className="flex justify-center mb-16 sm:mb-20">
-          <motion.div
-            ref={chestRef}
-            className="relative w-[260px] h-[220px] sm:w-[320px] sm:h-[260px] md:w-[380px] md:h-[300px] cursor-pointer"
-            onHoverStart={() => setChestHovered(true)}
-            onHoverEnd={() => setChestHovered(false)}
-            style={{ perspective: "800px", transformStyle: "preserve-3d" }}
-          >
-            {/* Volumetric golden glow behind chest */}
-            <div
-              ref={glowRef}
-              className="absolute -inset-16 sm:-inset-24 pointer-events-none transition-all duration-700"
-              style={{
-                background: `radial-gradient(ellipse at center, ${chestHovered ? "rgba(255,215,0,0.15)" : "rgba(212,175,55,0.08)"} 0%, ${chestHovered ? "rgba(212,175,55,0.06)" : "rgba(212,175,55,0.02)"} 40%, transparent 70%)`,
-                filter: "blur(20px)",
-              }}
-            />
-
-            {/* Upward golden light rays */}
-            <div
-              className="absolute left-1/2 -translate-x-1/2 bottom-1/2 w-1 pointer-events-none transition-all duration-700"
-              style={{
-                height: chestHovered ? "200px" : "100px",
-                background: `linear-gradient(to top, rgba(255,215,0,${chestHovered ? 0.15 : 0.05}), transparent)`,
-                filter: "blur(15px)",
-              }}
-            />
-
-            {/* Chest Image */}
-            <img 
-              src={pricePoolImg} 
-              alt="Treasure Chest" 
-              className={`w-full h-full object-contain transition-all duration-700 ${chestHovered ? "drop-shadow-[0_0_40px_rgba(255,215,0,0.8)] scale-110" : "drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"}`} 
-            />
-
-            {/* Floating coins animation around chest */}
-            {chestHovered && (
-              <>
-                {[...Array(6)].map((_, i) => (
-                  <motion.div
-                    key={`coin-burst-${i}`}
-                    className="absolute left-1/2 top-1/3 w-3 h-3 rounded-full"
-                    style={{
-                      background: "radial-gradient(circle, #FFD700, #DAA520)",
-                      boxShadow: "0 0 8px rgba(255,215,0,0.6)",
-                    }}
-                    initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
-                    animate={{
-                      x: (Math.random() - 0.5) * 120,
-                      y: -(40 + Math.random() * 80),
-                      opacity: [0, 1, 0],
-                      scale: [0, 1, 0.5],
-                    }}
-                    transition={{
-                      duration: 1.5 + Math.random(),
-                      repeat: Infinity,
-                      delay: i * 0.25,
-                      ease: "easeOut",
-                    }}
-                  />
-                ))}
-              </>
-            )}
-          </motion.div>
-        </div>
-
-        {/* ─── Prize Cards Grid ─── */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-7 mb-16 sm:mb-20">
-          {PRIZES.map((prize, index) => (
-            <PrizeCard key={prize.id} prize={prize} index={index} />
-          ))}
-        </div>
-
-        {/* ─── CTA Button ─── */}
-        <div ref={ctaRef} className="flex justify-center">
-          <motion.a
-            href="#register"
-            className="group relative inline-flex items-center gap-4 cursor-pointer"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          >
-            {/* Button body */}
-            <div
-              className="relative px-10 sm:px-14 py-4 sm:py-5 rounded-lg overflow-hidden transition-all duration-500"
-              style={{
-                background: "linear-gradient(145deg, #3d2b1f 0%, #2a1a0e 40%, #1a0f08 100%)",
-                border: "2px solid rgba(212,175,55,0.4)",
-                boxShadow: "inset 0 2px 4px rgba(212,175,55,0.15), inset 0 -3px 6px rgba(0,0,0,0.8), 0 8px 25px rgba(0,0,0,0.6), 0 0 40px rgba(212,175,55,0.05)",
-              }}
+        {false && (
+          <div className="flex justify-center mb-16 sm:mb-20">
+            <motion.div
+              ref={chestRef}
+              className="relative w-[260px] h-[220px] sm:w-[320px] sm:h-[260px] md:w-[380px] md:h-[300px] cursor-pointer"
+              onHoverStart={() => setChestHovered(true)}
+              onHoverEnd={() => setChestHovered(false)}
+              style={{ perspective: "800px", transformStyle: "preserve-3d" }}
             >
-              {/* Wood grain */}
+              {/* Volumetric golden glow behind chest */}
               <div
-                className="absolute inset-0 opacity-[0.08] pointer-events-none"
+                ref={glowRef}
+                className="absolute -inset-16 sm:-inset-24 pointer-events-none transition-all duration-700"
                 style={{
-                  backgroundImage: "repeating-linear-gradient(to bottom, transparent, transparent 3px, rgba(139,107,63,0.4) 3px, rgba(139,107,63,0.4) 4px)",
+                  background: `radial-gradient(ellipse at center, ${chestHovered ? "rgba(255,215,0,0.15)" : "rgba(212,175,55,0.08)"} 0%, ${chestHovered ? "rgba(212,175,55,0.06)" : "rgba(212,175,55,0.02)"} 40%, transparent 70%)`,
+                  filter: "blur(20px)",
                 }}
               />
 
-              {/* Shimmer on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out pointer-events-none" />
+              {/* Upward golden light rays */}
+              <div
+                className="absolute left-1/2 -translate-x-1/2 bottom-1/2 w-1 pointer-events-none transition-all duration-700"
+                style={{
+                  height: chestHovered ? "200px" : "100px",
+                  background: `linear-gradient(to top, rgba(255,215,0,${chestHovered ? 0.15 : 0.05}), transparent)`,
+                  filter: "blur(15px)",
+                }}
+              />
 
-              {/* Hover glow */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(212,175,55,0.1) 0%, transparent 70%)" }} />
+              {/* Chest Image */}
+              <img
+                src={pricePoolImg}
+                alt="Treasure Chest"
+                className={`w-full h-full object-contain transition-all duration-700 ${chestHovered ? "drop-shadow-[0_0_40px_rgba(255,215,0,0.8)] scale-110" : "drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"}`}
+              />
 
-              {/* Button content */}
-              <div className="relative z-10 flex items-center gap-3">
-                <Compass className="w-5 h-5 text-pirate-gold/70 group-hover:text-pirate-gold transition-colors duration-500 group-hover:rotate-[360deg] transform-gpu" style={{ transition: "transform 1s ease, color 0.5s ease" }} />
-                <span className="font-cinzel text-sm sm:text-base font-bold text-pirate-gold tracking-[0.2em] uppercase group-hover:text-pirate-white transition-colors duration-500">
-                  Claim the Treasure
-                </span>
-              </div>
-            </div>
+              {/* Floating coins animation around chest */}
+              {chestHovered && (
+                <>
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={`coin-burst-${i}`}
+                      className="absolute left-1/2 top-1/3 w-3 h-3 rounded-full"
+                      style={{
+                        background: "radial-gradient(circle, #FFD700, #DAA520)",
+                        boxShadow: "0 0 8px rgba(255,215,0,0.6)",
+                      }}
+                      initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
+                      animate={{
+                        x: (Math.random() - 0.5) * 120,
+                        y: -(40 + Math.random() * 80),
+                        opacity: [0, 1, 0],
+                        scale: [0, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 1.5 + Math.random(),
+                        repeat: Infinity,
+                        delay: i * 0.25,
+                        ease: "easeOut",
+                      }}
+                    />
+                  ))}
+                </>
+              )}
+            </motion.div>
+          </div>
+        )}
 
-            {/* Button glow ring on hover */}
-            <div
-              className="absolute -inset-[2px] rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-              style={{
-                background: "linear-gradient(135deg, rgba(212,175,55,0.3), rgba(255,215,0,0.1), rgba(212,175,55,0.3))",
-                filter: "blur(4px)",
-                zIndex: -1,
-              }}
-            />
-          </motion.a>
+        {/* ─── Top 3 Prizes — Podium Layout ─── */}
+        {/* On desktop: 2nd | 1st (elevated) | 3rd */}
+        <div className="hidden lg:grid grid-cols-3 gap-8 items-end mb-12">
+          {/* 2nd Place */}
+          <div className="pt-12">
+            <TopPrizeCard prize={topPrizes[1]} index={1} isFirst={false} />
+          </div>
+          {/* 1st Place — taller */}
+          <div>
+            <TopPrizeCard prize={topPrizes[0]} index={0} isFirst={true} />
+          </div>
+          {/* 3rd Place */}
+          <div className="pt-12">
+            <TopPrizeCard prize={topPrizes[2]} index={2} isFirst={false} />
+          </div>
         </div>
+
+        {/* On mobile / tablet: stack vertically, 1st → 2nd → 3rd */}
+        <div className="lg:hidden flex flex-col gap-6 mb-12">
+          {topPrizes.map((prize, i) => (
+            <TopPrizeCard key={prize.id} prize={prize} index={i} isFirst={i === 0} />
+          ))}
+        </div>
+
+        {/* Divider between top and bottom prizes */}
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <div className="w-20 sm:w-32 h-[1px] bg-gradient-to-r from-transparent to-pirate-gold/25" />
+          <Anchor className="w-4 h-4 text-pirate-gold/20" strokeWidth={1.5} />
+          <div className="w-20 sm:w-32 h-[1px] bg-gradient-to-l from-transparent to-pirate-gold/25" />
+        </div>
+
+        {/* ─── Bottom 3 Prizes — Compact Row ─── */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-16 sm:mb-20">
+          {bottomPrizes.map((prize, i) => (
+            <BottomPrizeCard key={prize.id} prize={prize} index={i} />
+          ))}
+        </div>
+
+
+
       </div>
     </section>
   );

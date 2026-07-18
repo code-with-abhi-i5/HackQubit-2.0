@@ -420,6 +420,25 @@
   }
 }
 
+@keyframes hoverParticleUp {
+  0% {
+    transform: translateY(100px) scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(50px) scale(1);
+  }
+  80% {
+    opacity: 0.5;
+    transform: translateY(-50px) scale(0.5);
+  }
+  100% {
+    transform: translateY(-100px) scale(0);
+    opacity: 0;
+  }
+}
+
 /* Timeline Section Animations */
 @keyframes shipBob {
   0%, 100% { transform: translateY(0) rotate(-1deg); }

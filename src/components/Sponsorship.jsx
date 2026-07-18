@@ -150,6 +150,17 @@ const PackageCard = ({ pkg, index }) => {
         delay: 0.5 + index * 0.15 // Start after card appears
       }
     );
+
+    // Animated SVG Border
+    const borderElements = card.querySelectorAll('.sponsor-animated-border');
+    if (borderElements.length) {
+      gsap.to(borderElements, {
+        strokeDashoffset: -100,
+        duration: 15,
+        ease: "linear",
+        repeat: -1,
+      });
+    }
   }, [index]);
 
   const handleMouseMove = (e) => {
@@ -232,6 +243,15 @@ const PackageCard = ({ pkg, index }) => {
           style={{ background: style.borderGrad }}
         />
 
+        {/* Animated SVG Border */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none rounded-2xl z-30" xmlns="http://www.w3.org/2000/svg">
+          <rect className="sponsor-animated-border" width="100%" height="100%" rx="16" fill="none" stroke={pkg.accentColor} strokeWidth="2" strokeLinecap="round" pathLength="100" strokeDasharray="25 75" strokeDashoffset="0" opacity="0.8" />
+        </svg>
+
+        {/* Lamp Glow Effect */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 blur-[40px] pointer-events-none rounded-full transform -translate-y-1/2 z-20 opacity-40 transition-opacity duration-700 group-hover:opacity-100" style={{ background: pkg.accentGlow }} />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-[1px] z-30 opacity-60 group-hover:opacity-100 transition-opacity duration-700" style={{ background: `linear-gradient(to right, transparent, ${pkg.accentColor}, transparent)` }} />
+
         {/* Card body */}
         <div
           className="relative rounded-2xl overflow-hidden h-full flex flex-col"
@@ -252,6 +272,11 @@ const PackageCard = ({ pkg, index }) => {
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
             }}
           />
+
+          {/* Big Watermark SVG */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] group-hover:opacity-[0.06] transition-opacity duration-700 pointer-events-none z-10">
+            <IconComp className="w-64 h-64 rotate-12 drop-shadow-2xl" style={{ color: pkg.accentColor }} strokeWidth={0.5} />
+          </div>
 
           {/* Cursor-following glow */}
           <div
