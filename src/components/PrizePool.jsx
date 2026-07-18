@@ -391,7 +391,7 @@ const PrizeCard = ({ prize, index }) => {
             {/* Amount */}
             <div className="mb-3">
               <span
-                className="font-pirata text-2xl sm:text-3xl font-normal tracking-wide"
+                className="font-pirata text-2xl sm:text-3xl font-normal tracking-wide lining-nums"
                 style={{
                   background: `linear-gradient(135deg, ${prize.accent} 0%, #FFD700 50%, ${prize.accent} 100%)`,
                   WebkitBackgroundClip: "text",

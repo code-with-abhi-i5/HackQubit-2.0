@@ -98,7 +98,7 @@ const About = () => {
                 <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-pirate-gold/20 to-transparent my-8" />
 
                 <p>
-                  <strong className="text-pirate-gold font-semibold">Hack Qubit 2025</strong> is a <strong className="text-pirate-gold/90 font-medium">24-hour national-level hackathon</strong> hosted by RVSCET, Jamshedpur, designed to bring together the brightest minds in technology, innovation, and creativity. Fueled by the thrill of an F1 race, this competition challenges participants to <strong className="text-pirate-gold/90 font-medium">Code, Create, and Conquer</strong> as they race against time to develop groundbreaking solutions.
+                  <strong className="text-pirate-gold font-semibold">HackQubit 2.0</strong> is a <strong className="text-pirate-gold/90 font-medium">24-hour national-level hackathon</strong> hosted by RVSCET, Jamshedpur, designed to bring together the brightest minds in technology, innovation, and creativity. Fueled by the thrill of an F1 race, this competition challenges participants to <strong className="text-pirate-gold/90 font-medium">Code, Create, and Conquer</strong> as they race against time to develop groundbreaking solutions.
                 </p>
 
                 <p>

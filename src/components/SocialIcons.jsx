@@ -33,7 +33,7 @@ const SocialIcons = forwardRef((props, ref) => {
   return (
     <div
       ref={ref}
-      className="absolute left-6 sm:left-8 lg:left-10 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center gap-6"
+      className="absolute left-4 sm:left-6 lg:left-8 bottom-28 sm:bottom-32 lg:bottom-36 z-[5] hidden md:flex flex-col items-center gap-6"
     >
       {SOCIAL_LINKS.map((social, i) => {
         const IconComponent = ICON_MAP[social.icon];

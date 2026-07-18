@@ -128,7 +128,7 @@ const StatCard = ({ icon, value, suffix, label, isLast }) => {
 
         {/* Value + Label */}
         <div className="flex flex-col">
-          <span className="font-cinzel text-2xl sm:text-3xl lg:text-[34px] font-bold text-pirate-white leading-none tracking-wide">
+          <span className="font-cinzel text-2xl sm:text-3xl lg:text-[34px] font-bold text-pirate-white leading-none tracking-wide lining-nums">
             {count}
             <span className="text-pirate-gold">{suffix}</span>
           </span>

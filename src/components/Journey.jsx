@@ -60,7 +60,7 @@ const Journey = () => {
   return (
     <section ref={containerRef} id="journey" className="relative h-screen bg-[#060403] overflow-hidden flex items-center">
       {/* Background Ambience */}
-      <div 
+      <div
         className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay"
         style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
       />
@@ -84,8 +84,8 @@ const Journey = () => {
         <div className="absolute top-1/2 left-0 w-[400vw] h-0 border-t-2 border-dashed border-pirate-gold/20 -translate-y-1/2 z-0" />
 
         {milestones.map((step, idx) => (
-          <div 
-            key={idx} 
+          <div
+            key={idx}
             className="journey-step relative flex-shrink-0 w-[80vw] sm:w-[60vw] md:w-[40vw] h-[60vh] flex flex-col items-center justify-center px-8 z-10 group"
           >
             {/* The Island Node */}

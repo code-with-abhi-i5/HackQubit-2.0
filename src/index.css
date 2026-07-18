@@ -42,10 +42,14 @@
   --color-pirate-dark: #0D0D0D;
   --color-pirate-darker: #080808;
   --font-cinzel: 'Cinzel', serif;
+  --font-cinzel-decorative: 'Cinzel Decorative', serif;
   --font-pirata: 'Pirata One', serif;
   --font-pirate: 'Pirata One', serif;
   --font-cormorant: 'Cormorant Garamond', serif;
-  --font-inter: 'Cormorant Garamond', serif; /* Map inter to cormorant for global body font consistency */
+  --font-eb-garamond: 'EB Garamond', serif;
+  --font-bona-nova: 'Bona Nova', serif;
+  --font-lora: 'Lora', serif;
+  --font-inter: 'EB Garamond', serif;
 }
 
 @layer base {
@@ -59,7 +63,7 @@
   }
 
   body {
-    font-family: var(--font-cormorant);
+    font-family: var(--font-eb-garamond);
     background-color: #0B0B0B;
     color: #F8F5F2;
     overflow-x: hidden;
@@ -86,6 +90,25 @@
 }
 
 @layer utilities {
+  /* Lining numerals – prevents old-style figure dipping below baseline */
+  .lining-nums {
+    font-variant-numeric: lining-nums;
+    -webkit-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+  }
+
+  /* Cinzel Decorative title font */
+  .font-cinzel-decorative {
+    font-family: 'Cinzel Decorative', serif;
+    letter-spacing: 0.05em;
+  }
+
+  /* Bona Nova title font */
+  .font-bona-nova {
+    font-family: 'Bona Nova', serif;
+    letter-spacing: 0.05em;
+  }
+
   .text-shadow-gold {
     text-shadow: 0 0 40px #D4AF3730, 0 0 80px #D4AF3710;
   }

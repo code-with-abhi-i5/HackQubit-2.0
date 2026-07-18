@@ -347,7 +347,7 @@ const PackageCard = ({ pkg, index }) => {
                 }}
               >
                 <span
-                  className="font-pirata text-2xl sm:text-3xl tracking-wide"
+                  className="font-pirata text-2xl sm:text-3xl tracking-wide lining-nums"
                   style={{
                     background: `linear-gradient(135deg, ${pkg.accentColor} 0%, #FFD700 50%, ${pkg.accentColor} 100%)`,
                     WebkitBackgroundClip: "text",
