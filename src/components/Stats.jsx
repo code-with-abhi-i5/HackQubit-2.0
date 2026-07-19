@@ -114,7 +114,7 @@ const StatCard = ({ icon, value, suffix, label, isLast }) => {
         }}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
-        className="flex items-center gap-4 lg:gap-5 px-6 sm:px-8 lg:px-10 py-5 sm:py-6 cursor-pointer transition-all duration-300 group relative"
+        className="flex items-center gap-4 lg:gap-5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 cursor-pointer transition-all duration-300 group relative"
       >
         {/* Ornate Pirate Icon */}
         <div

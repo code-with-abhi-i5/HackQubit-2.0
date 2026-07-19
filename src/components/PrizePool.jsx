@@ -67,9 +67,9 @@ const PRIZES = [
   {
     id: "goodies",
     rank: "🎁",
-    title: "Goodies",
+    title: "Participant Loot",
     amount: "Swag Kit",
-    subtitle: "Pirate's Loot Bag",
+    subtitle: "Treasures For All",
     description: "Every brave soul who boards this ship sails home with plundered treasures.",
     icon: Gift,
     accent: "#D4AF37",
@@ -527,7 +527,7 @@ const BottomPrizeCard = ({ prize, index }) => {
             </p>
 
             {/* Amount */}
-            <span className="font-pirata text-2xl sm:text-3xl font-normal tracking-wide lining-nums block mb-2" style={{
+            <span className="font-pirata text-3xl sm:text-4xl font-normal tracking-wide lining-nums block mb-2" style={{
               background: `linear-gradient(135deg, ${prize.accent} 0%, #FFD700 50%, ${prize.accent} 100%)`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
