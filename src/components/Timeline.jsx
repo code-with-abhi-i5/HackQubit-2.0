@@ -454,8 +454,8 @@ const Timeline = () => {
               left: "50%",
               top: "5%",
               transform: "translate(-50%, -50%)",
-              width: "88px",
-              height: "68px",
+              width: "98px",
+              height: "78px",
             }}
           >
             {/* Ship glow */}
@@ -474,8 +474,8 @@ const Timeline = () => {
               left: "6px",
               top: "3%",
               transform: "translate(-50%, -50%)",
-              width: "56px",
-              height: "50px",
+              width: "66px",
+              height: "60px",
             }}
           >
             <div style={{ animation: "shipBob 3s ease-in-out infinite" }}>
