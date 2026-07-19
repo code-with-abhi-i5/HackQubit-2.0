@@ -864,15 +864,42 @@ const PrizePool = () => {
           </motion.div>
 
           {/* Main Title */}
-          <h2
+          <motion.h2
             ref={titleRef}
-            className="font-pirata text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-gradient-gold tracking-wider leading-[0.95] mb-5 sm:mb-6"
-            style={{
-              textShadow: "0 0 60px rgba(212,175,55,0.25), 0 4px 20px rgba(0,0,0,0.8)",
-            }}
+            className="font-pirata text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider leading-[0.95] mb-5 sm:mb-6 cursor-pointer flex justify-center flex-wrap"
             >
-            The Treasure Awaits
-          </h2>
+            {"The Treasure Awaits".split("").map((letter, index) => (
+              <span
+                key={index}
+                className={`inline-block transition-all duration-300 ${
+                  letter === " " ? "w-4" : ""
+                }`}
+                style={{
+                  color: "#D4AF37",
+                  textShadow: "0 0 15px rgba(212,175,55,0.25)",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = "translateY(-12px) scale(1.15)";
+                  e.target.style.background =
+                    "linear-gradient(180deg,#FFF9C4,#FFD700,#FFB300)";
+                  e.target.style.webkitBackgroundClip = "text";
+                  e.target.style.webkitTextFillColor = "transparent";
+                  e.target.style.textShadow =
+                    "0 0 8px #FFD700,0 0 20px #FFD700,0 0 40px #FFD700";
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = "translateY(0)";
+                  e.target.style.background = "none";
+                  e.target.style.color = "#D4AF37";
+                  e.target.style.webkitTextFillColor = "";
+                  e.target.style.textShadow =
+                    "0 0 15px rgba(212,175,55,0.25)";
+                }}
+                >
+                {letter}
+              </span>
+            ))}
+          </motion.h2>
 
           {/* Subtitle */}
           <p
