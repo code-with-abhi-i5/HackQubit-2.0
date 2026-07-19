@@ -97,7 +97,7 @@ const PirateShipSVG = () => (
   <img
     src={pirateShip}
     alt="Pirate Ship"
-    className="w-full h-full object-contain"
+    className="w-[120%] h-[120%] object-contain"
   />
 );
 
