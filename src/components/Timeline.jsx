@@ -384,10 +384,44 @@ const Timeline = () => {
 
           <h2
             ref={titleRef}
-            className="font-pirata text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-gradient-gold tracking-wider mb-4"
-            style={{ textShadow: "0 0 40px rgba(212,175,55,0.2), 0 4px 15px rgba(0,0,0,0.8)" }}
-          >
-            The Pirate&apos;s Voyage
+            className="font-pirata text-4xl sm:text-5xl md:text-6xl lg:text-7xl tracking-wider mb-4 flex justify-center flex-wrap"
+            style={{
+              textShadow: "0 0 40px rgba(212,175,55,0.2), 0 4px 15px rgba(0,0,0,0.8)",
+            }}
+            >
+            {"The Pirate's Voyage".split("").map((char, index) => (
+              <span
+                key={index}
+                className={`
+                inline-block
+                transition-all
+                duration-300
+                ease-out
+                ${char === " " ? "w-4" : ""}
+                `}
+                style={{
+                  background: "linear-gradient(180deg,#FFD700,#B8860B)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-12px) scale(1.15)";
+                  e.currentTarget.style.background ="linear-gradient(180deg,#FFF8C6 0%, #FFE866 20%, #FFD700 45%, #FFB700 70%, #B8860B 100%)";
+                  e.currentTarget.style.WebkitBackgroundClip = "text";
+                  e.currentTarget.style.WebkitTextFillColor = "transparent";
+                  e.currentTarget.style.filter ="drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 18px #FFD700)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0px) scale(1)";
+                  e.currentTarget.style.background ="linear-gradient(180deg,#FFD700,#B8860B)";
+                  e.currentTarget.style.WebkitBackgroundClip = "text";
+                  e.currentTarget.style.WebkitTextFillColor = "transparent";
+                  e.currentTarget.style.filter = "none";
+                }}
+                >
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))}
           </h2>
           <p
             ref={subtitleRef}
