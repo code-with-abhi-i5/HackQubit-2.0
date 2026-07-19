@@ -451,11 +451,11 @@ const Timeline = () => {
           <div
             className="pirate-ship absolute z-30 pointer-events-none hidden md:block"
             style={{
-              left: "20%",
+              left: "50%",
               top: "5%",
               transform: "translate(-50%, -50%)",
-              width: "108px",
-              height: "88px",
+              width: "98px",
+              height: "78px",
             }}
           >
             {/* Ship glow */}
