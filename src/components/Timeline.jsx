@@ -3,6 +3,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { Anchor, Skull, Compass, Flag, Crown, Swords, Code, Presentation, Coffee, Zap, Timer } from "lucide-react";
+import pirateShip from "../assets/images/ship for timeline.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -93,20 +94,11 @@ const MILESTONES = [
 
 /* ─── Pirate Ship SVG ─── */
 const PirateShipSVG = () => (
-  <svg viewBox="0 0 60 50" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8,34 Q12,40 30,42 Q48,40 52,34 L48,30 Q30,32 12,30 Z" fill="#3D2B1F" stroke="#8B6B3F" strokeWidth="0.6" />
-    <rect x="16" y="28" width="28" height="3" rx="1" fill="#4A2E15" stroke="#8B6B3F" strokeWidth="0.4" />
-    <line x1="30" y1="28" x2="30" y2="6" stroke="#5C3A1E" strokeWidth="1.5" />
-    <path d="M31,8 Q42,14 31,24" fill="#F5E6C8" stroke="#D4AF37" strokeWidth="0.4" opacity="0.9" />
-    <path d="M29,8 Q18,14 29,24" fill="#EDD9B5" stroke="#D4AF37" strokeWidth="0.4" opacity="0.85" />
-    <path d="M30,5 L30,2 L38,3.5 L30,5" fill="#1a1a1a" stroke="#D4AF37" strokeWidth="0.2">
-      <animateTransform attributeName="transform" type="rotate" values="-2,30,5;2,30,5;-2,30,5" dur="2s" repeatCount="indefinite" />
-    </path>
-    <circle cx="20" cy="27" r="1.5" fill="#FFD700" opacity="0.4">
-      <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" />
-    </circle>
-    <line x1="12" y1="30" x2="5" y2="27" stroke="#5C3A1E" strokeWidth="1" />
-  </svg>
+  <img
+    src={pirateShip}
+    alt="Pirate Ship"
+    className="w-full h-full object-contain"
+  />
 );
 
 /* ─── Island Card ─── */
