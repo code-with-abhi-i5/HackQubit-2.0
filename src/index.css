@@ -265,6 +265,33 @@
   }
 }
 
+@keyframes floatIntense {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-40px) rotate(15deg) scale(1.2);
+  }
+}
+
+@keyframes floatIntenseReverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(40px) rotate(-20deg) scale(1.25);
+  }
+}
+
+@keyframes spinFast {
+  from {
+    transform: rotate(0deg) scale(1.2);
+  }
+  to {
+    transform: rotate(360deg) scale(1.2);
+  }
+}
+
 @keyframes pulseGold {
 
   0%,

@@ -12,3 +12,4 @@ export { default as Sponsorship } from "./Sponsorship";
 export { default as Gallery } from "./Gallery";
 export { default as Footer } from "./Footer";
 export { default as ScrollToTop } from "./ScrollToTop";
+export { default as SponsorChart } from "./SponsorChart";

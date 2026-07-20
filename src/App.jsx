@@ -1,8 +1,9 @@
 import React, { Component, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Lenis from "lenis";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Hero, About, Timeline, PrizePool, Sponsorship, Gallery, Footer, ScrollToTop } from "./components";
+import { Hero, About, Timeline, PrizePool, Sponsorship, Gallery, Footer, ScrollToTop, SponsorChart } from "./components";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,6 +30,21 @@ class ErrorBoundary extends Component {
     }
     return this.props.children;
   }
+}
+
+function Home() {
+  return (
+    <>
+      <Hero />
+      <About />
+      <Timeline />
+      <PrizePool />
+      <Sponsorship />
+      <Gallery />
+      <Footer />
+      <ScrollToTop />
+    </>
+  );
 }
 
 function App() {
@@ -63,16 +79,14 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <main className="bg-pirate-bg min-h-screen relative">
-        <Hero />
-        <About />
-        <Timeline />
-        <PrizePool />
-        <Sponsorship />
-        <Gallery />
-        <Footer />
-        <ScrollToTop />
-      </main>
+      <BrowserRouter>
+        <main className="bg-pirate-bg min-h-screen relative">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/sponsor-chart" element={<SponsorChart />} />
+          </Routes>
+        </main>
+      </BrowserRouter>
     </ErrorBoundary>
   );
 }

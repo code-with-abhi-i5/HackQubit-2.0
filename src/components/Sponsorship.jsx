@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Anchor, Flag, Coins, Crown, Medal, Shield, Skull, Compass, Sparkles } from "lucide-react";
@@ -31,48 +32,86 @@ const perks = [
 /* ─── Packages Data ─── */
 const packages = [
   {
-    title: "Title Sponsor",
-    price: "₹40,000+",
-    tagline: "Rule the Seven Seas",
+    title: "Powered By",
+    price: "₹70,000",
+    tagline: "Title Sponsor",
     icon: Crown,
     tier: "legendary",
     accentColor: "#FFD700",
     accentGlow: "rgba(255,215,0,0.35)",
     benefits: [
-      "Exclusive logo on all event materials",
-      "Banner & poster premium branding",
-      "Opening & closing ceremony feature",
-      "Premium stage branding",
-      "Social media campaign spotlight",
+      "Title Sponsor Branding",
+      "Logo on Website, Posters, ID Cards",
+      "Pre-event Promo & Social Media",
+      "Media Coverage & Career Board",
+      "Problem Statement Contribution",
+      "Keynote & Judge Panel Opportunity",
+      "Verbal Recognition & Award Dist.",
+      "Swag Kit Inclusion",
     ],
   },
   {
     title: "Gold Sponsor",
-    price: "₹30,000+",
-    tagline: "Captain of the Fleet",
+    price: "₹50,000",
+    tagline: "Gold Partner",
     icon: Medal,
     tier: "gold",
     accentColor: "#D4AF37",
     accentGlow: "rgba(212,175,55,0.25)",
     benefits: [
-      "Logo on all banners & posters",
-      "Full event branding package",
-      "Social media mentions & posts",
-      "Print advertising placement",
+      "Logo on Website, Posters, ID Cards",
+      "Pre-event Promo & Social Media",
+      "Media Coverage & Career Board",
+      "Keynote Speech Opportunity",
+      "Verbal Recognition (Open & Close)",
+      "Swag Kit Inclusion",
     ],
   },
   {
     title: "Silver Sponsor",
-    price: "₹20,000+",
-    tagline: "First Mate's Honor",
+    price: "₹30,000",
+    tagline: "Silver Partner",
     icon: Shield,
     tier: "silver",
     accentColor: "#C0C0C0",
     accentGlow: "rgba(192,192,192,0.2)",
     benefits: [
-      "Logo placement on materials",
-      "Prize category sponsorship",
-      "Poster branding inclusion",
+      "Logo on Website, Posters, ID Cards",
+      "Pre-event Promo & Social Media",
+      "Media Coverage",
+      "Verbal Recognition (Open & Close)",
+    ],
+  },
+  {
+    title: "Bronze Sponsor",
+    price: "₹20,000",
+    tagline: "Bronze Partner",
+    icon: Coins,
+    tier: "bronze",
+    accentColor: "#CD7F32",
+    accentGlow: "rgba(205,127,50,0.2)",
+    benefits: [
+      "Logo on Website, Posters, ID Cards",
+      "Pre-event Promo & Social Media",
+      "Media Coverage",
+      "Verbal Recognition (Open & Close)",
+      "Course / Training Promotion",
+    ],
+  },
+  {
+    title: "Refreshment Partner",
+    price: "In-kind",
+    tagline: "Refreshment Partner",
+    icon: Compass,
+    tier: "refreshment",
+    accentColor: "#00E5FF",
+    accentGlow: "rgba(0,229,255,0.2)",
+    benefits: [
+      "Logo on Website, Posters, ID Cards",
+      "Pre-event Promo & Social Media",
+      "Media Coverage",
+      "Verbal Recognition (Open & Close)",
+      "Swag Kit Inclusion",
     ],
   },
 ];
@@ -98,6 +137,20 @@ const tierStyles = {
     borderGrad: "linear-gradient(135deg, #C0C0C0 0%, #808080 50%, #C0C0C0 100%)",
     cardBg: "linear-gradient(165deg, rgba(18,16,14,0.98) 0%, rgba(10,8,6,0.99) 40%, rgba(16,14,12,0.98) 100%)",
     iconBg: "radial-gradient(circle, rgba(192,192,192,0.1) 0%, rgba(128,128,128,0.04) 60%, transparent 100%)",
+    ribbon: false,
+  },
+  bronze: {
+    badge: "BRONZE ALLY",
+    borderGrad: "linear-gradient(135deg, #CD7F32 0%, #8A5A22 50%, #CD7F32 100%)",
+    cardBg: "linear-gradient(165deg, rgba(20,12,6,0.98) 0%, rgba(12,6,2,0.99) 40%, rgba(18,10,4,0.98) 100%)",
+    iconBg: "radial-gradient(circle, rgba(205,127,50,0.1) 0%, rgba(138,90,34,0.04) 60%, transparent 100%)",
+    ribbon: false,
+  },
+  refreshment: {
+    badge: "SUPPORTING CREW",
+    borderGrad: "linear-gradient(135deg, #00E5FF 0%, #0088AA 50%, #00E5FF 100%)",
+    cardBg: "linear-gradient(165deg, rgba(6,16,20,0.98) 0%, rgba(2,8,12,0.99) 40%, rgba(4,14,18,0.98) 100%)",
+    iconBg: "radial-gradient(circle, rgba(0,229,255,0.1) 0%, rgba(0,136,170,0.04) 60%, transparent 100%)",
     ribbon: false,
   },
 };
@@ -414,8 +467,8 @@ const PackageCard = ({ pkg, index }) => {
             </ul>
 
             {/* CTA Button */}
-            <a
-              href="#contact"
+            <Link
+              to="/sponsor-chart"
               className="mt-auto group/btn relative w-full flex items-center justify-center gap-2 py-3.5 rounded-lg overflow-hidden transition-all duration-500 border hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.4)]"
               style={{
                 background: `linear-gradient(135deg, ${pkg.accentColor}10 0%, transparent 50%, ${pkg.accentColor}08 100%)`,
@@ -438,7 +491,7 @@ const PackageCard = ({ pkg, index }) => {
               >
                 Become Sponsor
               </span>
-            </a>
+            </Link>
           </div>
 
           {/* Corner ornaments */}
@@ -706,10 +759,17 @@ const Sponsorship = () => {
           </p>
 
           {/* Packages Grid */}
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 items-stretch">
-            {packages.map((pkg, idx) => (
-              <PackageCard key={pkg.title} pkg={pkg} index={idx} />
-            ))}
+          <div className="w-full flex flex-col items-center gap-6 sm:gap-7 lg:gap-8">
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 lg:gap-8 items-stretch">
+              {packages.slice(0, 3).map((pkg, idx) => (
+                <PackageCard key={pkg.title} pkg={pkg} index={idx} />
+              ))}
+            </div>
+            <div className="w-full grid grid-cols-1 md:grid-cols-2 max-w-4xl gap-6 sm:gap-7 lg:gap-8 items-stretch">
+              {packages.slice(3, 5).map((pkg, idx) => (
+                <PackageCard key={pkg.title} pkg={pkg} index={idx + 3} />
+              ))}
+            </div>
           </div>
 
           {/* Bottom anchor divider */}

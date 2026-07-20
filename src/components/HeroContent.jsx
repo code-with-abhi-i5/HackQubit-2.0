@@ -21,13 +21,28 @@ const HeroContent = forwardRef(({ refs }, ref) => {
           ref={refs.headingLine1}
           className="font-bona-nova text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[75px] font-bold text-pirate-gold leading-[0.9] tracking-wider text-shadow-cinematic whitespace-nowrap"
         >
-          Hack Qubit
+          {"HACK QUBIT".split("").map((char, index) => (
+            <span
+              key={index}
+              className="transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,215,0,0.8)] inline-block hover:-translate-y-1"
+              style={char === " " ? { width: "0.25em" } : {}}
+            >
+              {char}
+            </span>
+          ))}
         </h1>
         <h1
           ref={refs.headingLine2}
           className="font-bona-nova text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[65px] font-bold text-pirate-gold leading-[1] tracking-wider text-shadow-cinematic mt-1 sm:mt-2 lining-nums"
         >
-          2.0
+          {"2.0".split("").map((char, index) => (
+            <span
+              key={index}
+              className="transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,215,0,0.8)] inline-block hover:-translate-y-1"
+            >
+              {char}
+            </span>
+          ))}
         </h1>
       </div>
       {/* Description */}
