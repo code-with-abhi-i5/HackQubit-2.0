@@ -72,7 +72,7 @@ const PirateIcons = {
   ),
 };
 
-const StatCard = ({ icon, value, suffix, label, isLast, onMouseEnter }) => {
+const StatCard = ({ icon, value, suffix, label, isLast, onMouseEnter, onClick, isInteractive }) => {
   const { count, ref: counterRef } = useCountUp(value, 2.5);
   const cardRef = useRef(null);
   const iconRef = useRef(null);
@@ -118,20 +118,33 @@ const StatCard = ({ icon, value, suffix, label, isLast, onMouseEnter }) => {
         }}
         onMouseEnter={handleEnter}
         onMouseLeave={handleLeave}
+        onClick={onClick}
         className="flex items-center gap-4 lg:gap-5 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 cursor-pointer transition-all duration-300 group relative"
       >
         {/* Ornate Pirate Icon */}
         <div
           ref={iconRef}
-          className="relative flex-shrink-0 w-11 h-11 sm:w-13 sm:h-13 text-pirate-gold/50 transition-colors duration-500 group-hover:text-pirate-gold"
+          className={`relative flex-shrink-0 w-11 h-11 sm:w-13 sm:h-13 transition-colors duration-500 ${
+            isInteractive ? 'text-pirate-gold/80 group-hover:text-pirate-gold drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]' : 'text-pirate-gold/50 group-hover:text-pirate-gold'
+          }`}
         >
+          {isInteractive && (
+            <>
+              {/* Outer spinning gear/ring */}
+              <div className="absolute -inset-2 rounded-full border border-pirate-gold/40 animate-[spin_8s_linear_infinite] border-dashed opacity-70" />
+              {/* Inner reverse spinning ring */}
+              <div className="absolute -inset-1 rounded-full border border-pirate-gold/20 animate-[spin_6s_linear_infinite_reverse] border-dotted opacity-50" />
+            </>
+          )}
           <PirateIcon />
           {/* Subtle glow behind icon on hover */}
-          <div className="absolute inset-0 bg-pirate-gold/0 rounded-full blur-xl transition-all duration-500 group-hover:bg-pirate-gold/10" />
+          <div className={`absolute inset-0 rounded-full blur-xl transition-all duration-500 ${
+            isInteractive ? 'bg-pirate-gold/20 group-hover:bg-pirate-gold/30' : 'bg-pirate-gold/0 group-hover:bg-pirate-gold/10'
+          }`} />
         </div>
 
         {/* Value + Label */}
-        <div className="flex flex-col">
+        <div className="flex flex-col justify-center">
           <span className="font-cinzel text-2xl sm:text-3xl lg:text-[34px] font-bold text-pirate-white leading-none tracking-wide lining-nums">
             {count}
             <span className="text-pirate-gold">{suffix}</span>
@@ -139,6 +152,17 @@ const StatCard = ({ icon, value, suffix, label, isLast, onMouseEnter }) => {
           <span className="font-cinzel text-[9px] sm:text-[10px] text-pirate-white/35 tracking-[0.2em] uppercase mt-1">
             {label}
           </span>
+          {isInteractive && (
+            <div className="flex items-center gap-1.5 mt-1.5 opacity-90 transition-opacity duration-300 group-hover:opacity-100">
+               <span className="relative flex h-1.5 w-1.5">
+                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pirate-gold opacity-75"></span>
+                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-pirate-gold shadow-[0_0_5px_#D4AF37]"></span>
+               </span>
+              <span className="font-cinzel text-[7.5px] sm:text-[8.5px] text-pirate-gold uppercase tracking-[0.25em] animate-pulse text-shadow-sm">
+                <span className="hidden sm:inline">Hover</span><span className="sm:hidden">Tap</span> to Reveal
+              </span>
+            </div>
+          )}
         </div>
       </div>
 
@@ -268,6 +292,8 @@ const Stats = forwardRef((props, ref) => {
                   {...stat}
                   isLast={i === STATS_DATA.length - 1}
                   onMouseEnter={stat.icon === 'clock' ? handleMouseEnter : undefined}
+                  onClick={stat.icon === 'clock' ? handleMouseEnter : undefined}
+                  isInteractive={stat.icon === 'clock'}
                 />
               ))}
             </div>
@@ -275,10 +301,15 @@ const Stats = forwardRef((props, ref) => {
             {/* Countdown Timer Content (shown on hover) */}
             <div
               ref={timerContentRef}
-              className="col-start-1 row-start-1 flex flex-col sm:flex-row items-center justify-center py-2 sm:py-3 w-full"
+              className="col-start-1 row-start-1 flex flex-col sm:flex-row items-center justify-center py-2 sm:py-3 w-full cursor-pointer relative"
               style={{ opacity: 0, pointerEvents: 'none' }}
+              onClick={handleMouseLeave}
             >
               <CountdownTimer />
+              {/* Close Hint for Mobile */}
+              <div className="absolute -top-1 right-2 sm:hidden text-[7px] text-pirate-gold/60 uppercase tracking-widest bg-pirate-bg/80 px-2 py-0.5 rounded-full border border-pirate-gold/20">
+                Tap to close ✕
+              </div>
             </div>
           </div>
 
