@@ -22,15 +22,22 @@ const HeroContent = forwardRef(({ refs }, ref) => {
           ref={refs.headingLine1}
           className="font-bona-nova text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[75px] font-bold text-pirate-gold leading-[0.9] tracking-wider text-shadow-cinematic whitespace-nowrap"
         >
-          {"HACK QUBIT".split("").map((char, index) => (
-            <span
-              key={index}
-              className="transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,215,0,0.8)] inline-block hover:-translate-y-1"
-              style={char === " " ? { width: "0.25em" } : {}}
-            >
-              {char}
-            </span>
-          ))}
+          {"HACK QUBIT".split("").map((char, index) => {
+            const isHack = index < 4;
+            const shadowClass = isHack 
+              ? "hover:[text-shadow:0_0_15px_#FFD700,0_0_30px_#FFD700,0_0_50px_#FFD700]" 
+              : "hover:[text-shadow:0_0_15px_#00F0FF,0_0_30px_#00F0FF,0_0_50px_#00F0FF]";
+
+            return (
+              <span
+                key={index}
+                className={`transition-all duration-300 inline-block hover:-translate-y-2 hover:scale-110 hover:text-white relative cursor-crosshair hover:z-10 ${shadowClass}`}
+                style={char === " " ? { width: "0.25em" } : {}}
+              >
+                {char}
+              </span>
+            );
+          })}
         </h1>
         <h1
           ref={refs.headingLine2}
@@ -39,7 +46,7 @@ const HeroContent = forwardRef(({ refs }, ref) => {
           {"2.0".split("").map((char, index) => (
             <span
               key={index}
-              className="transition-all duration-300 hover:drop-shadow-[0_0_15px_rgba(255,215,0,0.8)] inline-block hover:-translate-y-1"
+              className="transition-all duration-300 inline-block hover:-translate-y-2 hover:scale-110 hover:text-white hover:[text-shadow:0_0_15px_#FF0055,0_0_30px_#FF0055,0_0_50px_#FF0055] relative cursor-crosshair hover:z-10"
             >
               {char}
             </span>
