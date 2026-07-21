@@ -1,9 +1,20 @@
 import { useState, useEffect, forwardRef, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { gsap } from 'gsap';
 
 const DottedCircle = ({ value, max, label, dotsCount = 60 }) => {
   const radius = 38;
   const center = 50;
+  const valueRef = useRef(null);
+
+  useEffect(() => {
+    if (valueRef.current) {
+      gsap.fromTo(
+        valueRef.current,
+        { y: -10, opacity: 0, scale: 0.8 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.7)" }
+      );
+    }
+  }, [value]);
 
   return (
     <div className="flex flex-col items-center relative group mx-1 sm:mx-2">
@@ -36,33 +47,25 @@ const DottedCircle = ({ value, max, label, dotsCount = 60 }) => {
           })}
         </svg>
 
-        {/* Center Number with Framer Motion AnimatePresence for flip/slide effect */}
+        {/* Center Number */}
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-          <AnimatePresence mode="popLayout">
-            <motion.div
-              key={value}
-              initial={{ y: 20, opacity: 0, scale: 0.8 }}
-              animate={{ y: 0, opacity: 1, scale: 1 }}
-              exit={{ y: -20, opacity: 0, scale: 0.8 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-              className="absolute inset-0 flex items-center justify-center"
-            >
-              <span className="font-bona-nova text-lg sm:text-xl md:text-2xl font-bold text-pirate-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
-                {String(value).padStart(2, '0')}
-              </span>
-            </motion.div>
-          </AnimatePresence>
+          <div
+            ref={valueRef}
+            className="absolute inset-0 flex items-center justify-center"
+          >
+            <span className="font-bona-nova text-lg sm:text-xl md:text-2xl font-bold text-pirate-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">
+              {String(value).padStart(2, '0')}
+            </span>
+          </div>
         </div>
       </div>
 
       {/* Label Underneath */}
-      <motion.span 
-        initial={{ opacity: 0.8 }}
-        whileHover={{ opacity: 1, y: -2 }}
-        className="mt-2 sm:mt-3 font-eb-garamond text-pirate-white/80 text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.3em] transition-colors duration-300 drop-shadow-[0_0_5px_rgba(255,255,255,0.3)] group-hover:text-pirate-gold"
+      <span 
+        className="mt-2 sm:mt-3 font-eb-garamond text-pirate-white/80 opacity-80 hover:opacity-100 hover:-translate-y-0.5 text-[8px] sm:text-[10px] md:text-xs uppercase tracking-[0.3em] transition-all duration-300 drop-shadow-[0_0_5px_rgba(255,255,255,0.3)] group-hover:text-pirate-gold"
       >
         {label}
-      </motion.span>
+      </span>
     </div>
   );
 };

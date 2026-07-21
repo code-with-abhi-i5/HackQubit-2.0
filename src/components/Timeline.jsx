@@ -1,7 +1,6 @@
 import { useRef, useEffect, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
 import { Anchor, Skull, Compass, Flag, Crown, Swords, Code, Presentation, Coffee, Zap, Timer } from "lucide-react";
 import pirateShip from "../assets/images/ship for timeline.png";
 
@@ -101,24 +100,55 @@ const PirateShipSVG = () => (
   />
 );
 
-/* ─── Island Card ─── */
+/* ─── IslandCard ─── */
 const IslandCard = ({ milestone, index, side }) => {
   const IconComp = milestone.icon;
   const isFinal = milestone.isFinal;
+  const containerRef = useRef(null);
+  const floatRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Entrance animation
+      gsap.fromTo(
+        containerRef.current,
+        { opacity: 0, x: side === "left" ? -40 : 40, y: 20 },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          duration: 0.7,
+          delay: 0.1,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top 80%", // trigger when 80% down the screen
+            once: true,
+          }
+        }
+      );
+
+      // Floating animation
+      gsap.to(floatRef.current, {
+        y: -5,
+        duration: (5 + index * 0.4) / 2, // half duration since yoyo doubles it
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    });
+
+    return () => ctx.revert();
+  }, [side, index]);
 
   return (
-    <motion.div
+    <div
+      ref={containerRef}
       className={`timeline-card relative flex w-full ${side === "left" ? "md:justify-end" : "md:justify-start"}`}
-      initial={{ opacity: 0, x: side === "left" ? -40 : 40, y: 20 }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
-      transition={{ duration: 0.7, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <motion.div
-        className="group relative cursor-pointer w-full max-w-[360px] md:max-w-[420px]"
-        animate={{ y: [0, -5, 0] }}
-        transition={{ duration: 5 + index * 0.4, repeat: Infinity, ease: "easeInOut" }}
-        whileHover={{ y: -10, scale: 1.02, transition: { duration: 0.3 } }}
+      <div
+        ref={floatRef}
+        className="group relative cursor-pointer w-full max-w-[360px] md:max-w-[420px] transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
       >
         {/* Card */}
         <div
@@ -208,8 +238,8 @@ const IslandCard = ({ milestone, index, side }) => {
             background: "linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent)",
           }} />
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 
@@ -292,6 +322,38 @@ const Timeline = () => {
         });
       });
 
+      // Header icon entrance
+      gsap.fromTo(".timeline-header-icon",
+        { opacity: 0, scale: 0 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+            once: true
+          }
+        }
+      );
+
+      // Treasure marker entrance
+      gsap.fromTo(".timeline-treasure-marker",
+        { opacity: 0, scale: 0.5 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: ".timeline-treasure-marker",
+            start: "top 90%",
+            once: true
+          }
+        }
+      );
+
       // Milestone items light up when the ship reaches them (center of screen)
       gsap.utils.toArray(".milestone-item").forEach((item) => {
         ScrollTrigger.create({
@@ -362,17 +424,13 @@ const Timeline = () => {
 
         {/* Header */}
         <header className="text-center mb-16 sm:mb-20">
-          <motion.div
-            className="flex justify-center mb-5"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "backOut" }}
+          <div
+            className="flex justify-center mb-5 timeline-header-icon"
           >
             <div className="relative">
               <Compass className="w-8 h-8 sm:w-10 sm:h-10 text-pirate-gold/40 animate-[spin_20s_linear_infinite]" strokeWidth={1} />
             </div>
-          </motion.div>
+          </div>
 
           <h2
             ref={titleRef}
@@ -533,12 +591,8 @@ const Timeline = () => {
           </div>
 
           {/* Final treasure marker */}
-          <motion.div
-            className="flex justify-center mt-16 sm:mt-20"
-            initial={{ opacity: 0, scale: 0.5 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "backOut" }}
+          <div
+            className="flex justify-center mt-16 sm:mt-20 timeline-treasure-marker"
           >
             <div className="relative w-16 h-16 rounded-full flex items-center justify-center" style={{
               background: "radial-gradient(circle, rgba(255,215,0,0.15) 0%, rgba(212,175,55,0.05) 60%, transparent 100%)",
@@ -549,7 +603,7 @@ const Timeline = () => {
               {/* Ping ring */}
               <div className="absolute inset-0 rounded-full border border-pirate-gold/20 animate-[ping_3s_linear_infinite] opacity-20" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

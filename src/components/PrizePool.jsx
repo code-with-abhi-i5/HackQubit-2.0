@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion } from "framer-motion";
 import pricePoolImg from "../assets/images/price pool image.png";
 import {
   Trophy,
@@ -312,34 +311,51 @@ const HoverParticles = ({ accent }) => {
 /* ─── Top Prize Card (Large, Podium-style) ─── */
 const TopPrizeCard = ({ prize, index, isFirst }) => {
   const IconComp = prize.icon;
+  const wrapperRef = useRef(null);
+  const floatRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Entrance
+      gsap.fromTo(
+        wrapperRef.current,
+        { opacity: 0, y: 80, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          delay: prize.delay,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top 80%",
+            once: true
+          }
+        }
+      );
+
+      // Floating animation
+      gsap.to(floatRef.current, {
+        y: isFirst ? -12 : -6,
+        duration: (5 + index * 0.5) / 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    });
+
+    return () => ctx.revert();
+  }, [index, isFirst, prize.delay]);
 
   return (
-    <motion.div
+    <div
+      ref={wrapperRef}
       className="prize-card-wrapper"
-      initial={{ opacity: 0, y: 80, scale: 0.9 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{
-        duration: 1,
-        delay: prize.delay,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
     >
-      <motion.div
-        className="prize-card relative group cursor-pointer"
-        animate={{
-          y: [0, isFirst ? -12 : -6, 0],
-        }}
-        transition={{
-          duration: 5 + index * 0.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        whileHover={{
-          y: -20,
-          scale: 1.03,
-          transition: { duration: 0.4, ease: "easeOut" },
-        }}
+      <div
+        ref={floatRef}
+        className="prize-card relative group cursor-pointer transition-transform duration-300 hover:-translate-y-5 hover:scale-[1.03]"
       >
         {/* Outer glow ring for 1st place */}
         {isFirst && (
@@ -461,28 +477,58 @@ const TopPrizeCard = ({ prize, index, isFirst }) => {
             <div className="absolute bottom-3 right-3 w-5 h-5 border-b border-r rounded-br-lg group-hover:border-pirate-gold/50 transition-colors duration-500" style={{ borderColor: `${prize.accent}25` }} />
           </div>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 
 /* ─── Bottom Prize Card (Compact) ─── */
 const BottomPrizeCard = ({ prize, index }) => {
   const IconComp = prize.icon;
+  const wrapperRef = useRef(null);
+  const floatRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Entrance
+      gsap.fromTo(
+        wrapperRef.current,
+        { opacity: 0, y: 40 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          delay: prize.delay,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top 85%",
+            once: true
+          }
+        }
+      );
+
+      // Floating animation
+      gsap.to(floatRef.current, {
+        y: -5,
+        duration: (5 + index * 0.5) / 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut"
+      });
+    });
+
+    return () => ctx.revert();
+  }, [index, prize.delay]);
 
   return (
-    <motion.div
+    <div
+      ref={wrapperRef}
       className="prize-card-wrapper"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, delay: prize.delay, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
-      <motion.div
-        className="prize-card relative group cursor-pointer h-full"
-        animate={{ y: [0, -5, 0] }}
-        transition={{ duration: 5 + index * 0.5, repeat: Infinity, ease: "easeInOut" }}
-        whileHover={{ y: -12, scale: 1.03, transition: { duration: 0.3 } }}
+      <div
+        ref={floatRef}
+        className="prize-card relative group cursor-pointer h-full transition-transform duration-300 hover:-translate-y-3 hover:scale-[1.03]"
       >
         <div
           className="relative rounded-xl overflow-hidden transition-all duration-500 h-full"
@@ -551,8 +597,8 @@ const BottomPrizeCard = ({ prize, index }) => {
           <div className="absolute bottom-2 left-2 w-4 h-4 border-b border-l border-pirate-gold/15 rounded-bl-lg group-hover:border-pirate-gold/40 transition-colors duration-500" />
           <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-pirate-gold/15 rounded-br-lg group-hover:border-pirate-gold/40 transition-colors duration-500" />
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 };
 
@@ -850,21 +896,17 @@ const PrizePool = () => {
         {/* Section Header */}
         <header className="text-center mb-16 sm:mb-20">
           {/* Decorative compass above title */}
-          <motion.div
-            className="flex justify-center mb-6"
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "backOut" }}
+          <div
+            className="flex justify-center mb-6 timeline-header-icon"
           >
             <div className="relative">
               <Compass className="w-8 h-8 sm:w-10 sm:h-10 text-pirate-gold/50 animate-[spin_20s_linear_infinite]" strokeWidth={1} />
               <div className="absolute inset-0 rounded-full animate-pulse-gold" style={{ background: "radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%)" }} />
             </div>
-          </motion.div>
+          </div>
 
           {/* Main Title */}
-          <motion.h2
+          <h2
             ref={titleRef}
             className="font-pirata text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider leading-[0.95] mb-5 sm:mb-6 cursor-pointer flex justify-center flex-wrap"
             >
@@ -899,7 +941,7 @@ const PrizePool = () => {
                 {letter}
               </span>
             ))}
-          </motion.h2>
+          </h2>
 
           {/* Subtitle */}
           <p
@@ -920,11 +962,11 @@ const PrizePool = () => {
         {/* ─── Treasure Chest Centerpiece ─── */}
         {false && (
           <div className="flex justify-center mb-16 sm:mb-20">
-            <motion.div
+            <div
               ref={chestRef}
               className="relative w-[260px] h-[220px] sm:w-[320px] sm:h-[260px] md:w-[380px] md:h-[300px] cursor-pointer"
-              onHoverStart={() => setChestHovered(true)}
-              onHoverEnd={() => setChestHovered(false)}
+              onMouseEnter={() => setChestHovered(true)}
+              onMouseLeave={() => setChestHovered(false)}
               style={{ perspective: "800px", transformStyle: "preserve-3d" }}
             >
               {/* Volumetric golden glow behind chest */}
@@ -958,31 +1000,18 @@ const PrizePool = () => {
               {chestHovered && (
                 <>
                   {[...Array(6)].map((_, i) => (
-                    <motion.div
+                    <div
                       key={`coin-burst-${i}`}
                       className="absolute left-1/2 top-1/3 w-3 h-3 rounded-full"
                       style={{
                         background: "radial-gradient(circle, #FFD700, #DAA520)",
                         boxShadow: "0 0 8px rgba(255,215,0,0.6)",
                       }}
-                      initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
-                      animate={{
-                        x: (Math.random() - 0.5) * 120,
-                        y: -(40 + Math.random() * 80),
-                        opacity: [0, 1, 0],
-                        scale: [0, 1, 0.5],
-                      }}
-                      transition={{
-                        duration: 1.5 + Math.random(),
-                        repeat: Infinity,
-                        delay: i * 0.25,
-                        ease: "easeOut",
-                      }}
                     />
                   ))}
                 </>
               )}
-            </motion.div>
+            </div>
           </div>
         )}
 

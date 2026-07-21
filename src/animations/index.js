@@ -18,33 +18,21 @@ export const animateHeroEntrance = (refs) => {
     );
   }
 
-  // Subtitle fade in
-  if (refs.subtitle) {
-    tl.fromTo(
-      refs.subtitle,
-      { x: -60, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.8 },
-      0.3
-    );
-  }
+  // Group elements for staggered reveal
+  const staggeredElements = [
+    refs.subtitle,
+    refs.headingLine1,
+    refs.headingLine2,
+    refs.description,
+    refs.buttons,
+  ].filter(Boolean);
 
-  // Heading line 1 reveal
-  if (refs.headingLine1) {
+  if (staggeredElements.length > 0) {
     tl.fromTo(
-      refs.headingLine1,
-      { y: 80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1 },
-      0.5
-    );
-  }
-
-  // Heading line 2 reveal
-  if (refs.headingLine2) {
-    tl.fromTo(
-      refs.headingLine2,
-      { y: 80, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1 },
-      0.7
+      staggeredElements,
+      { y: 60, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, stagger: 0.15 },
+      0.2
     );
   }
 
@@ -54,27 +42,7 @@ export const animateHeroEntrance = (refs) => {
       refs.skullIcon,
       { scale: 0, opacity: 0, rotate: -180 },
       { scale: 1, opacity: 1, rotate: 0, duration: 0.8, ease: "back.out(1.7)" },
-      1.0
-    );
-  }
-
-  // Description fade
-  if (refs.description) {
-    tl.fromTo(
-      refs.description,
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8 },
-      1.1
-    );
-  }
-
-  // Buttons slide up
-  if (refs.buttons) {
-    tl.fromTo(
-      refs.buttons,
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8 },
-      1.3
+      0.7
     );
   }
 
