@@ -922,12 +922,10 @@ const PrizePool = () => {
                 }}
                 onMouseEnter={(e) => {
                   e.target.style.transform = "translateY(-12px) scale(1.15)";
-                  e.target.style.background =
-                    "linear-gradient(180deg,#FFF9C4,#FFD700,#FFB300)";
+                  e.target.style.background = "#FFFFFF";
                   e.target.style.webkitBackgroundClip = "text";
                   e.target.style.webkitTextFillColor = "transparent";
-                  e.target.style.textShadow =
-                    "0 0 8px #FFD700,0 0 20px #FFD700,0 0 40px #FFD700";
+                  e.target.style.textShadow = "0 0 6px #FFD700";
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.transform = "translateY(0)";

@@ -24,8 +24,8 @@ const HeroContent = forwardRef(({ refs }, ref) => {
         >
           {"HACK QUBIT".split("").map((char, index) => {
             const isHack = index < 4;
-            const shadowClass = isHack 
-              ? "hover:[text-shadow:0_0_15px_#FFD700,0_0_30px_#FFD700,0_0_50px_#FFD700]" 
+            const shadowClass = isHack
+              ? "hover:[text-shadow:0_0_15px_#FFD700,0_0_30px_#FFD700,0_0_50px_#FFD700]"
               : "hover:[text-shadow:0_0_15px_#00F0FF,0_0_30px_#00F0FF,0_0_50px_#00F0FF]";
 
             return (

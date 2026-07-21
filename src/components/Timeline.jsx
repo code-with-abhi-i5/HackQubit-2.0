@@ -456,10 +456,10 @@ const Timeline = () => {
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-12px) scale(1.15)";
-                  e.currentTarget.style.background ="linear-gradient(180deg,#FFF8C6 0%, #FFE866 20%, #FFD700 45%, #FFB700 70%, #B8860B 100%)";
+                  e.currentTarget.style.background = "#FFFFFF";
                   e.currentTarget.style.WebkitBackgroundClip = "text";
                   e.currentTarget.style.WebkitTextFillColor = "transparent";
-                  e.currentTarget.style.filter ="drop-shadow(0 0 8px #FFD700) drop-shadow(0 0 18px #FFD700)";
+                  e.currentTarget.style.filter ="drop-shadow(0 0 4px #FFD700)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0px) scale(1)";
