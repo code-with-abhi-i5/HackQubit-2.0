@@ -1,7 +1,8 @@
-import { forwardRef, useRef } from "react";
+import { forwardRef, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import { STATS_DATA } from "../constants";
 import { useCountUp } from "../hooks";
+import CountdownTimer from "./CountdownTimer";
 
 // ============================================
 // Custom Pirate x Hackathon SVG Icons
@@ -71,7 +72,7 @@ const PirateIcons = {
   ),
 };
 
-const StatCard = ({ icon, value, suffix, label, isLast }) => {
+const StatCard = ({ icon, value, suffix, label, isLast, onMouseEnter }) => {
   const { count, ref: counterRef } = useCountUp(value, 2.5);
   const cardRef = useRef(null);
   const iconRef = useRef(null);
@@ -89,6 +90,9 @@ const StatCard = ({ icon, value, suffix, label, isLast }) => {
       duration: 0.5,
       ease: "back.out(1.7)",
     });
+    if (onMouseEnter) {
+      onMouseEnter();
+    }
   };
 
   const handleLeave = () => {
@@ -147,15 +151,77 @@ const StatCard = ({ icon, value, suffix, label, isLast }) => {
 };
 
 const Stats = forwardRef((props, ref) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const statsContentRef = useRef(null);
+  const timerContentRef = useRef(null);
+  const isAnimating = useRef(false);
+
+  const handleMouseEnter = useCallback(() => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+    setIsHovered(true);
+
+    const tl = gsap.timeline({
+      onComplete: () => { isAnimating.current = false; },
+    });
+
+    // Fade out & slide up stats
+    tl.to(statsContentRef.current, {
+      opacity: 0,
+      y: -20,
+      duration: 0.4,
+      ease: "power2.inOut",
+      pointerEvents: "none"
+    }, 0);
+
+    // Show & fade in timer
+    tl.fromTo(
+      timerContentRef.current,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", pointerEvents: "auto" },
+      0.1
+    );
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (isAnimating.current) return;
+    isAnimating.current = true;
+
+    const tl = gsap.timeline({
+      onComplete: () => {
+        isAnimating.current = false;
+        setIsHovered(false);
+      },
+    });
+
+    // Fade out & slide down timer
+    tl.to(timerContentRef.current, {
+      opacity: 0,
+      y: 20,
+      duration: 0.35,
+      ease: "power2.inOut",
+      pointerEvents: "none"
+    }, 0);
+
+    // Show & fade in stats
+    tl.fromTo(
+      statsContentRef.current,
+      { opacity: 0, y: -20 },
+      { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", pointerEvents: "auto" },
+      0.1
+    );
+  }, []);
+
   return (
     <div
       ref={ref}
       className="absolute bottom-5 sm:bottom-7 lg:bottom-8 left-1/2 -translate-x-1/2 z-20 w-[calc(100%-2rem)] sm:w-[calc(100%-4rem)] lg:w-auto max-w-[1300px]"
+      onMouseLeave={handleMouseLeave}
     >
       {/* Outer carved border */}
       <div className="carved-border animate-glow-border">
         {/* Inner carved glass card */}
-        <div className="carved-bg relative">
+        <div className="carved-bg relative overflow-hidden" style={{ minHeight: '80px' }}>
           
           {/* Grunge / Old Map Noise Texture */}
           <div 
@@ -189,14 +255,31 @@ const Stats = forwardRef((props, ref) => {
           {/* Subtle top highlight line */}
           <div className="absolute top-0 left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-pirate-gold/40 to-transparent z-10" />
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 relative z-10">
-            {STATS_DATA.map((stat, i) => (
-              <StatCard
-                key={stat.label}
-                {...stat}
-                isLast={i === STATS_DATA.length - 1}
-              />
-            ))}
+          {/* Grid Wrapper for Overlapping */}
+          <div className="relative z-10 grid w-full">
+            {/* Stats Content (default view) */}
+            <div
+              ref={statsContentRef}
+              className="grid grid-cols-2 lg:grid-cols-4 col-start-1 row-start-1 w-full"
+            >
+              {STATS_DATA.map((stat, i) => (
+                <StatCard
+                  key={stat.label}
+                  {...stat}
+                  isLast={i === STATS_DATA.length - 1}
+                  onMouseEnter={stat.icon === 'clock' ? handleMouseEnter : undefined}
+                />
+              ))}
+            </div>
+
+            {/* Countdown Timer Content (shown on hover) */}
+            <div
+              ref={timerContentRef}
+              className="col-start-1 row-start-1 flex flex-col sm:flex-row items-center justify-center py-2 sm:py-3 w-full"
+              style={{ opacity: 0, pointerEvents: 'none' }}
+            >
+              <CountdownTimer />
+            </div>
           </div>
 
           {/* Bottom subtle highlight */}

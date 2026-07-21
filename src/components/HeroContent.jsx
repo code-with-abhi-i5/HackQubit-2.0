@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { HERO_CONTENT } from "../constants";
-import CountdownTimer from "./CountdownTimer";
+import Buttons from "./Buttons";
+
 const HeroContent = forwardRef(({ refs }, ref) => {
   return (
     <div
@@ -57,8 +58,8 @@ const HeroContent = forwardRef(({ refs }, ref) => {
         {HERO_CONTENT.description}
       </p>
 
-      {/* Countdown Timer */}
-      <CountdownTimer ref={refs.buttons} />
+      {/* Buttons */}
+      <Buttons ref={refs.buttons} />
     </div>
   );
 });

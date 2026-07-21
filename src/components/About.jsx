@@ -165,7 +165,7 @@ const About = () => {
 
             <div className="absolute inset-0 bg-pirate-gold/5 translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
             <h3 className="relative z-10 text-3xl sm:text-4xl font-bold text-pirate-gold mb-2 font-pirate-display drop-shadow-[0_0_15px_rgba(212,175,55,0.3)] leading-tight">
-              Oct 7-8<br /><span className="text-xl sm:text-2xl text-pirate-gold/70">2025</span>
+              Oct 7-8<br /><span className="text-xl sm:text-2xl text-pirate-gold/70">2026</span>
             </h3>
           </div>
 
