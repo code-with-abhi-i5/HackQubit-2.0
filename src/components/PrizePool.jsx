@@ -385,7 +385,7 @@ const TopPrizeCard = ({ prize, index, isFirst }) => {
             }}
           >
             {/* Treasure Map / Vintage Wood Texture */}
-            <div className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay" style={{
+            <div className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay hidden md:block" style={{
               backgroundImage: `radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%), repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(139,107,63,0.5) 4px, rgba(139,107,63,0.5) 5px)`,
             }} />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none group-hover:opacity-[0.08] transition-opacity duration-700">
@@ -397,7 +397,7 @@ const TopPrizeCard = ({ prize, index, isFirst }) => {
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-pirate-gold to-transparent z-10 opacity-60 group-hover:opacity-100 transition-opacity duration-700" />
 
             {/* Noise */}
-            <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-color-dodge" style={{
+            <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-color-dodge hidden md:block" style={{
               backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
             }} />
 
@@ -539,7 +539,7 @@ const BottomPrizeCard = ({ prize, index }) => {
           }}
         >
           {/* Treasure Map / Vintage Wood Texture */}
-          <div className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay" style={{
+          <div className="absolute inset-0 opacity-[0.08] pointer-events-none mix-blend-overlay hidden md:block" style={{
             backgroundImage: `radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.8) 100%), repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(139,107,63,0.5) 4px, rgba(139,107,63,0.5) 5px)`,
           }} />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none group-hover:opacity-[0.06] transition-opacity duration-700">
@@ -820,7 +820,7 @@ const PrizePool = () => {
 
       {/* Noise texture overlay */}
       <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-color-dodge"
+        className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-color-dodge hidden md:block"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
         }}
@@ -836,14 +836,14 @@ const PrizePool = () => {
 
       {/* Fog layers */}
       <FogLayer
-        className="w-[200%] h-40 top-[20%] -left-[50%] opacity-30"
+        className="w-[200%] h-40 top-[20%] -left-[50%] opacity-30 hidden md:block"
         style={{
           background: "linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.02) 30%, rgba(212,175,55,0.05) 50%, rgba(212,175,55,0.02) 70%, transparent 100%)",
           filter: "blur(40px)",
         }}
       />
-      <div ref={fogRef1} className="absolute w-[150%] h-32 top-[35%] -left-[25%] pointer-events-none opacity-20" style={{ background: "linear-gradient(90deg, transparent, rgba(200,170,100,0.06), transparent)", filter: "blur(50px)" }} />
-      <div ref={fogRef2} className="absolute w-[150%] h-28 top-[55%] -left-[25%] pointer-events-none opacity-15" style={{ background: "linear-gradient(90deg, transparent, rgba(180,150,80,0.05), transparent)", filter: "blur(60px)" }} />
+      <div ref={fogRef1} className="absolute w-[150%] h-32 top-[35%] -left-[25%] pointer-events-none opacity-20 hidden md:block" style={{ background: "linear-gradient(90deg, transparent, rgba(200,170,100,0.06), transparent)", filter: "blur(50px)" }} />
+      <div ref={fogRef2} className="absolute w-[150%] h-28 top-[55%] -left-[25%] pointer-events-none opacity-15 hidden md:block" style={{ background: "linear-gradient(90deg, transparent, rgba(180,150,80,0.05), transparent)", filter: "blur(60px)" }} />
 
       {/* Lanterns */}
       <Lantern position={{ top: "5%", left: "8%" }} delay={0} />

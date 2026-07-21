@@ -165,7 +165,7 @@ const IslandCard = ({ milestone, index, side }) => {
           }} />
 
           {/* Noise */}
-          <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-color-dodge" style={{
+          <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-color-dodge hidden md:block" style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
           }} />
 
@@ -388,7 +388,7 @@ const Timeline = () => {
       }} />
 
       {/* Noise texture */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-color-dodge" style={{
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-color-dodge hidden md:block" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
       }} />
 
@@ -401,7 +401,7 @@ const Timeline = () => {
       {particles.map((p, i) => (
         <div
           key={`gold-${i}`}
-          className="absolute rounded-full pointer-events-none"
+          className="absolute rounded-full pointer-events-none hidden md:block"
           style={{
             left: p.left, top: p.top, width: p.size, height: p.size,
             background: "radial-gradient(circle, #FFD700 0%, #D4AF37 50%, transparent 100%)",
