@@ -4,16 +4,6 @@ import hackqubitJewelTitleImg from "../assets/images/hackqubit_jewel_title.png";
 const HeroContent = ({ refs }) => {
   return (
     <div className="relative z-20 flex flex-col items-start justify-center max-w-4xl lg:max-w-none w-full px-6 sm:px-12 lg:px-20 pt-28 pb-16 text-left">
-      {/* Small Badge / Tagline */}
-      <div
-        ref={refs.subtitle}
-        className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-600/40 bg-amber-500/15 mb-6 shadow-sm"
-      >
-        <span className="w-2 h-2 rounded-full bg-amber-600 animate-ping" />
-        <span className="font-cinzel text-xs sm:text-sm tracking-widest text-amber-900 font-extrabold uppercase">
-          Annual Flagship Pirate Hackathon
-        </span>
-      </div>
 
       {/* Main Heading Graphic: "HACKQUBIT 2.0" where individual letters wear crowns, necklaces, rings & gems */}
       <div className="relative mb-6 group select-none self-end mr-4 sm:mr-8">

@@ -1,6 +1,5 @@
 import { useState, useRef, forwardRef } from "react";
-import { Sun, Moon, Compass } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
+import { Compass } from "lucide-react";
 import { NAV_LINKS } from "../constants";
 import { useScrollPosition } from "../hooks";
 import { gsap } from "gsap";
@@ -8,12 +7,11 @@ import { PirateMobileMenu, HamburgerToggle } from "./PirateMobileNav";
 
 import logoRvscet from "../assets/images/logo_rvscet.png";
 import logoRed    from "../assets/images/logo_red.png";
-import logoHelix  from "../assets/images/logo_helix.jpg";
+import logoHelix  from "../assets/images/logo_helix.png";
 
 const Navbar = forwardRef((props, ref) => {
   const isScrolled = useScrollPosition(50);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
   const linkRefs = useRef([]);
 
   const handleLinkHover = (index) => {
@@ -52,7 +50,7 @@ const Navbar = forwardRef((props, ref) => {
               {/* RVSCET */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-11 h-11 rounded-full bg-white border-2 border-amber-400/40 hover:border-amber-400 hover:shadow-[0_0_14px_rgba(212,175,55,0.5)] transition-all duration-300 overflow-hidden p-2.5 shadow-md"
+                className="group flex items-center justify-center w-10 h-10 rounded-full hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-all duration-300 overflow-hidden p-0 shadow-md"
                 title="RVSCET"
               >
                 <img
@@ -65,15 +63,15 @@ const Navbar = forwardRef((props, ref) => {
               {/* Divider pip */}
               <span className="hidden sm:block w-px h-6 bg-white/20 rounded-full" />
 
-              {/* Red logo */}
+              {/* HELIX */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-red-400/40 hover:border-red-400 hover:shadow-[0_0_14px_rgba(239,68,68,0.5)] transition-all duration-300 overflow-hidden p-0.5 shadow-md"
-                title="Partner"
+                className="group flex items-center justify-center w-10 h-10 rounded-full hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-all duration-300 overflow-hidden p-0 shadow-md"
+                title="Helix"
               >
                 <img
-                  src={logoRed}
-                  alt="Partner Logo"
+                  src={logoHelix}
+                  alt="Helix Logo"
                   className="w-full h-full object-contain rounded-full group-hover:scale-110 transition-transform duration-300"
                 />
               </a>
@@ -81,16 +79,16 @@ const Navbar = forwardRef((props, ref) => {
               {/* Divider pip */}
               <span className="hidden sm:block w-px h-6 bg-white/20 rounded-full" />
 
-              {/* HELIX */}
+              {/* HackQubit Shield logo */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-10 h-10 rounded-full bg-white border-2 border-blue-400/40 hover:border-blue-400 hover:shadow-[0_0_14px_rgba(96,165,250,0.5)] transition-all duration-300 overflow-hidden p-0 shadow-md"
-                title="Helix"
+                className="group flex items-center justify-center w-10 h-10 transition-all duration-300 p-0"
+                title="HackQubit Emblem"
               >
                 <img
-                  src={logoHelix}
-                  alt="Helix Logo"
-                  className="w-full h-full object-cover rounded-full group-hover:scale-110 transition-transform duration-300"
+                  src={logoRed}
+                  alt="HackQubit Shield Logo"
+                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                 />
               </a>
 
@@ -126,17 +124,8 @@ const Navbar = forwardRef((props, ref) => {
               ))}
             </div>
 
-            {/* ── RIGHT: Theme + Register ── */}
+            {/* ── RIGHT: Register CTA ── */}
             <div className="hidden lg:flex items-center gap-3">
-              {/* Theme toggle */}
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full border border-white/15 hover:border-amber-400/50 hover:bg-amber-400/10 text-white/60 hover:text-white transition-all duration-300"
-                aria-label="Toggle theme"
-              >
-                {theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-              </button>
-
               {/* CTA — Register Now */}
               <a
                 href="#register"
