@@ -36,7 +36,7 @@ const Navbar = forwardRef((props, ref) => {
     <>
       <nav
         ref={ref}
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
           isScrolled
             ? "backdrop-blur-2xl bg-[#0a0f1d]/92 shadow-[0_4px_40px_rgba(0,0,0,0.55)] border-b border-amber-500/15"
             : "bg-gradient-to-b from-black/40 to-transparent"
@@ -139,7 +139,9 @@ const Navbar = forwardRef((props, ref) => {
             </div>
 
             {/* ── Mobile Hamburger ── */}
-            <HamburgerToggle isOpen={isMobileOpen} toggle={() => setIsMobileOpen(!isMobileOpen)} />
+            <div className="relative z-50">
+              <HamburgerToggle isOpen={isMobileOpen} toggle={() => setIsMobileOpen(!isMobileOpen)} />
+            </div>
           </div>
         </div>
 

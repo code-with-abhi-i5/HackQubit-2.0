@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Compass, Home, Info, Clock, DollarSign, Users, Image as ImageIcon, HelpCircle, PhoneCall, X } from 'lucide-react';
+import { Compass, Home, Info, Clock, DollarSign, Users, Image as ImageIcon, HelpCircle, PhoneCall } from 'lucide-react';
 import hackqubitLogo from '../assets/images/hackqubit_jewel_title.png';
 
 const NAV_ITEMS = [
@@ -52,7 +52,7 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
       <div
         className="fixed inset-0 lg:hidden backdrop-blur-sm"
         style={{
-          zIndex: 30,
+          zIndex: 45,
           opacity: isOpen ? 1 : 0,
           pointerEvents: isOpen ? 'auto' : 'none',
           transition: 'opacity 0.4s ease',
@@ -65,7 +65,7 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
       <div
         className="fixed top-0 right-0 w-4/5 max-w-sm h-full lg:hidden flex flex-col pt-6 px-6 pb-10 overflow-y-auto"
         style={{
-          zIndex: 40,
+          zIndex: 48,
           background: 'linear-gradient(160deg, #7fb3d3 0%, #a8cfe0 30%, #c8e4ef 55%, #e8d5a0 80%, #d4a843 100%)',
           borderLeft: '2px solid rgba(212,175,55,0.5)',
           boxShadow: '-20px 0 80px rgba(100,60,0,0.35)',
@@ -88,12 +88,6 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
               className="h-10 w-auto object-contain drop-shadow-md"
             />
           </div>
-          <button
-            onClick={close}
-            className="w-8 h-8 rounded-full border border-amber-700/30 bg-amber-100/50 flex items-center justify-center text-amber-900 hover:bg-amber-400/40 hover:border-amber-700 transition-all duration-300"
-          >
-            <X className="w-4 h-4" />
-          </button>
         </div>
 
         {/* Nav items */}
