@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     question: "Is there a registration fee?",
-    answer: "Yes, there is a registration fee of ₹600 per team. This covers your workspace, meals during the 24-hour hackathon, swag kit, and access to all workshops and mentorship sessions."
+    answer: "Yes, there is a registration fee of ₹700 per team. This covers your workspace, meals during the 24-hour hackathon, swag kit, and access to all workshops and mentorship sessions."
   },
   {
     question: "What is the team size?",
