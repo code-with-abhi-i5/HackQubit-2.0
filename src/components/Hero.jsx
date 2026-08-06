@@ -24,25 +24,38 @@ const Hero = () => {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Smooth entrance sequence
-      gsap.fromTo(
-        [subtitleRef.current, headingLine1Ref.current, headingLine2Ref.current, descriptionRef.current, buttonsRef.current],
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }
-      );
+      const targets = [
+        headingLine1Ref.current,
+        headingLine2Ref.current,
+        descriptionRef.current,
+        buttonsRef.current,
+      ].filter(Boolean);
+
+      if (targets.length > 0) {
+        gsap.fromTo(
+          targets,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }
+        );
+      }
 
       // Dragon entrance from far left
-      gsap.fromTo(
-        dragonRef.current,
-        { opacity: 0, x: -100, y: -20 },
-        { opacity: 1, x: 0, y: 0, duration: 1.4, ease: "power3.out", delay: 0.2 }
-      );
+      if (dragonRef.current) {
+        gsap.fromTo(
+          dragonRef.current,
+          { opacity: 0, x: -100, y: -20 },
+          { opacity: 1, x: 0, y: 0, duration: 1.4, ease: "power3.out", delay: 0.2 }
+        );
+      }
 
       // Water Ship entrance from bottom-left
-      gsap.fromTo(
-        waterShipRef.current,
-        { opacity: 0, x: -80, y: 40 },
-        { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.4 }
-      );
+      if (waterShipRef.current) {
+        gsap.fromTo(
+          waterShipRef.current,
+          { opacity: 0, x: -80, y: 40 },
+          { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.4 }
+        );
+      }
     });
 
     return () => ctx.revert();
