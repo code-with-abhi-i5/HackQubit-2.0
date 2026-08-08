@@ -119,7 +119,9 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
         {/* Footer CTA */}
         <div className="mt-8 pt-6 border-t border-amber-900/20 relative z-10">
           <a
-            href="#register"
+            href="https://forms.gle/STi1SKZ8uK1fCVQr7"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={close}
             className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 bg-gradient-to-r from-amber-600 to-amber-800 rounded-xl font-cinzel text-sm text-amber-50 font-black tracking-wider shadow-lg hover:shadow-[0_0_24px_rgba(180,120,20,0.5)] transition-all duration-300"
           >

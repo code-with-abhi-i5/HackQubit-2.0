@@ -41,7 +41,9 @@ const Buttons = forwardRef((props, ref) => {
       </a>
       {/* Register Button */}
       <a
-        href="#register"
+        href="https://forms.gle/STi1SKZ8uK1fCVQr7"
+        target="_blank"
+        rel="noopener noreferrer"
         className="px-6 py-2 bg-red-800 text-white rounded hover:bg-red-900 transition-colors"
       >
         Register

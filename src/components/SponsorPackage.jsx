@@ -182,9 +182,12 @@ const SponsorPackage = () => {
               </ul>
             </div>
 
-            <button className={`w-full py-3.5 rounded-xl font-black text-amber-50 bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900 hover:from-amber-700 hover:to-amber-800 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 font-cinzel tracking-wider uppercase text-xs sm:text-sm`}>
+            <a
+              href="mailto:hackqubit2.0@gmail.com"
+              className="w-full py-3.5 rounded-xl font-black text-amber-50 bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900 hover:from-amber-700 hover:to-amber-800 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 font-cinzel tracking-wider uppercase text-xs sm:text-sm text-center block"
+            >
               Become a Sponsor
-            </button>
+            </a>
           </motion.div>
         ))}
       </div>

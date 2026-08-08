@@ -128,7 +128,9 @@ const Navbar = forwardRef((props, ref) => {
             <div className="hidden lg:flex items-center gap-3">
               {/* CTA — Register Now */}
               <a
-                href="#register"
+                href="https://forms.gle/STi1SKZ8uK1fCVQr7"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="relative group flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-lg font-cinzel text-[13px] text-slate-950 font-black tracking-wider transition-all duration-400 hover:from-amber-400 hover:to-amber-500 hover:shadow-[0_0_28px_rgba(212,175,55,0.45)] overflow-hidden"
               >
                 {/* Shimmer sweep */}

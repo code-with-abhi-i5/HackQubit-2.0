@@ -438,7 +438,7 @@ const PackageCard = ({ pkg, index }) => {
 
             {/* CTA Button */}
             <a
-              href="#contact"
+              href="mailto:hackqubit2.0@gmail.com"
               className="mt-auto group/btn relative w-full flex items-center justify-center gap-2 py-3.5 rounded-lg overflow-hidden transition-all duration-500 border hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.4)]"
               style={{
                 background: `linear-gradient(135deg, ${pkg.accentColor}10 0%, transparent 50%, ${pkg.accentColor}08 100%)`,
