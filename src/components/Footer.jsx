@@ -11,6 +11,7 @@ const Footer = () => {
 
   return (
     <footer
+      id ="footer"
       ref={footerRef}
       className="relative bg-slate-950 text-slate-200 pt-20 pb-8 overflow-hidden border-t border-slate-800"
     >
