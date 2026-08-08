@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { label: 'Sponsors',   href: '#sponsors', icon: Users },
   { label: 'Gallery',    href: '#gallery',  icon: ImageIcon },
   { label: 'FAQ',        href: '#faq',      icon: HelpCircle },
-  { label: 'Contact',    href: '#contact',  icon: PhoneCall },
+  { label: 'Contact',    href: '#footer',  icon: PhoneCall },
 ];
 
 /* ── Hamburger / X toggle ── */
