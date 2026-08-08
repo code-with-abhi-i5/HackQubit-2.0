@@ -10,7 +10,7 @@ export const NAV_LINKS = [
   { label: "Crew", href: "#crew" },
   { label: "Treasures", href: "#treasures" },
   { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "#footer" },
 ];
 
 export const STATS_DATA = [
