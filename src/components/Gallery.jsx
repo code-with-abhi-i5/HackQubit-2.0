@@ -59,7 +59,9 @@ const Gallery = () => {
   };
 
   return (
-    <section className="relative py-20 px-6 max-w-7xl mx-auto overflow-hidden">
+    <section
+      id="gallery"
+      className="relative py-20 px-6 max-w-7xl mx-auto overflow-hidden">
       <GoldRainParticles />
 
       <div className="absolute inset-x-0 bottom-0 h-[450px] sm:h-[550px] pointer-events-none z-0 overflow-hidden">
