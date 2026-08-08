@@ -115,7 +115,7 @@ const Navbar = forwardRef((props, ref) => {
                   href={link.href}
                   onMouseEnter={() => handleLinkHover(i)}
                   onMouseLeave={() => handleLinkLeave(i)}
-                  className="relative px-4 py-2 font-cinzel text-[13px] text-white/80 tracking-wide transition-colors duration-300 group"
+                  className="relative px-2.5 xl:px-3.5 py-2 font-cinzel text-[12px] xl:text-[13px] font-semibold text-white/80 tracking-wide transition-colors duration-300 group whitespace-nowrap"
                 >
                   {link.label}
                   {/* Amber underline glow */}

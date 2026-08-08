@@ -362,7 +362,7 @@ const About = () => {
         <EventCountdownCard />
 
         {/* ── YOUNG ANIME PIRATES CREW AT THE BOTTOM ── */}
-        <div ref={crewImgRef} className="flex flex-col items-center justify-center text-center">
+        <div id="crew" ref={crewImgRef} className="flex flex-col items-center justify-center text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-amber-500/15 border border-amber-800/30 text-amber-950 font-cinzel font-extrabold text-xs mb-3">
             <Anchor className="w-3.5 h-3.5 text-amber-800" />
             <span>Meet The Pirate Hacker Crew</span>

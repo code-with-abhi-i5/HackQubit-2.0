@@ -4,14 +4,14 @@ import { Compass, Home, Info, Clock, DollarSign, Users, Image as ImageIcon, Help
 import hackqubitLogo from '../assets/images/hackqubit_jewel_title.png';
 
 const NAV_ITEMS = [
-  { label: 'Home',       href: '#home',     icon: Home },
-  { label: 'About',      href: '#about',    icon: Info },
-  { label: 'Timeline',   href: '#timeline', icon: Clock },
-  { label: 'Prize Pool', href: '#prizes',   icon: DollarSign },
-  { label: 'Sponsors',   href: '#sponsors', icon: Users },
-  { label: 'Gallery',    href: '#gallery',  icon: ImageIcon },
-  { label: 'FAQ',        href: '#faq',      icon: HelpCircle },
-  { label: 'Contact',    href: '#footer',  icon: PhoneCall },
+  { label: 'Home',       href: '#home',        icon: Home },
+  { label: 'About',      href: '#about',       icon: Info },
+  { label: 'Timeline',   href: '#timeline',    icon: Clock },
+  { label: 'Prize Pool', href: '#prizes',      icon: DollarSign },
+  { label: 'Sponsors',   href: '#sponsorship', icon: Users },
+  { label: 'Gallery',    href: '#gallery',     icon: ImageIcon },
+  { label: 'FAQ',        href: '#faq',         icon: HelpCircle },
+  { label: 'Contact',    href: '#footer',      icon: PhoneCall },
 ];
 
 /* ── Hamburger / X toggle ── */
