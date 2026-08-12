@@ -178,50 +178,51 @@ const MobileTierCard = ({ tier, benefits, index }) => {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="relative rounded-2xl overflow-hidden"
+      className="relative rounded-2xl overflow-visible mt-20"
       style={{
-        background: "linear-gradient(165deg, rgba(255,255,255,0.95) 0%, rgba(224,242,254,0.9) 100%)",
+        background: "linear-gradient(165deg, rgba(255,255,255,0.98) 0%, rgba(224,242,254,0.95) 100%)",
         border: `1.5px solid ${tier.color}30`,
         boxShadow: `0 4px 25px rgba(15,23,42,0.08), 0 1px 3px rgba(15,23,42,0.06)`,
+        borderRadius: "1rem"
       }}
     >
-      {/* Card Header */}
+      {/* Centered Avatar Sticking Out */}
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-32 h-40 pointer-events-none z-30">
+        <img 
+          src={tier.characterImg} 
+          alt={tier.name}
+          className="w-full h-full object-contain filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.2)] transition-transform duration-300 hover:scale-105"
+        />
+      </div>
+
+      {/* Card Header (Centered) */}
       <div
-        className="relative px-5 py-4 flex items-center gap-3 pt-6"
+        className="relative px-5 pb-5 pt-16 flex flex-col items-center text-center gap-2"
         style={{
           background: tier.headerBg,
           borderBottom: `1px solid ${tier.color}15`,
+          borderTopLeftRadius: "1rem",
+          borderTopRightRadius: "1rem"
         }}
       >
-        <div className="absolute -top-10 right-4 w-20 h-24 pointer-events-none z-10">
-          <img 
-            src={tier.characterImg} 
-            alt={tier.name}
-            className="w-full h-full object-contain filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.2)]"
-          />
-        </div>
         <div
-          className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+          className="inline-block px-4 py-1.5 rounded-full font-cinzel text-[10px] font-bold tracking-widest uppercase mb-1"
           style={{
             background: tier.iconBg,
-            border: `1.5px solid ${tier.iconBorder}`,
+            border: `1px solid ${tier.iconBorder}`,
+            color: tier.color,
           }}
         >
-          <TierIcon size={18} style={{ color: tier.color }} />
+          {tier.themeTag}
         </div>
-        <div className="flex-1 min-w-0">
-          <h4
-            className="font-cinzel font-bold text-sm tracking-wider truncate"
-            style={{ color: tier.color }}
-          >
-            {tier.name}
-          </h4>
-          <p className="text-[10px] font-cinzel tracking-widest uppercase text-amber-800/50">
-            {tier.themeTag}
-          </p>
-        </div>
+        <h4
+          className="font-cinzel font-black text-xl tracking-wider"
+          style={{ color: tier.color }}
+        >
+          {tier.name}
+        </h4>
         <div
-          className="font-pirata text-lg font-bold shrink-0"
+          className="font-pirata text-4xl font-bold"
           style={{ color: tier.color }}
         >
           {tier.price}
@@ -262,10 +263,10 @@ const MobileTierCard = ({ tier, benefits, index }) => {
       <div className="px-4 pb-4 pt-2">
         <a
           href="mailto:hackqubit2.0@gmail.com"
-          className="block w-full py-3 rounded-xl text-center font-cinzel font-bold text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:-translate-y-0.5 text-amber-50"
+          className="block w-full py-3.5 rounded-xl text-center font-cinzel font-bold text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:-translate-y-1 text-amber-50"
           style={{
-            background: `linear-gradient(135deg, ${tier.color} 0%, ${tier.color}cc 100%)`,
-            boxShadow: `0 4px 15px ${tier.color}30`,
+            background: `linear-gradient(135deg, ${tier.color} 0%, ${tier.color}e6 100%)`,
+            boxShadow: `0 6px 20px ${tier.color}40`,
           }}
         >
           Become a Sponsor
@@ -671,7 +672,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
               </motion.div>
 
               {/* ── MOBILE CARD VIEW (below md) ── */}
-              <div className="block md:hidden space-y-4">
+              <div className="block md:hidden space-y-24 mt-20">
                 {TIERS.map((tier, idx) => (
                   <MobileTierCard
                     key={tier.key}
