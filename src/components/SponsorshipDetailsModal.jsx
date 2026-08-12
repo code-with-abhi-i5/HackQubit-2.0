@@ -3,6 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Crown, Shield, Medal, Award, Coffee } from "lucide-react";
 import bgStoryMatrix from "../assets/images/bg_story_sponsorship_matrix.png";
 
+/* Import Pirate Character Avatars */
+import pirateCaptainImg from "../assets/images/pirate_captain.webp";
+import pirateFemaleImg from "../assets/images/pirate_female.webp";
+import pirateSwashbucklerImg from "../assets/images/pirate_swashbuckler.webp";
+import pirateNavigatorImg from "../assets/images/female_pirate_navigator.webp";
+import youngPirateImg from "../assets/images/young_pirate.webp";
+import crewImg from "../assets/images/young_anime_pirates_crew_transparent.webp";
+
 /* ─── Tier Configuration (Light Theme Colors) ─── */
 const TIERS = [
   {
@@ -11,6 +19,7 @@ const TIERS = [
     price: "₹70,000",
     themeTag: "Title Sponsor",
     icon: Crown,
+    characterImg: pirateCaptainImg,
     color: "#92400e",
     iconBg: "rgba(146,64,14,0.12)",
     iconBorder: "rgba(146,64,14,0.3)",
@@ -22,6 +31,7 @@ const TIERS = [
     price: "₹50,000",
     themeTag: "Quartermaster Tier",
     icon: Medal,
+    characterImg: pirateFemaleImg,
     color: "#b45309",
     iconBg: "rgba(180,83,9,0.1)",
     iconBorder: "rgba(180,83,9,0.25)",
@@ -33,6 +43,7 @@ const TIERS = [
     price: "₹30,000",
     themeTag: "Navigator Tier",
     icon: Shield,
+    characterImg: pirateSwashbucklerImg,
     color: "#64748b",
     iconBg: "rgba(100,116,139,0.1)",
     iconBorder: "rgba(100,116,139,0.25)",
@@ -44,6 +55,7 @@ const TIERS = [
     price: "₹15,000",
     themeTag: "Swashbuckler Tier",
     icon: Award,
+    characterImg: pirateNavigatorImg,
     color: "#9a3412",
     iconBg: "rgba(154,52,18,0.1)",
     iconBorder: "rgba(154,52,18,0.25)",
@@ -55,12 +67,14 @@ const TIERS = [
     price: "In-Kind",
     themeTag: "Bounty & Provisions",
     icon: Coffee,
+    characterImg: youngPirateImg,
     color: "#0f766e",
     iconBg: "rgba(15,118,110,0.1)",
     iconBorder: "rgba(15,118,110,0.25)",
     headerBg: "linear-gradient(180deg, rgba(15,118,110,0.06) 0%, rgba(20,184,166,0.02) 100%)",
   },
 ];
+
 
 /* ─── Benefits Matrix ─── */
 const BENEFITS = [
@@ -173,12 +187,19 @@ const MobileTierCard = ({ tier, benefits, index }) => {
     >
       {/* Card Header */}
       <div
-        className="relative px-5 py-4 flex items-center gap-3"
+        className="relative px-5 py-4 flex items-center gap-3 pt-6"
         style={{
           background: tier.headerBg,
           borderBottom: `1px solid ${tier.color}15`,
         }}
       >
+        <div className="absolute -top-10 right-4 w-20 h-24 pointer-events-none z-10">
+          <img 
+            src={tier.characterImg} 
+            alt={tier.name}
+            className="w-full h-full object-contain filter drop-shadow-[0_8px_12px_rgba(0,0,0,0.2)]"
+          />
+        </div>
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
           style={{
@@ -374,13 +395,13 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
 
               {/* ── DESKTOP TABLE (Hidden on mobile) ── */}
               <motion.div
-                className="hidden lg:block"
+                className="hidden lg:block mt-20"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.6 }}
               >
                 <div
-                  className="relative rounded-2xl overflow-hidden"
+                  className="relative rounded-2xl overflow-visible"
                   style={{
                     background: "linear-gradient(165deg, rgba(255,255,255,0.98) 0%, rgba(224,242,254,0.95) 100%)",
                     border: "1.5px solid rgba(146,64,14,0.15)",
@@ -401,21 +422,30 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                     <thead>
                       <tr>
                         <th
-                          className="sticky left-0 z-20 text-left px-6 py-5 font-cinzel text-xs tracking-[0.25em] uppercase text-amber-800/70"
+                          className="sticky left-0 z-20 text-left px-6 py-5 font-cinzel text-xs tracking-[0.25em] uppercase text-amber-800/70 rounded-tl-2xl"
                           style={{
                             background: "linear-gradient(135deg, rgba(255,255,255,0.99) 0%, rgba(254,243,199,0.4) 100%)",
                             borderBottom: "2px solid rgba(146,64,14,0.1)",
                             minWidth: "200px",
                           }}
                         >
-                          Benefits
+                          <div className="relative pt-6">
+                            <div className="absolute -top-32 left-2 w-32 h-32 sm:w-36 sm:h-36 pointer-events-none z-[100]">
+                              <img 
+                                src={crewImg} 
+                                alt="Crew"
+                                className="w-full h-full object-contain filter drop-shadow-[0_8px_15px_rgba(146,64,14,0.3)] transition-transform duration-300 hover:-translate-y-1"
+                              />
+                            </div>
+                            <span>Benefits</span>
+                          </div>
                         </th>
                         {TIERS.map((tier, idx) => {
                           const TierIcon = tier.icon;
                           return (
                             <th
                               key={tier.key}
-                              className="text-center px-3 py-5"
+                              className={`text-center px-3 py-5 ${idx === TIERS.length - 1 ? 'rounded-tr-2xl' : ''}`}
                               style={{
                                 background: tier.headerBg,
                                 borderBottom: `2px solid ${tier.color}25`,
@@ -426,8 +456,15 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 + idx * 0.08 }}
-                                className="flex flex-col items-center gap-2"
+                                className="flex flex-col items-center gap-2 relative pt-6"
                               >
+                                <div className="absolute -top-24 w-28 h-36 pointer-events-none z-[100]">
+                                  <img 
+                                    src={tier.characterImg} 
+                                    alt={tier.name}
+                                    className="w-full h-full object-contain filter drop-shadow-[0_8px_15px_rgba(146,64,14,0.4)] transition-transform duration-300 hover:-translate-y-2"
+                                  />
+                                </div>
                                 <div
                                   className="w-10 h-10 rounded-full flex items-center justify-center"
                                   style={{
@@ -515,14 +552,14 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
 
               {/* ── TABLET VIEW (md to lg) ── */}
               <motion.div
-                className="hidden md:block lg:hidden"
+                className="hidden md:block lg:hidden mt-20"
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.6 }}
               >
                 <div
                   ref={scrollContainerRef}
-                  className="overflow-x-auto rounded-2xl"
+                  className="overflow-x-auto overflow-y-visible rounded-2xl"
                   style={{
                     background: "linear-gradient(165deg, rgba(255,255,255,0.98) 0%, rgba(224,242,254,0.95) 100%)",
                     border: "1.5px solid rgba(146,64,14,0.12)",
@@ -533,32 +570,48 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                   <div className="flex items-center justify-center gap-2 py-3 text-amber-700/40 text-xs font-cinzel tracking-wider">
                     <span>← Scroll to see all tiers →</span>
                   </div>
-                  <table className="w-full min-w-[900px]">
+                  <table className="w-full min-w-[900px] overflow-visible">
                     <thead>
                       <tr>
                         <th
-                          className="sticky left-0 z-20 text-left px-5 py-4 font-cinzel text-xs tracking-[0.2em] uppercase text-amber-800/60"
+                          className="sticky left-0 z-20 text-left px-5 py-4 font-cinzel text-xs tracking-[0.2em] uppercase text-amber-800/60 rounded-tl-2xl"
                           style={{
                             background: "rgba(255,255,255,0.99)",
                             borderBottom: "2px solid rgba(146,64,14,0.08)",
                             minWidth: "180px",
                           }}
                         >
-                          Benefits
+                          <div className="relative pt-4">
+                            <div className="absolute -top-24 left-2 w-28 h-28 pointer-events-none z-[100]">
+                              <img 
+                                src={crewImg} 
+                                alt="Crew"
+                                className="w-full h-full object-contain filter drop-shadow-[0_6px_10px_rgba(146,64,14,0.2)] transition-transform duration-300 hover:-translate-y-1"
+                              />
+                            </div>
+                            <span>Benefits</span>
+                          </div>
                         </th>
-                        {TIERS.map((tier) => {
+                        {TIERS.map((tier, idx) => {
                           const TierIcon = tier.icon;
                           return (
                             <th
                               key={tier.key}
-                              className="text-center px-2 py-4"
+                              className={`text-center px-2 py-4 ${idx === TIERS.length - 1 ? 'rounded-tr-2xl' : ''}`}
                               style={{
                                 background: tier.headerBg,
                                 borderBottom: `2px solid ${tier.color}20`,
                                 minWidth: "130px",
                               }}
                             >
-                              <div className="flex flex-col items-center gap-1.5">
+                              <div className="flex flex-col items-center gap-1.5 relative pt-4">
+                                <div className="absolute -top-16 w-20 h-24 pointer-events-none z-[100]">
+                                  <img 
+                                    src={tier.characterImg} 
+                                    alt={tier.name}
+                                    className="w-full h-full object-contain filter drop-shadow-[0_6px_10px_rgba(146,64,14,0.3)] transition-transform duration-300 hover:-translate-y-1"
+                                  />
+                                </div>
                                 <TierIcon size={16} style={{ color: tier.color }} />
                                 <span
                                   className="font-cinzel font-bold text-[10px] tracking-wider uppercase"
