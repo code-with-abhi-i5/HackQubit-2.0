@@ -250,7 +250,7 @@ const MobileTierCard = ({ tier, benefits, index }) => {
             boxShadow: `0 4px 15px ${tier.glowColor}`,
           }}
         >
-          Become a Sponsor ⚓
+          Become a Sponsor
         </a>
       </div>
     </motion.div>
@@ -351,7 +351,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                 </h2>
                 <div className="flex items-center justify-center gap-3 mb-4">
                   <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-r from-transparent to-amber-700/50" />
-                  <span className="text-amber-600 text-lg">⚓</span>
+                  <span className="text-amber-600 text-lg">☠</span>
                   <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-l from-transparent to-amber-700/50" />
                 </div>
                 <p className="font-cormorant italic text-amber-300/50 text-base sm:text-lg max-w-xl mx-auto">
@@ -636,7 +636,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
               >
                 <div className="flex items-center justify-center gap-3 mb-5">
                   <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-amber-700/30" />
-                  <span className="text-amber-700/40 text-sm">⚓</span>
+                  <span className="text-amber-700/40 text-sm">☠</span>
                   <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-amber-700/30" />
                 </div>
                 <p className="font-cormorant italic text-amber-300/30 text-sm mb-6 max-w-md mx-auto">
@@ -652,7 +652,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                     boxShadow: "0 4px 25px rgba(212,175,55,0.15), 0 0 40px rgba(212,175,55,0.05)",
                   }}
                 >
-                  Contact Us ⚓
+                  Contact Us
                 </a>
               </motion.div>
             </div>

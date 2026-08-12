@@ -199,7 +199,7 @@ const SponsorPackage = () => {
           onClick={() => setIsDetailsOpen(true)}
           className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-xl font-black text-amber-50 bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900 hover:from-amber-700 hover:to-amber-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-cinzel tracking-wider uppercase text-sm cursor-pointer"
         >
-          Learn More ⚓
+          Learn More
         </button>
       </div>
 
