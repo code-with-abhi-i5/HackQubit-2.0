@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Crown, Shield, Medal, Award, Coffee } from "lucide-react";
+import bgStoryMatrix from "../assets/images/bg_story_sponsorship_matrix.png";
 
-/* ─── Tier Configuration ─── */
+/* ─── Tier Configuration (Light Theme Colors) ─── */
 const TIERS = [
   {
     key: "powered",
@@ -10,10 +11,10 @@ const TIERS = [
     price: "₹70,000",
     themeTag: "Title Sponsor",
     icon: Crown,
-    color: "#FFD700",
-    gradient: "linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%)",
-    glowColor: "rgba(255, 215, 0, 0.35)",
-    headerBg: "linear-gradient(180deg, rgba(255,215,0,0.18) 0%, rgba(212,175,55,0.06) 100%)",
+    color: "#92400e",
+    iconBg: "rgba(146,64,14,0.12)",
+    iconBorder: "rgba(146,64,14,0.3)",
+    headerBg: "linear-gradient(180deg, rgba(146,64,14,0.08) 0%, rgba(217,119,6,0.03) 100%)",
   },
   {
     key: "gold",
@@ -21,10 +22,10 @@ const TIERS = [
     price: "₹50,000",
     themeTag: "Quartermaster Tier",
     icon: Medal,
-    color: "#D4AF37",
-    gradient: "linear-gradient(135deg, #D4AF37 0%, #B8860B 50%, #8B6B3F 100%)",
-    glowColor: "rgba(212, 175, 55, 0.25)",
-    headerBg: "linear-gradient(180deg, rgba(212,175,55,0.15) 0%, rgba(139,107,63,0.05) 100%)",
+    color: "#b45309",
+    iconBg: "rgba(180,83,9,0.1)",
+    iconBorder: "rgba(180,83,9,0.25)",
+    headerBg: "linear-gradient(180deg, rgba(180,83,9,0.07) 0%, rgba(217,119,6,0.02) 100%)",
   },
   {
     key: "silver",
@@ -32,10 +33,10 @@ const TIERS = [
     price: "₹30,000",
     themeTag: "Navigator Tier",
     icon: Shield,
-    color: "#C0C0C0",
-    gradient: "linear-gradient(135deg, #E8E8E8 0%, #C0C0C0 50%, #A0A0A0 100%)",
-    glowColor: "rgba(192, 192, 192, 0.2)",
-    headerBg: "linear-gradient(180deg, rgba(192,192,192,0.12) 0%, rgba(160,160,160,0.04) 100%)",
+    color: "#64748b",
+    iconBg: "rgba(100,116,139,0.1)",
+    iconBorder: "rgba(100,116,139,0.25)",
+    headerBg: "linear-gradient(180deg, rgba(100,116,139,0.07) 0%, rgba(148,163,184,0.02) 100%)",
   },
   {
     key: "bronze",
@@ -43,10 +44,10 @@ const TIERS = [
     price: "₹15,000",
     themeTag: "Swashbuckler Tier",
     icon: Award,
-    color: "#CD7F32",
-    gradient: "linear-gradient(135deg, #CD7F32 0%, #A0522D 50%, #8B4513 100%)",
-    glowColor: "rgba(205, 127, 50, 0.2)",
-    headerBg: "linear-gradient(180deg, rgba(205,127,50,0.12) 0%, rgba(139,69,19,0.04) 100%)",
+    color: "#9a3412",
+    iconBg: "rgba(154,52,18,0.1)",
+    iconBorder: "rgba(154,52,18,0.25)",
+    headerBg: "linear-gradient(180deg, rgba(154,52,18,0.06) 0%, rgba(194,65,12,0.02) 100%)",
   },
   {
     key: "refreshment",
@@ -54,10 +55,10 @@ const TIERS = [
     price: "In-Kind",
     themeTag: "Bounty & Provisions",
     icon: Coffee,
-    color: "#20B2AA",
-    gradient: "linear-gradient(135deg, #20B2AA 0%, #008B8B 50%, #006D6F 100%)",
-    glowColor: "rgba(32, 178, 170, 0.2)",
-    headerBg: "linear-gradient(180deg, rgba(32,178,170,0.12) 0%, rgba(0,139,139,0.04) 100%)",
+    color: "#0f766e",
+    iconBg: "rgba(15,118,110,0.1)",
+    iconBorder: "rgba(15,118,110,0.25)",
+    headerBg: "linear-gradient(180deg, rgba(15,118,110,0.06) 0%, rgba(20,184,166,0.02) 100%)",
   },
 ];
 
@@ -133,12 +134,12 @@ const CheckIcon = ({ color }) => (
     transition={{ type: "spring", stiffness: 300, damping: 20 }}
     className="flex items-center justify-center"
   >
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-      <circle cx="11" cy="11" r="10" fill={`${color}20`} stroke={color} strokeWidth="1.5" />
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="11" fill={`${color}18`} stroke={color} strokeWidth="1.5" />
       <path
-        d="M6.5 11.5L9.5 14.5L15.5 8"
+        d="M7 12.5L10.5 16L17 9"
         stroke={color}
-        strokeWidth="2"
+        strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
@@ -147,10 +148,10 @@ const CheckIcon = ({ color }) => (
 );
 
 const CrossIcon = () => (
-  <div className="flex items-center justify-center opacity-25">
-    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-      <line x1="5" y1="5" x2="13" y2="13" stroke="#888" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="13" y1="5" x2="5" y2="13" stroke="#888" strokeWidth="1.5" strokeLinecap="round" />
+  <div className="flex items-center justify-center opacity-30">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <line x1="6" y1="6" x2="14" y2="14" stroke="#78350f" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="14" y1="6" x2="6" y2="14" stroke="#78350f" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   </div>
 );
@@ -165,22 +166,24 @@ const MobileTierCard = ({ tier, benefits, index }) => {
       transition={{ delay: index * 0.1, duration: 0.5 }}
       className="relative rounded-2xl overflow-hidden"
       style={{
-        background: "linear-gradient(165deg, rgba(20,15,8,0.97) 0%, rgba(10,7,3,0.99) 100%)",
+        background: "linear-gradient(165deg, rgba(255,255,255,0.95) 0%, rgba(224,242,254,0.9) 100%)",
         border: `1.5px solid ${tier.color}30`,
-        boxShadow: `0 4px 30px rgba(0,0,0,0.5), inset 0 1px 0 ${tier.color}15`,
+        boxShadow: `0 4px 25px rgba(15,23,42,0.08), 0 1px 3px rgba(15,23,42,0.06)`,
       }}
     >
       {/* Card Header */}
       <div
         className="relative px-5 py-4 flex items-center gap-3"
-        style={{ background: tier.headerBg }}
+        style={{
+          background: tier.headerBg,
+          borderBottom: `1px solid ${tier.color}15`,
+        }}
       >
         <div
           className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
           style={{
-            background: `${tier.color}15`,
-            border: `1.5px solid ${tier.color}40`,
-            boxShadow: `0 0 15px ${tier.glowColor}`,
+            background: tier.iconBg,
+            border: `1.5px solid ${tier.iconBorder}`,
           }}
         >
           <TierIcon size={18} style={{ color: tier.color }} />
@@ -192,17 +195,13 @@ const MobileTierCard = ({ tier, benefits, index }) => {
           >
             {tier.name}
           </h4>
-          <p className="text-[10px] font-cinzel tracking-widest uppercase opacity-50 text-amber-200">
+          <p className="text-[10px] font-cinzel tracking-widest uppercase text-amber-800/50">
             {tier.themeTag}
           </p>
         </div>
         <div
           className="font-pirata text-lg font-bold shrink-0"
-          style={{
-            background: tier.gradient,
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
+          style={{ color: tier.color }}
         >
           {tier.price}
         </div>
@@ -219,7 +218,7 @@ const MobileTierCard = ({ tier, benefits, index }) => {
               style={{
                 borderBottom:
                   bIdx < benefits.length - 1
-                    ? "1px solid rgba(212,175,55,0.06)"
+                    ? "1px solid rgba(146,64,14,0.08)"
                     : "none",
               }}
             >
@@ -227,8 +226,8 @@ const MobileTierCard = ({ tier, benefits, index }) => {
                 {included ? <CheckIcon color={tier.color} /> : <CrossIcon />}
               </div>
               <span
-                className={`font-cormorant text-[13px] leading-tight ${
-                  included ? "text-amber-100/90" : "text-amber-100/25 line-through"
+                className={`font-cormorant text-sm leading-tight ${
+                  included ? "text-amber-950/85 font-semibold" : "text-amber-900/25 line-through"
                 }`}
               >
                 {benefit.label}
@@ -242,12 +241,10 @@ const MobileTierCard = ({ tier, benefits, index }) => {
       <div className="px-4 pb-4 pt-2">
         <a
           href="mailto:hackqubit2.0@gmail.com"
-          className="block w-full py-3 rounded-xl text-center font-cinzel font-bold text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:-translate-y-0.5"
+          className="block w-full py-3 rounded-xl text-center font-cinzel font-bold text-xs tracking-[0.2em] uppercase transition-all duration-300 hover:-translate-y-0.5 text-amber-50"
           style={{
-            background: `linear-gradient(135deg, ${tier.color}20 0%, ${tier.color}08 100%)`,
-            border: `1px solid ${tier.color}35`,
-            color: tier.color,
-            boxShadow: `0 4px 15px ${tier.glowColor}`,
+            background: `linear-gradient(135deg, ${tier.color} 0%, ${tier.color}cc 100%)`,
+            boxShadow: `0 4px 15px ${tier.color}30`,
           }}
         >
           Become a Sponsor
@@ -293,18 +290,31 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
         >
-          {/* Backdrop */}
+          {/* Backdrop — Light theme matching pirate-bg */}
           <motion.div
             className="absolute inset-0"
             style={{
-              background: "radial-gradient(ellipse at center, rgba(15,10,5,0.92) 0%, rgba(5,3,1,0.97) 100%)",
-              backdropFilter: "blur(12px)",
+              background: "rgba(224,242,254,0.95)",
+              backdropFilter: "blur(8px)",
             }}
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           />
+
+          {/* ── LANDSCAPE STORY BACKGROUND FIXED TO VIEWPORT ── */}
+          <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+            <img
+              src={bgStoryMatrix}
+              alt="Pirate Sponsorship Story"
+              loading="lazy"
+              decoding="async"
+              className="w-full h-full object-cover object-bottom opacity-60"
+            />
+            {/* Top is solid sky blue, bottom is transparent to show image */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#E0F2FE] via-[#E0F2FE]/80 to-transparent" />
+          </div>
 
           {/* Modal Content */}
           <motion.div
@@ -317,25 +327,27 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
           >
             {/* Decorative Top Glow */}
             <div
-              className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] pointer-events-none"
+              className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] pointer-events-none"
               style={{
-                background: "radial-gradient(ellipse, rgba(212,175,55,0.08) 0%, transparent 70%)",
+                background: "radial-gradient(ellipse, rgba(212,175,55,0.1) 0%, transparent 70%)",
               }}
             />
 
-            {/* Close Button */}
+
+
+            {/* Close Button — Light theme */}
             <motion.button
               onClick={onClose}
               className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[10000] w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 group cursor-pointer"
               style={{
-                background: "linear-gradient(135deg, rgba(30,22,12,0.95) 0%, rgba(15,10,5,0.98) 100%)",
-                border: "1.5px solid rgba(212,175,55,0.3)",
-                boxShadow: "0 4px 20px rgba(0,0,0,0.5), 0 0 15px rgba(212,175,55,0.1)",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(224,242,254,0.95) 100%)",
+                border: "1.5px solid rgba(146,64,14,0.2)",
+                boxShadow: "0 4px 20px rgba(15,23,42,0.1), 0 0 15px rgba(212,175,55,0.08)",
               }}
               whileHover={{ scale: 1.1, rotate: 90 }}
               whileTap={{ scale: 0.9 }}
             >
-              <X size={20} className="text-amber-400 group-hover:text-amber-300" />
+              <X size={20} className="text-amber-800 group-hover:text-amber-600" />
             </motion.button>
 
             <div className="relative px-4 sm:px-6 lg:px-12 py-8 sm:py-12 max-w-[1400px] mx-auto">
@@ -346,15 +358,16 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
               >
-                <h2 className="font-pirata text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gradient-gold mb-3 tracking-wider">
-                  Sponsorship Matrix
+                <h2 className="font-pirata text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-amber-950 mb-3 tracking-wider">
+                  Sponsorship{" "}
+                  <span className="text-amber-800">Matrix</span>
                 </h2>
                 <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-r from-transparent to-amber-700/50" />
-                  <span className="text-amber-600 text-lg">☠</span>
-                  <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-l from-transparent to-amber-700/50" />
+                  <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-r from-transparent to-amber-700/40" />
+                  <span className="text-amber-700 text-lg">✦</span>
+                  <div className="w-16 sm:w-24 h-[1px] bg-gradient-to-l from-transparent to-amber-700/40" />
                 </div>
-                <p className="font-cormorant italic text-amber-300/50 text-base sm:text-lg max-w-xl mx-auto">
+                <p className="font-cormorant italic text-amber-800/60 text-base sm:text-lg max-w-xl mx-auto">
                   Compare all sponsorship tiers and choose the right treasure for your brand
                 </p>
               </motion.div>
@@ -369,17 +382,17 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                 <div
                   className="relative rounded-2xl overflow-hidden"
                   style={{
-                    background: "linear-gradient(165deg, rgba(18,13,6,0.98) 0%, rgba(8,5,2,0.99) 100%)",
-                    border: "1px solid rgba(212,175,55,0.15)",
-                    boxShadow: "0 25px 80px rgba(0,0,0,0.6), 0 0 40px rgba(212,175,55,0.05)",
+                    background: "linear-gradient(165deg, rgba(255,255,255,0.98) 0%, rgba(224,242,254,0.95) 100%)",
+                    border: "1.5px solid rgba(146,64,14,0.15)",
+                    boxShadow: "0 25px 60px rgba(15,23,42,0.08), 0 4px 12px rgba(15,23,42,0.04), 0 0 40px rgba(212,175,55,0.04)",
                   }}
                 >
-                  {/* Wood grain texture */}
+                  {/* Subtle parchment texture */}
                   <div
                     className="absolute inset-0 opacity-[0.03] pointer-events-none"
                     style={{
                       backgroundImage:
-                        "repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(139,107,63,0.3) 4px, rgba(139,107,63,0.3) 5px)",
+                        "repeating-linear-gradient(to bottom, transparent, transparent 4px, rgba(139,107,63,0.2) 4px, rgba(139,107,63,0.2) 5px)",
                     }}
                   />
 
@@ -388,11 +401,10 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                     <thead>
                       <tr>
                         <th
-                          className="sticky left-0 z-20 text-left px-6 py-5 font-cinzel text-xs tracking-[0.25em] uppercase"
+                          className="sticky left-0 z-20 text-left px-6 py-5 font-cinzel text-xs tracking-[0.25em] uppercase text-amber-800/70"
                           style={{
-                            background: "linear-gradient(135deg, rgba(20,15,8,0.99) 0%, rgba(12,9,4,0.99) 100%)",
-                            color: "rgba(212,175,55,0.6)",
-                            borderBottom: "1px solid rgba(212,175,55,0.1)",
+                            background: "linear-gradient(135deg, rgba(255,255,255,0.99) 0%, rgba(254,243,199,0.4) 100%)",
+                            borderBottom: "2px solid rgba(146,64,14,0.1)",
                             minWidth: "200px",
                           }}
                         >
@@ -406,7 +418,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                               className="text-center px-3 py-5"
                               style={{
                                 background: tier.headerBg,
-                                borderBottom: `2px solid ${tier.color}30`,
+                                borderBottom: `2px solid ${tier.color}25`,
                                 minWidth: "140px",
                               }}
                             >
@@ -419,9 +431,8 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                                 <div
                                   className="w-10 h-10 rounded-full flex items-center justify-center"
                                   style={{
-                                    background: `${tier.color}12`,
-                                    border: `1.5px solid ${tier.color}35`,
-                                    boxShadow: `0 0 20px ${tier.glowColor}`,
+                                    background: tier.iconBg,
+                                    border: `1.5px solid ${tier.iconBorder}`,
                                   }}
                                 >
                                   <TierIcon size={18} style={{ color: tier.color }} />
@@ -434,11 +445,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                                 </span>
                                 <span
                                   className="font-pirata text-base font-bold"
-                                  style={{
-                                    background: tier.gradient,
-                                    WebkitBackgroundClip: "text",
-                                    WebkitTextFillColor: "transparent",
-                                  }}
+                                  style={{ color: tier.color }}
                                 >
                                   {tier.price}
                                 </span>
@@ -461,25 +468,25 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                           style={{
                             background:
                               rowIdx % 2 === 0
-                                ? "rgba(212,175,55,0.02)"
+                                ? "rgba(254,243,199,0.15)"
                                 : "transparent",
                           }}
                           onMouseEnter={(e) => {
-                            e.currentTarget.style.background = "rgba(212,175,55,0.06)";
+                            e.currentTarget.style.background = "rgba(254,243,199,0.35)";
                           }}
                           onMouseLeave={(e) => {
                             e.currentTarget.style.background =
-                              rowIdx % 2 === 0 ? "rgba(212,175,55,0.02)" : "transparent";
+                              rowIdx % 2 === 0 ? "rgba(254,243,199,0.15)" : "transparent";
                           }}
                         >
                           <td
-                            className="sticky left-0 z-10 px-6 py-4 font-cormorant text-sm text-amber-200/70 group-hover:text-amber-200/95 transition-colors duration-200"
+                            className="sticky left-0 z-10 px-6 py-4 font-cormorant text-base font-semibold text-amber-950/75 group-hover:text-amber-950 transition-colors duration-200"
                             style={{
                               background:
                                 rowIdx % 2 === 0
-                                  ? "rgba(18,13,6,0.99)"
-                                  : "rgba(12,9,4,0.99)",
-                              borderBottom: "1px solid rgba(212,175,55,0.05)",
+                                  ? "rgba(255,255,255,0.97)"
+                                  : "rgba(255,255,255,0.99)",
+                              borderBottom: "1px solid rgba(146,64,14,0.06)",
                             }}
                           >
                             {benefit.label}
@@ -489,7 +496,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                               key={tier.key}
                               className="text-center px-3 py-4"
                               style={{
-                                borderBottom: "1px solid rgba(212,175,55,0.05)",
+                                borderBottom: "1px solid rgba(146,64,14,0.06)",
                               }}
                             >
                               {benefit.tiers[tier.key] ? (
@@ -515,26 +522,25 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
               >
                 <div
                   ref={scrollContainerRef}
-                  className="overflow-x-auto rounded-2xl scrollbar-thin"
+                  className="overflow-x-auto rounded-2xl"
                   style={{
-                    background: "linear-gradient(165deg, rgba(18,13,6,0.98) 0%, rgba(8,5,2,0.99) 100%)",
-                    border: "1px solid rgba(212,175,55,0.15)",
-                    boxShadow: "0 25px 80px rgba(0,0,0,0.6)",
+                    background: "linear-gradient(165deg, rgba(255,255,255,0.98) 0%, rgba(224,242,254,0.95) 100%)",
+                    border: "1.5px solid rgba(146,64,14,0.12)",
+                    boxShadow: "0 15px 40px rgba(15,23,42,0.06)",
                   }}
                 >
                   {/* Scroll hint */}
-                  <div className="flex items-center justify-center gap-2 py-3 text-amber-500/40 text-xs font-cinzel tracking-wider">
+                  <div className="flex items-center justify-center gap-2 py-3 text-amber-700/40 text-xs font-cinzel tracking-wider">
                     <span>← Scroll to see all tiers →</span>
                   </div>
                   <table className="w-full min-w-[900px]">
                     <thead>
                       <tr>
                         <th
-                          className="sticky left-0 z-20 text-left px-5 py-4 font-cinzel text-xs tracking-[0.2em] uppercase"
+                          className="sticky left-0 z-20 text-left px-5 py-4 font-cinzel text-xs tracking-[0.2em] uppercase text-amber-800/60"
                           style={{
-                            background: "rgba(15,10,5,0.99)",
-                            color: "rgba(212,175,55,0.5)",
-                            borderBottom: "1px solid rgba(212,175,55,0.1)",
+                            background: "rgba(255,255,255,0.99)",
+                            borderBottom: "2px solid rgba(146,64,14,0.08)",
                             minWidth: "180px",
                           }}
                         >
@@ -548,7 +554,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                               className="text-center px-2 py-4"
                               style={{
                                 background: tier.headerBg,
-                                borderBottom: `2px solid ${tier.color}25`,
+                                borderBottom: `2px solid ${tier.color}20`,
                                 minWidth: "130px",
                               }}
                             >
@@ -562,11 +568,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                                 </span>
                                 <span
                                   className="font-pirata text-sm font-bold"
-                                  style={{
-                                    background: tier.gradient,
-                                    WebkitBackgroundClip: "text",
-                                    WebkitTextFillColor: "transparent",
-                                  }}
+                                  style={{ color: tier.color }}
                                 >
                                   {tier.price}
                                 </span>
@@ -582,15 +584,15 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                           key={rowIdx}
                           style={{
                             background:
-                              rowIdx % 2 === 0 ? "rgba(212,175,55,0.02)" : "transparent",
+                              rowIdx % 2 === 0 ? "rgba(254,243,199,0.15)" : "transparent",
                           }}
                         >
                           <td
-                            className="sticky left-0 z-10 px-5 py-3 font-cormorant text-sm text-amber-200/65"
+                            className="sticky left-0 z-10 px-5 py-3 font-cormorant text-base font-semibold text-amber-950/70"
                             style={{
                               background:
-                                rowIdx % 2 === 0 ? "rgba(18,13,6,0.99)" : "rgba(12,9,4,0.99)",
-                              borderBottom: "1px solid rgba(212,175,55,0.05)",
+                                rowIdx % 2 === 0 ? "rgba(255,255,255,0.97)" : "rgba(255,255,255,0.99)",
+                              borderBottom: "1px solid rgba(146,64,14,0.06)",
                             }}
                           >
                             {benefit.label}
@@ -599,7 +601,7 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
                             <td
                               key={tier.key}
                               className="text-center px-2 py-3"
-                              style={{ borderBottom: "1px solid rgba(212,175,55,0.05)" }}
+                              style={{ borderBottom: "1px solid rgba(146,64,14,0.06)" }}
                             >
                               {benefit.tiers[tier.key] ? (
                                 <CheckIcon color={tier.color} />
@@ -636,20 +638,18 @@ const SponsorshipDetailsModal = ({ isOpen, onClose }) => {
               >
                 <div className="flex items-center justify-center gap-3 mb-5">
                   <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-amber-700/30" />
-                  <span className="text-amber-700/40 text-sm">☠</span>
+                  <span className="text-amber-700/50 text-sm">✦</span>
                   <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-amber-700/30" />
                 </div>
-                <p className="font-cormorant italic text-amber-300/30 text-sm mb-6 max-w-md mx-auto">
+                <p className="font-cormorant italic text-amber-800/50 text-sm mb-6 max-w-md mx-auto">
                   Ready to set sail with HackQubit 2.0? Reach out and claim your tier.
                 </p>
                 <a
                   href="mailto:hackqubit2.0@gmail.com"
-                  className="inline-flex items-center justify-center gap-2 px-8 sm:px-12 py-3.5 sm:py-4 rounded-xl font-cinzel font-bold text-sm tracking-[0.2em] uppercase transition-all duration-300 hover:-translate-y-1"
+                  className="inline-flex items-center justify-center gap-2 px-8 sm:px-12 py-3.5 sm:py-4 rounded-xl font-cinzel font-bold text-sm tracking-[0.2em] uppercase transition-all duration-300 hover:-translate-y-1 text-amber-50"
                   style={{
-                    background: "linear-gradient(135deg, rgba(212,175,55,0.15) 0%, rgba(139,107,63,0.08) 100%)",
-                    border: "1.5px solid rgba(212,175,55,0.3)",
-                    color: "#D4AF37",
-                    boxShadow: "0 4px 25px rgba(212,175,55,0.15), 0 0 40px rgba(212,175,55,0.05)",
+                    background: "linear-gradient(135deg, #92400e 0%, #b45309 50%, #92400e 100%)",
+                    boxShadow: "0 4px 25px rgba(146,64,14,0.25), 0 2px 8px rgba(15,23,42,0.1)",
                   }}
                 >
                   Contact Us
