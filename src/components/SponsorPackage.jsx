@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import SponsorshipDetailsModal from "./SponsorshipDetailsModal";
 
 // Import 3 Pirate Character Assets
 import pirateCaptainImg from "../assets/images/pirate_captain.webp";
@@ -101,6 +102,8 @@ const SPONSOR_TIERS = [
 ];
 
 const SponsorPackage = () => {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
   return (
     <section id="sponsorship" className="py-28 relative px-6 max-w-7xl mx-auto overflow-hidden text-amber-950">
       <GoldRainParticles />
@@ -192,13 +195,19 @@ const SponsorPackage = () => {
         ))}
       </div>
       <div className="flex justify-center mt-8 relative z-20">
-  <a
-    href="/sponsorship-details"
-    className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-xl font-black text-amber-50 bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900 hover:from-amber-700 hover:to-amber-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-cinzel tracking-wider uppercase text-sm"
-  >
-    Learn More ⚓
-  </a>
-</div>
+        <button
+          onClick={() => setIsDetailsOpen(true)}
+          className="inline-flex items-center justify-center gap-2 px-10 py-4 rounded-xl font-black text-amber-50 bg-gradient-to-r from-amber-800 via-amber-700 to-amber-900 hover:from-amber-700 hover:to-amber-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 font-cinzel tracking-wider uppercase text-sm cursor-pointer"
+        >
+          Learn More ⚓
+        </button>
+      </div>
+
+      {/* Sponsorship Details Modal */}
+      <SponsorshipDetailsModal
+        isOpen={isDetailsOpen}
+        onClose={() => setIsDetailsOpen(false)}
+      />
     </section>
   );
 };
