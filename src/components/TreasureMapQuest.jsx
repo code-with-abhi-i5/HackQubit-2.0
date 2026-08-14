@@ -114,7 +114,7 @@ const TreasureMapQuest = () => {
           <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-amber-950 tracking-wide">
             Treasure <span className="text-amber-800">Map &amp; Quest</span>
           </h2>
-          <p className="mt-4 font-cinzel text-amber-900 font-bold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 font-raleway text-amber-900 font-bold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Click on any map waypoint to explore the 24-hour hackathon journey from arrival to the grand bounty vault!
           </p>
         </div>
@@ -209,10 +209,10 @@ const TreasureMapQuest = () => {
                     <h3 className="font-cinzel text-2xl font-black text-amber-950">
                       {selectedWaypoint.title}
                     </h3>
-                    <p className="font-cinzel text-xs font-extrabold text-amber-800 uppercase tracking-widest mb-2">
+                    <p className="font-raleway text-xs font-extrabold text-amber-800 uppercase tracking-widest mb-2">
                       {selectedWaypoint.subtitle}
                     </p>
-                    <p className="font-cinzel text-sm font-bold text-amber-900 leading-relaxed max-w-xl">
+                    <p className="font-raleway text-sm font-bold text-amber-900 leading-relaxed max-w-xl">
                       {selectedWaypoint.desc}
                     </p>
                   </div>
@@ -245,3 +245,4 @@ const TreasureMapQuest = () => {
 };
 
 export default TreasureMapQuest;
+

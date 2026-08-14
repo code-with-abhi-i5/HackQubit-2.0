@@ -228,7 +228,7 @@ const PrizePool = () => {
           <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-amber-950 tracking-wide">
             Prize <span className="text-amber-800">Pool</span>
           </h2>
-          <p className="mt-4 font-cinzel text-amber-900 font-bold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 font-raleway text-amber-900 font-bold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Over <strong className="text-amber-950 font-extrabold">₹30,000+</strong> in cash prizes, trophies, and exclusive swag waiting for the victorious hacker crews!
           </p>
         </div>
@@ -266,7 +266,7 @@ const PrizePool = () => {
               </div>
 
               {/* Description */}
-              <p className="font-cinzel text-xs sm:text-sm font-bold text-amber-900 leading-relaxed mb-6">
+              <p className="font-raleway text-xs sm:text-sm font-bold text-amber-900 leading-relaxed mb-6">
                 {prize.desc}
               </p>
 
@@ -284,3 +284,4 @@ const PrizePool = () => {
 };
 
 export default PrizePool;
+

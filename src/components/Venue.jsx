@@ -182,7 +182,7 @@ const Venue = () => {
 
         {/* ── Section heading ── */}
         <div ref={headingRef} className="text-center mb-16">
-          <p className="font-cinzel text-xs tracking-[0.4em] text-amber-400 uppercase mb-3">
+          <p className="font-raleway text-xs tracking-[0.4em] text-amber-400 uppercase mb-3">
             ⚓ Drop Anchor Here
           </p>
           <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
@@ -193,7 +193,7 @@ const Venue = () => {
             <div className="w-2 h-2 rounded-full bg-amber-400" />
             <div className="flex-1 max-w-[120px] h-px bg-gradient-to-l from-transparent to-amber-400/60" />
           </div>
-          <p className="mt-5 font-cinzel text-white/50 text-sm sm:text-base tracking-wider max-w-[480px] mx-auto">
+          <p className="mt-5 font-raleway text-white/50 text-sm sm:text-base tracking-wider max-w-[480px] mx-auto">
             Set your compass and chart your course to the epicentre of innovation.
           </p>
         </div>
@@ -227,12 +227,12 @@ const Venue = () => {
                 🏛️
               </div>
               <div>
-                <p className="font-cinzel text-[10px] tracking-[0.3em] text-amber-400 uppercase mb-1">Venue</p>
-                <p className="font-cinzel text-lg font-bold text-white leading-snug">RVSCET</p>
-                <p className="font-cinzel text-sm text-white/55 mt-1 leading-relaxed">
+                <p className="font-raleway text-[10px] tracking-[0.3em] text-amber-400 uppercase mb-1">Venue</p>
+                <p className="font-raleway text-lg font-bold text-white leading-snug">RVSCET</p>
+                <p className="font-raleway text-sm text-white/55 mt-1 leading-relaxed">
                   Ramgovind Ruia Science College of Engineering & Technology
                 </p>
-                <p className="font-cinzel text-xs text-white/40 mt-2 tracking-wide">Jamshedpur, Jharkhand</p>
+                <p className="font-raleway text-xs text-white/40 mt-2 tracking-wide">Jamshedpur, Jharkhand</p>
               </div>
             </div>
 
@@ -251,9 +251,9 @@ const Venue = () => {
                 <CalendarSVG day="7" />
               </div>
               <div>
-                <p className="font-cinzel text-[10px] tracking-[0.3em] text-[#3b82f6] uppercase mb-1">Day 1</p>
-                <p className="font-cinzel text-lg font-bold text-white">October 7</p>
-                <p className="font-cinzel text-sm text-white/55 mt-1">2025 · Tuesday</p>
+                <p className="font-raleway text-[10px] tracking-[0.3em] text-[#3b82f6] uppercase mb-1">Day 1</p>
+                <p className="font-raleway text-lg font-bold text-white">October 7</p>
+                <p className="font-raleway text-sm text-white/55 mt-1">2025 · Tuesday</p>
                 <div className="mt-3 flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#3b82f6] animate-pulse" />
                   <span className="font-cinzel text-xs text-white/40">Opening Ceremony · Hackathon Begins</span>
@@ -276,9 +276,9 @@ const Venue = () => {
                 <CalendarSVG day="8" />
               </div>
               <div>
-                <p className="font-cinzel text-[10px] tracking-[0.3em] text-[#eab308] uppercase mb-1">Day 2</p>
-                <p className="font-cinzel text-lg font-bold text-white">October 8</p>
-                <p className="font-cinzel text-sm text-white/55 mt-1">2025 · Wednesday</p>
+                <p className="font-raleway text-[10px] tracking-[0.3em] text-[#eab308] uppercase mb-1">Day 2</p>
+                <p className="font-raleway text-lg font-bold text-white">October 8</p>
+                <p className="font-raleway text-sm text-white/55 mt-1">2025 · Wednesday</p>
                 <div className="mt-3 flex items-center gap-2">
                   <div className="w-2 h-2 rounded-full bg-[#eab308] animate-pulse" style={{ animationDelay: "0.5s" }} />
                   <span className="font-cinzel text-xs text-white/40">Judging · Prize Ceremony · Closing</span>
@@ -308,8 +308,8 @@ const Venue = () => {
                 📍
               </div>
               <div>
-                <p className="font-cinzel text-sm font-bold text-white">RVSCET, Jamshedpur</p>
-                <p className="font-cinzel text-[10px] text-white/40 tracking-wider">Jharkhand, India · 831013</p>
+                <p className="font-raleway text-sm font-bold text-white">RVSCET, Jamshedpur</p>
+                <p className="font-raleway text-[10px] text-white/40 tracking-wider">Jharkhand, India · 831013</p>
               </div>
             </div>
             <a
@@ -370,3 +370,4 @@ const Venue = () => {
 };
 
 export default Venue;
+

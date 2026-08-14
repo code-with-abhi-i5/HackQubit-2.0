@@ -118,7 +118,7 @@ const PirateCaptainGuide = () => {
             }}
           >
             <p
-              className="font-cinzel text-xs sm:text-sm text-slate-800 font-semibold leading-snug"
+              className="font-raleway text-xs sm:text-sm text-slate-800 font-semibold leading-snug"
               style={{ lineHeight: "1.5" }}
             >
               {dialogue}
@@ -162,3 +162,4 @@ const PirateCaptainGuide = () => {
 };
 
 export default PirateCaptainGuide;
+

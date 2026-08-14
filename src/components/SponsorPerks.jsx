@@ -92,7 +92,7 @@ const SponsorPerks = () => {
           <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-amber-950 tracking-wide">
             Sponsorship <span className="text-amber-800">Perks</span>
           </h2>
-          <p className="mt-4 font-cinzel text-amber-900 font-bold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 font-raleway text-amber-900 font-bold text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
             Partner with HackQubit 2.0 to unlock unparalleled developer engagement,
             brand prominence, and post-event talent access.
           </p>
@@ -152,3 +152,4 @@ const SponsorPerks = () => {
 };
 
 export default SponsorPerks;
+

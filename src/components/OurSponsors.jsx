@@ -54,7 +54,7 @@ const OurSponsors = () => {
         <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-amber-950 mb-4 tracking-wide">
           Our <span className="text-amber-800">Sponsors</span>
         </h2>
-        <p className="font-cinzel text-amber-900 font-bold text-base sm:text-lg max-w-xl mx-auto mb-6">
+        <p className="font-raleway text-amber-900 font-bold text-base sm:text-lg max-w-xl mx-auto mb-6">
           The esteemed industry leaders and visionaries backing HackQubit 2.0.
         </p>
 
@@ -86,7 +86,7 @@ const OurSponsors = () => {
               Sponsors To Be Announced
             </h3>
 
-            <p className="font-cinzel text-sm sm:text-base text-amber-900 font-bold max-w-lg leading-relaxed">
+            <p className="font-raleway text-sm sm:text-base text-amber-900 font-bold max-w-lg leading-relaxed">
               We are finalizing strategic partnerships with world-class technology companies and sponsors. Full sponsor lineup will be revealed soon!
             </p>
 
@@ -108,3 +108,4 @@ const OurSponsors = () => {
 };
 
 export default OurSponsors;
+

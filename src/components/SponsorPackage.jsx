@@ -133,7 +133,7 @@ const SponsorPackage = () => {
         >
           Sponsor <span className="text-amber-800">The Voyage</span>
         </motion.h2>
-        <p className="text-base sm:text-lg text-amber-900 font-bold max-w-2xl mx-auto font-cinzel leading-relaxed">
+        <p className="text-base sm:text-lg text-amber-900 font-bold max-w-2xl mx-auto font-raleway leading-relaxed">
           Join our crew and help make HackQubit 2.0 an unforgettable adventure. Choose your sponsorship package below.
         </p>
       </div>
@@ -213,3 +213,4 @@ const SponsorPackage = () => {
 };
 
 export default SponsorPackage;
+

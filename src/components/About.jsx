@@ -129,7 +129,7 @@ const EventCountdownCard = () => {
             <h4 className="font-cinzel text-xl sm:text-2xl font-black text-amber-950 tracking-wide">
               October 7 – 8, 2026
             </h4>
-            <p className="font-cinzel text-xs text-amber-900 font-bold">
+            <p className="font-raleway text-xs text-amber-900 font-bold">
               RVSCET • Jamshedpur, Jharkhand
             </p>
           </div>
@@ -163,7 +163,7 @@ const EventCountdownCard = () => {
       </div>
 
       {/* Footer Feature Info */}
-      <div className="mt-6 pt-4 border-t border-amber-900/15 flex items-center justify-between text-xs font-cinzel text-amber-950 font-black">
+      <div className="mt-6 pt-4 border-t border-amber-900/15 flex items-center justify-between text-xs font-raleway text-amber-950 font-black">
         <span className="flex items-center gap-1.5">
           <ShieldCheck className="w-4 h-4 text-amber-800" />
           <span>24-Hour Live Challenge</span>
@@ -269,7 +269,7 @@ const About = () => {
           <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-amber-950 leading-tight">
             About <span className="text-amber-800">HackQubit 2.0</span>
           </h2>
-          <p className="mt-4 font-cinzel text-amber-900 font-bold text-base max-w-[620px] mx-auto leading-relaxed">
+          <p className="mt-4 font-raleway text-amber-900 font-bold text-base max-w-[620px] mx-auto leading-relaxed">
             Hosted at <strong className="text-amber-950 font-extrabold">RVSCET, Jamshedpur</strong>.{" "}
             A 24-hour national challenge empowering developers to Code, Create &amp; Conquer.
           </p>
@@ -299,14 +299,14 @@ const About = () => {
                 </div>
               </div>
 
-              <p className="font-cinzel text-amber-900 font-bold text-sm sm:text-base leading-relaxed">
+              <p className="font-raleway text-amber-900 font-bold text-sm sm:text-base leading-relaxed">
                 HackQubit 2.0 is a 24-hour non-stop hackathon hosted live at RVSCET, Jamshedpur.
                 Problem statements are revealed live on spot — no pre-built slides or prior code.
                 Test your real-time problem solving under pressure and conquer!
               </p>
             </div>
 
-            <div className="mt-6 pt-4 border-t border-amber-500/15 flex items-center justify-between text-xs font-cinzel text-amber-900 font-extrabold">
+            <div className="mt-6 pt-4 border-t border-amber-500/15 flex items-center justify-between text-xs font-raleway text-amber-900 font-extrabold">
               <span>⚡ Non-Stop Innovation</span>
               <span>✦ Live On-Spot</span>
             </div>
@@ -328,7 +328,7 @@ const About = () => {
                       🏳️ Venue
                     </span>
                   </div>
-                  <p className="font-cinzel text-xs text-amber-800 font-bold mt-0.5">
+                  <p className="font-raleway text-xs text-amber-800 font-bold mt-0.5">
                     Edalbera, Jamshedpur, Jharkhand 831012
                   </p>
                 </div>
@@ -368,7 +368,7 @@ const About = () => {
             <span>Meet The Pirate Hacker Crew</span>
           </div>
 
-          <p className="font-cinzel text-xl sm:text-2xl font-black text-amber-950 max-w-xl mx-auto tracking-wide mb-6">
+          <p className="font-raleway text-xl sm:text-2xl font-black text-amber-950 max-w-xl mx-auto tracking-wide mb-6">
             Join 500+ developers sailing the digital ocean together!
           </p>
 

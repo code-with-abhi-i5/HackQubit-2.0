@@ -74,7 +74,7 @@ const PirateRegistrationModal = ({ isOpen, onClose }) => {
               <h3 className="font-cinzel text-2xl sm:text-3xl font-black text-amber-950">
                 Pledge Your Crew
               </h3>
-              <p className="font-cinzel text-xs font-bold text-amber-900 mt-1">
+              <p className="font-raleway text-xs font-bold text-amber-900 mt-1">
                 Registration Fee: ₹600 • Team Size: 2–4 Pirates
               </p>
             </div>
@@ -89,7 +89,7 @@ const PirateRegistrationModal = ({ isOpen, onClose }) => {
                 <h4 className="font-cinzel text-2xl font-black text-amber-950">
                   Pledge Sealed &amp; Accepted!
                 </h4>
-                <p className="font-cinzel text-sm font-bold text-amber-900 mt-2 max-w-sm">
+                <p className="font-raleway text-sm font-bold text-amber-900 mt-2 max-w-sm">
                   Your crew is registered for HackQubit 2.0! We will send voyage details to your email.
                 </p>
               </motion.div>
@@ -217,3 +217,4 @@ const PirateRegistrationModal = ({ isOpen, onClose }) => {
 };
 
 export default PirateRegistrationModal;
+

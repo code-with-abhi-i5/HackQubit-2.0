@@ -66,7 +66,7 @@ const CountdownTimer = () => {
           <h3 className="font-cinzel text-2xl sm:text-3xl font-bold text-white">
             Set Sail In...
           </h3>
-          <p className="font-cinzel text-xs text-white/50 tracking-wider mt-1">
+          <p className="font-raleway text-xs text-white/50 tracking-wider mt-1">
             HackQubit 2.0 Launches October 7, 2025 @ RVSCET
           </p>
         </div>
@@ -103,3 +103,4 @@ const CountdownTimer = () => {
 };
 
 export default CountdownTimer;
+

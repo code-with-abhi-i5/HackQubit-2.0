@@ -142,7 +142,7 @@ const InteractiveTreasureMap = () => {
             <h4 className="font-cinzel text-2xl font-bold text-white mb-2">
               {activeLocation.title}
             </h4>
-            <p className="font-cinzel text-sm text-white/70 leading-relaxed max-w-[480px]">
+            <p className="font-raleway text-sm text-white/70 leading-relaxed max-w-[480px]">
               {activeLocation.desc}
             </p>
           </div>
@@ -165,3 +165,4 @@ const InteractiveTreasureMap = () => {
 };
 
 export default InteractiveTreasureMap;
+

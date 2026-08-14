@@ -70,7 +70,7 @@ const ProblemStatements = () => {
         <h2 className="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black text-amber-950 mb-4 tracking-wide">
           Problem <span className="text-amber-800">Statements</span>
         </h2>
-        <p className="font-cinzel text-amber-900 font-bold text-base sm:text-lg max-w-xl mx-auto mb-16">
+        <p className="font-raleway text-amber-900 font-bold text-base sm:text-lg max-w-xl mx-auto mb-16">
           The secret pirate challenges will be unveiled live at the opening ceremony!
         </p>
 
@@ -93,7 +93,7 @@ const ProblemStatements = () => {
               To Be Announced Live
             </h3>
             
-            <p className="font-cinzel text-sm sm:text-base text-amber-900 font-bold max-w-md leading-relaxed">
+            <p className="font-raleway text-sm sm:text-base text-amber-900 font-bold max-w-md leading-relaxed">
               Prepare your crew and sharpen your tools. Official problem statements and track challenges will be released on site during the Hackathon Kickoff!
             </p>
 
@@ -135,3 +135,4 @@ const ProblemStatements = () => {
 };
 
 export default ProblemStatements;
+

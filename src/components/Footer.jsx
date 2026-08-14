@@ -31,7 +31,7 @@ const Footer = () => {
               <Anchor className="w-6 h-6 text-amber-500" />
               HACKQUBIT 2.0
             </h2>
-            <p className="font-cinzel text-slate-400 text-xs leading-relaxed">
+            <p className="font-raleway text-slate-400 text-xs leading-relaxed">
               Embark on the ultimate 24-hour coding voyage at RVSCET Jamshedpur. Unearth hidden tech treasures, brave challenges, and build epic projects alongside the finest hacker crew.
             </p>
             <div className="flex items-center gap-2 text-xs font-cinzel text-amber-300/80 bg-amber-500/10 border border-amber-500/20 px-3 py-1.5 rounded-lg w-fit">
@@ -109,7 +109,7 @@ const Footer = () => {
               <MessageSquare className="w-4 h-4 text-amber-400" />
               Join The Fleet
             </h3>
-            <p className="font-cinzel text-slate-400 text-xs leading-relaxed">
+            <p className="font-raleway text-slate-400 text-xs leading-relaxed">
               Connect with our pirate community on social media for announcements, teaser hints, and crew teamups.
             </p>
             <div className="flex items-center gap-3">
@@ -148,3 +148,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
