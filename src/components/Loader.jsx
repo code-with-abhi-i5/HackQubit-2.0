@@ -15,36 +15,53 @@ const Loader = ({ onLoadingComplete }) => {
     });
 
     let animationFrameId;
-    const startTime = performance.now();
-    const duration = 800; // 0.8s super-fast snappy loading
+    let fallbackTimer;
+    let completed = false;
 
-    const updateProgress = (now) => {
-      const elapsed = now - startTime;
-      const pct = Math.min(100, Math.floor((elapsed / duration) * 100));
-      setProgress(pct);
+    const checkLoading = () => {
+      setProgress((prev) => {
+        if (completed) return 100;
 
-      if (elapsed < duration) {
-        animationFrameId = requestAnimationFrame(updateProgress);
-      } else {
-        setProgress(100);
-        if (typeof onLoadingComplete === "function") {
-          onLoadingComplete();
+        // Check if page and video are loaded
+        const video = document.querySelector("video");
+        const isVideoReady = video ? video.readyState >= 3 : false;
+        const isPageReady = document.readyState === "complete";
+
+        if (isVideoReady && isPageReady) {
+          const next = prev + 3; // Fast complete
+          if (next >= 100) {
+            completed = true;
+            setTimeout(() => {
+              if (typeof onLoadingComplete === "function") onLoadingComplete();
+            }, 150); // slight delay to show 100%
+            return 100;
+          }
+          return next;
+        } else {
+          // Slowly creep up to 90% while waiting
+          if (prev < 90) return prev + 0.5;
+          return prev;
         }
+      });
+
+      if (!completed) {
+        animationFrameId = requestAnimationFrame(checkLoading);
       }
     };
 
-    animationFrameId = requestAnimationFrame(updateProgress);
+    animationFrameId = requestAnimationFrame(checkLoading);
 
-    // Safety fallback: force unmount after 0.95s max
-    const fallbackTimer = setTimeout(() => {
-      setProgress(100);
-      if (typeof onLoadingComplete === "function") {
-        onLoadingComplete();
+    // Safety fallback: force unmount after 8 seconds so user doesn't get stuck forever on slow networks
+    fallbackTimer = setTimeout(() => {
+      if (!completed) {
+        completed = true;
+        setProgress(100);
+        if (typeof onLoadingComplete === "function") onLoadingComplete();
       }
-    }, 950);
+    }, 8000);
 
     return () => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animationFrameId);
       clearTimeout(fallbackTimer);
     };
   }, [onLoadingComplete]);
