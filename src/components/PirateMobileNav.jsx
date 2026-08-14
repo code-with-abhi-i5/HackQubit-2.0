@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { Compass, Home, Info, Clock, DollarSign, Users, Image as ImageIcon, HelpCircle, PhoneCall } from 'lucide-react';
+import { Compass, Home, Info, Clock, DollarSign, Users, Image as ImageIcon, HelpCircle, PhoneCall, X } from 'lucide-react';
 import hackqubitLogo from '../assets/images/hackqubit_jewel_title.png';
 
 const NAV_ITEMS = [
@@ -80,14 +80,14 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
         <div className="pointer-events-none absolute bottom-20 right-2 w-28 h-16 rounded-full bg-amber-200/40 blur-2xl" />
 
         {/* Header row */}
-        <div className="flex items-center justify-between mb-8 pb-5 border-b border-amber-900/20 relative z-10">
-          <div className="flex items-center gap-2">
-            <img
-              src={hackqubitLogo}
-              alt="HackQubit 2.0"
-              className="h-10 w-auto object-contain drop-shadow-md"
-            />
-          </div>
+        <div className="flex items-center justify-end mb-8 pb-5 border-b border-amber-900/20 relative z-10">
+          <button
+            onClick={close}
+            className="p-2 bg-amber-100/50 hover:bg-amber-400/50 rounded-full border border-amber-700/20 transition-colors text-amber-900 cursor-pointer"
+            aria-label="Close menu"
+          >
+            <X className="w-6 h-6" />
+          </button>
         </div>
 
         {/* Nav items */}

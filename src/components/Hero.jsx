@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Navbar from "./Navbar";
 import HeroContent from "./HeroContent";
-import SocialIcons from "./SocialIcons";
 import ScrollIndicator from "./ScrollIndicator";
 
 import hackQubitVideo from "../assets/HackQubit2.0.mp4";
@@ -20,7 +19,6 @@ const Hero = () => {
   const headingLine1Ref = useRef(null);
   const descriptionRef = useRef(null);
   const buttonsRef = useRef(null);
-  const socialRef = useRef(null);
   const scrollIndicatorRef = useRef(null);
 
   useEffect(() => {
@@ -169,8 +167,6 @@ const Hero = () => {
           pb-8
         "
       >
-        <SocialIcons ref={socialRef} />
-
         <ScrollIndicator ref={scrollIndicatorRef} />
       </div>
     </section>
