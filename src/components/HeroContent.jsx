@@ -14,7 +14,7 @@ const HeroContent = ({ refs }) => {
       {/* Slogan Below Heading */}
       <p
         ref={refs.description}
-        className="font-cinzel text-base sm:text-xl lg:text-2xl text-white font-extrabold max-w-2xl leading-relaxed mb-10 text-left"
+        className="font-cinzel text-base sm:text-xl lg:text-2xl text-white font-normal max-w-2xl leading-relaxed mb-10 text-left"
       >
         “Sail the High Seas of Innovation, Unearth Rare Code Treasures & Conquer the Digital Ocean.”
       </p>
@@ -34,7 +34,7 @@ const HeroContent = ({ refs }) => {
         {/* Learn More Button */}
         <a
           href="#about"
-          className="px-8 sm:px-10 py-4 rounded-xl font-cinzel text-sm sm:text-base font-extrabold text-amber-950 bg-amber-500/15 hover:bg-amber-500/25 border-2 border-amber-800/40 hover:border-amber-900 hover:scale-105 transition-all duration-300 uppercase tracking-widest shadow-md"
+          className="px-8 sm:px-10 py-4 rounded-xl font-cinzel text-sm sm:text-base font-extrabold text-[#fff4bb] bg-[#fff4bb]/5 hover:bg-[#fff4bb]/10 hover:scale-105 transition-all duration-300 uppercase tracking-widest shadow-md"
         >
           Learn More
         </a>

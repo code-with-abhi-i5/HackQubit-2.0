@@ -110,50 +110,50 @@ const Hero = () => {
           HACKQUBIT 2.0 VIDEO BACKGROUND
       ========================================= */}
 
-      <video
-        ref={videoRef}
-        src={hackQubitVideo}
-        muted
-        playsInline
-        preload="auto"
-        className="absolute inset-0 z-0 w-full h-full object-cover"
-      />
+        <video
+          ref={videoRef}
+          src={hackQubitVideo}
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 z-0 w-full h-full object-cover"
+        />
 
-      {/* =========================================
+        {/* =========================================
           VIDEO OVERLAY
       ========================================= */}
 
-      <div className="absolute inset-0 z-10 bg-black/20 pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-black/20 pointer-events-none" />
 
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-transparent to-black/50 pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-transparent to-black/50 pointer-events-none" />
 
-      {/* =========================================
+        {/* =========================================
           FOG / MIST BOTTOM BLEND
       ========================================= */}
-      <div className="absolute bottom-0 left-0 w-full h-48 sm:h-64 z-20 bg-gradient-to-b from-transparent via-[#E0F2FE]/80 to-[#E0F2FE] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-48 sm:h-64 z-20 bg-gradient-to-b from-transparent via-[#E0F2FE]/80 to-[#E0F2FE] pointer-events-none" />
 
 
-      {/* =========================================
+        {/* =========================================
           HACKQUBIT 2.0 CONTENT
       ========================================= */}
 
-      <div className="relative z-20 h-full flex items-center">
-        <HeroContent
-          refs={{
-            subtitle: subtitleRef,
-            headingLine1: headingLine1Ref,
-            description: descriptionRef,
-            buttons: buttonsRef,
-          }}
-        />
-      </div>
+        <div className="relative z-20 h-full flex items-center">
+          <HeroContent
+            refs={{
+              subtitle: subtitleRef,
+              headingLine1: headingLine1Ref,
+              description: descriptionRef,
+              buttons: buttonsRef,
+            }}
+          />
+        </div>
 
-      {/* =========================================
+        {/* =========================================
           SOCIAL ICONS + SCROLL INDICATOR
       ========================================= */}
 
-      <div
-        className="
+        <div
+          className="
           absolute
           left-0
           right-0
@@ -166,10 +166,10 @@ const Hero = () => {
           sm:px-12
           pb-8
         "
-      >
-        <ScrollIndicator ref={scrollIndicatorRef} />
-      </div>
-    </section>
+        >
+          <ScrollIndicator ref={scrollIndicatorRef} />
+        </div>
+      </section>
     </>
   );
 };
