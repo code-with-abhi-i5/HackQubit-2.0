@@ -19,14 +19,14 @@ const Navbar = forwardRef((props, ref) => {
     const handleScroll = () => {
       if (typeof window !== 'undefined') {
         const currentScrollY = window.scrollY;
-        
+
         // Hide on scroll down, show on scroll up
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsVisible(false);
         } else {
           setIsVisible(true);
         }
-        
+
         setLastScrollY(currentScrollY);
       }
     };

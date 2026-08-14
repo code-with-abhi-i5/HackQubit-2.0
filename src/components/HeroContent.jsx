@@ -3,7 +3,7 @@ import { ClipboardCheck, Command } from "lucide-react";
 
 const HeroContent = ({ refs }) => {
   return (
-    <div className="relative z-20 flex flex-col items-center justify-center max-w-4xl lg:max-w-none w-full px-6 sm:px-12 lg:px-20 pt-28 pb-16 text-center mx-auto">
+    <div className="relative z-20 flex flex-col items-center justify-center max-w-4xl lg:max-w-none w-full px-6 sm:px-12 lg:px-20 pt-12 md:pt-28 pb-16 text-center mx-auto">
 
       <div className="relative mb-6 group select-none text-center">
         <div ref={refs.headingLine1} className="w-full">
