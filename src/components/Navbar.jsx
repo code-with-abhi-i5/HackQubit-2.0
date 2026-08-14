@@ -1,4 +1,4 @@
-import { useState, useRef, forwardRef } from "react";
+import { useState, useEffect, useRef, forwardRef } from "react";
 import { Compass } from "lucide-react";
 import { NAV_LINKS } from "../constants";
 import { useScrollPosition } from "../hooks";
@@ -6,12 +6,34 @@ import { gsap } from "gsap";
 import { PirateMobileMenu, HamburgerToggle } from "./PirateMobileNav";
 
 import logoRvscet from "../assets/images/logo_rvscet.png";
-import logoRed    from "../assets/images/logo_red.png";
-import logoHelix  from "../assets/images/logo_helix.png";
+import logoRed from "../assets/images/logo_red.png";
+import logoHelix from "../assets/images/logo_helix.png";
 
 const Navbar = forwardRef((props, ref) => {
   const isScrolled = useScrollPosition(50);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY;
+        
+        // Hide on scroll down, show on scroll up
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          setIsVisible(false);
+        } else {
+          setIsVisible(true);
+        }
+        
+        setLastScrollY(currentScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
   const linkRefs = useRef([]);
 
   const handleLinkHover = (index) => {
@@ -36,11 +58,10 @@ const Navbar = forwardRef((props, ref) => {
     <>
       <nav
         ref={ref}
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
-          isScrolled
-            ? "backdrop-blur-2xl bg-[#0a0f1d]/92 shadow-[0_4px_40px_rgba(0,0,0,0.55)] border-b border-amber-500/15"
-            : "bg-gradient-to-b from-black/40 to-transparent"
-        }`}
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${isScrolled
+          ? "backdrop-blur-2xl bg-[#0a0f1d]/92 shadow-[0_4px_40px_rgba(0,0,0,0.55)] border-b border-amber-500/15"
+          : "bg-gradient-to-b from-black/40 to-transparent"
+          } ${!isVisible ? "lg:-translate-y-full" : "translate-y-0"}`}
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 lg:px-14">
           <div className="flex items-center justify-between h-14 lg:h-16">
@@ -98,7 +119,7 @@ const Navbar = forwardRef((props, ref) => {
               {/* Site Name */}
               <a href="#home" className="hidden md:flex flex-col leading-none group">
                 <span className="font-cinzel text-sm font-black text-white tracking-widest drop-shadow-[0_0_12px_rgba(212,175,55,0.9)] group-hover:text-amber-400 transition-colors duration-300">
-                  HACK QUIBIT 2.0
+                  HACK QUBIT 2.0
                 </span>
                 <span className="font-cinzel text-[7px] text-amber-400/80 tracking-[0.4em] uppercase mt-0.5 drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
                   2.0 — Sail & Code
