@@ -1,18 +1,13 @@
 import React from "react";
-import hackqubitJewelTitleImg from "../assets/images/hackqubit_jewel_title.png";
-
 const HeroContent = ({ refs }) => {
   return (
     <div className="relative z-20 flex flex-col items-start justify-center max-w-4xl lg:max-w-none w-full px-6 sm:px-12 lg:px-20 pt-28 pb-16 text-left">
 
-      {/* Main Heading Graphic: "HACKQUBIT 2.0" where individual letters wear crowns, necklaces, rings & gems */}
       <div className="relative mb-6 group select-none self-end mr-4 sm:mr-8">
-        <div ref={refs.headingLine1} className="w-full max-w-[320px] sm:max-w-[400px] md:max-w-[450px]">
-          <img
-            src={hackqubitJewelTitleImg}
-            alt="HACKQUBIT 2.0 Pirate Jewelry Title"
-            className="w-full h-auto object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.25)]"
-          />
+        <div ref={refs.headingLine1} className="w-full">
+          <h1 className="font-cinzel text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 via-amber-400 to-amber-700 drop-shadow-[0_4px_12px_rgba(212,175,55,0.7)] tracking-widest leading-none uppercase filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]">
+            HACK QUBIT 2.0
+          </h1>
         </div>
       </div>
 
