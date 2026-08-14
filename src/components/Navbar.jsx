@@ -43,14 +43,14 @@ const Navbar = forwardRef((props, ref) => {
         }`}
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 lg:px-14">
-          <div className="flex items-center justify-between h-18 lg:h-20">
+          <div className="flex items-center justify-between h-14 lg:h-16">
 
             {/* ── LEFT: Three partner logos ── */}
             <div className="flex items-center gap-3">
               {/* RVSCET */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-10 h-10 rounded-full hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-all duration-300 overflow-hidden p-0 shadow-md"
+                className="group flex items-center justify-center w-8 h-8 rounded-full hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-all duration-300 overflow-hidden p-0 shadow-md"
                 title="RVSCET"
               >
                 <img
@@ -66,7 +66,7 @@ const Navbar = forwardRef((props, ref) => {
               {/* HELIX */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-10 h-10 rounded-full hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-all duration-300 overflow-hidden p-0 shadow-md"
+                className="group flex items-center justify-center w-8 h-8 rounded-full hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-all duration-300 overflow-hidden p-0 shadow-md"
                 title="Helix"
               >
                 <img
@@ -82,7 +82,7 @@ const Navbar = forwardRef((props, ref) => {
               {/* HackQubit Shield logo */}
               <a
                 href="#home"
-                className="group flex items-center justify-center w-10 h-10 transition-all duration-300 p-0"
+                className="group flex items-center justify-center w-8 h-8 transition-all duration-300 p-0"
                 title="HackQubit Emblem"
               >
                 <img
@@ -97,10 +97,10 @@ const Navbar = forwardRef((props, ref) => {
 
               {/* Site Name */}
               <a href="#home" className="hidden md:flex flex-col leading-none group">
-                <span className="font-cinzel text-base font-black text-white tracking-widest drop-shadow-[0_0_12px_rgba(212,175,55,0.9)] group-hover:text-amber-400 transition-colors duration-300">
+                <span className="font-cinzel text-sm font-black text-white tracking-widest drop-shadow-[0_0_12px_rgba(212,175,55,0.9)] group-hover:text-amber-400 transition-colors duration-300">
                   HACK QUIBIT 2.0
                 </span>
-                <span className="font-cinzel text-[8px] text-amber-400/80 tracking-[0.4em] uppercase mt-0.5 drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+                <span className="font-cinzel text-[7px] text-amber-400/80 tracking-[0.4em] uppercase mt-0.5 drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
                   2.0 — Sail & Code
                 </span>
               </a>
