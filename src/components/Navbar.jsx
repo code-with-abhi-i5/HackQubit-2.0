@@ -58,12 +58,12 @@ const Navbar = forwardRef((props, ref) => {
     <>
       <nav
         ref={ref}
-        className={`fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 w-[95%] max-w-[1200px] z-40 transition-all duration-500 rounded-full border border-amber-500/20 ${isScrolled
+        className={`fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 w-[98%] sm:w-[96%] max-w-[1400px] z-40 transition-all duration-500 rounded-full border border-amber-500/20 ${isScrolled
           ? "backdrop-blur-sm bg-black/10 shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
           : "bg-transparent shadow-none border-transparent"
           } ${!isVisible ? "lg:-translate-y-[150%]" : "translate-y-0"}`}
       >
-        <div className="max-w-[1400px] mx-auto px-4 md:px-8 lg:px-14">
+        <div className="w-full mx-auto px-4 sm:px-6 lg:px-6">
           <div className="flex items-center justify-between h-14 lg:h-16">
 
             {/* ── LEFT: Three partner logos ── */}
@@ -145,25 +145,25 @@ const Navbar = forwardRef((props, ref) => {
               ))}
             </div>
 
-            {/* ── RIGHT: Register CTA ── */}
-            <div className="hidden lg:flex items-center gap-3">
-              {/* CTA — Register Now */}
+            {/* ── RIGHT: Actions ── */}
+            <div className="flex items-center gap-3">
+              {/* CTA — Register Now (Desktop) */}
               <a
                 href="https://forms.gle/STi1SKZ8uK1fCVQr7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative group flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-lg font-cinzel text-[13px] text-slate-950 font-black tracking-wider transition-all duration-400 hover:from-amber-400 hover:to-amber-500 hover:shadow-[0_0_28px_rgba(212,175,55,0.45)] overflow-hidden"
+                className="hidden lg:flex relative group items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full font-cinzel text-[13px] text-slate-950 font-black tracking-wider transition-all duration-400 hover:from-amber-400 hover:to-amber-500 hover:shadow-[0_0_28px_rgba(212,175,55,0.45)] overflow-hidden"
               >
                 {/* Shimmer sweep */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 <Compass className="w-4 h-4 relative z-10 transition-transform duration-500 group-hover:rotate-45" />
                 <span className="relative z-10">Register Now</span>
               </a>
-            </div>
 
-            {/* ── Mobile Hamburger ── */}
-            <div className="relative z-50">
-              <HamburgerToggle isOpen={isMobileOpen} toggle={() => setIsMobileOpen(!isMobileOpen)} />
+              {/* ── Mobile Hamburger ── */}
+              <div className="relative z-50 lg:hidden">
+                <HamburgerToggle isOpen={isMobileOpen} toggle={() => setIsMobileOpen(!isMobileOpen)} />
+              </div>
             </div>
           </div>
         </div>

@@ -28,7 +28,7 @@ const HeroContent = ({ refs }) => {
           href="https://forms.gle/STi1SKZ8uK1fCVQr7"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 px-5 sm:px-10 py-3 sm:py-4 rounded-xl font-cinzel text-xs sm:text-base font-extrabold text-amber-50 bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 hover:from-amber-800 hover:to-amber-950 shadow-xl hover:shadow-amber-900/30 hover:scale-105 transition-all duration-300 uppercase tracking-widest border border-amber-600/40 text-center whitespace-nowrap"
+          className="flex items-center gap-2 px-5 sm:px-10 py-3 sm:py-4 rounded-full font-cinzel text-xs sm:text-base font-extrabold text-amber-50 bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 hover:from-amber-800 hover:to-amber-950 shadow-xl hover:shadow-amber-900/30 hover:scale-105 transition-all duration-300 uppercase tracking-widest border border-amber-600/40 text-center whitespace-nowrap"
         >
           <ClipboardCheck className="w-4 h-4 sm:w-5 sm:h-5" />
           <span>Registration</span>
@@ -37,7 +37,7 @@ const HeroContent = ({ refs }) => {
         {/* Learn More Button */}
         <a
           href="#about"
-          className="flex items-center gap-2 px-5 sm:px-10 py-3 sm:py-4 rounded-xl font-cinzel text-xs sm:text-base font-extrabold text-white bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:border-white/30 hover:scale-105 transition-all duration-300 uppercase tracking-widest shadow-[0_4px_30px_rgba(0,0,0,0.1)] text-center whitespace-nowrap"
+          className="flex items-center gap-2 px-5 sm:px-10 py-3 sm:py-4 rounded-full font-cinzel text-xs sm:text-base font-extrabold text-white bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 hover:border-white/30 hover:scale-105 transition-all duration-300 uppercase tracking-widest shadow-[0_4px_30px_rgba(0,0,0,0.1)] text-center whitespace-nowrap"
         >
           <Command className="w-4 h-4 sm:w-5 sm:h-5" />
           <span>Learn More</span>
