@@ -1,172 +1,164 @@
-import { useRef, useEffect } from "react";
+import { useState, useRef, forwardRef } from "react";
+import { Compass } from "lucide-react";
+import { NAV_LINKS } from "../constants";
+import { useScrollPosition } from "../hooks";
 import { gsap } from "gsap";
-import Navbar from "./Navbar";
-import HeroContent from "./HeroContent";
-import SocialIcons from "./SocialIcons";
-import ScrollIndicator from "./ScrollIndicator";
+import { PirateMobileMenu, HamburgerToggle } from "./PirateMobileNav";
 
-import animeOceanIslandImg from "../assets/images/anime_ocean_island.webp";
-import waterShipImg from "../assets/images/water_ship_bottom_left.webp";
-import flyingDragonImg from "../assets/images/flying_dragon_hero.webp";
+import logoRvscet from "../assets/images/logo_rvscet.png";
+import logoRed    from "../assets/images/logo_red.png";
+import logoHelix  from "../assets/images/logo_helix.png";
 
-const Hero = () => {
-  const navbarRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const headingLine1Ref = useRef(null);
-  const headingLine2Ref = useRef(null);
-  const descriptionRef = useRef(null);
-  const buttonsRef = useRef(null);
-  const socialRef = useRef(null);
-  const scrollIndicatorRef = useRef(null);
-  const waterShipRef = useRef(null);
-  const dragonRef = useRef(null);
+const Navbar = forwardRef((props, ref) => {
+  const isScrolled = useScrollPosition(50);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const linkRefs = useRef([]);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Smooth entrance sequence
-      const targets = [
-        headingLine1Ref.current,
-        headingLine2Ref.current,
-        descriptionRef.current,
-        buttonsRef.current,
-      ].filter(Boolean);
-
-      if (targets.length > 0) {
-        gsap.fromTo(
-          targets,
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }
-        );
-      }
-
-      // Dragon entrance from far left
-      if (dragonRef.current) {
-        gsap.fromTo(
-          dragonRef.current,
-          { opacity: 0, x: -100, y: -20 },
-          { opacity: 1, x: 0, y: 0, duration: 1.4, ease: "power3.out", delay: 0.2 }
-        );
-      }
-
-      // Water Ship entrance from bottom-left
-      if (waterShipRef.current) {
-        gsap.fromTo(
-          waterShipRef.current,
-          { opacity: 0, x: -80, y: 40 },
-          { opacity: 1, x: 0, y: 0, duration: 1.2, ease: "power3.out", delay: 0.4 }
-        );
-      }
+  const handleLinkHover = (index) => {
+    gsap.to(linkRefs.current[index], {
+      y: -2,
+      color: "#D4AF37",
+      duration: 0.25,
+      ease: "power2.out",
     });
+  };
 
-    return () => ctx.revert();
-  }, []);
+  const handleLinkLeave = (index) => {
+    gsap.to(linkRefs.current[index], {
+      y: 0,
+      color: "",
+      duration: 0.25,
+      ease: "power2.out",
+    });
+  };
 
   return (
-    <section
-      id="home"
-      className="relative w-full min-h-screen overflow-hidden bg-pirate-bg flex flex-col justify-between"
-    >
-      {/* ── 1. BACKGROUND: Anime Ocean Island Image ── */}
-      <div className="absolute inset-0 z-0 opacity-40 mix-blend-multiply pointer-events-none">
-        <img
-          src={animeOceanIslandImg}
-          alt="Anime Ocean Island Background"
-          className="w-full h-full object-cover object-bottom"
-        />
-      </div>
-
-      {/* Soft Sky Gradient Overlay */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-pirate-bg/60 via-transparent to-pirate-bg/80 pointer-events-none" />
-
-      {/* ── 2. TOP FOREGROUND: Corner-to-Corner Diagonal Rigging Rope ── */}
-      <svg
-        className="absolute inset-0 w-full h-full z-20 pointer-events-none overflow-visible"
-        viewBox="0 0 1000 1000"
-        preserveAspectRatio="none"
+    <>
+      <nav
+        ref={ref}
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${
+          isScrolled
+            ? "backdrop-blur-2xl bg-[#0a0f1d]/92 shadow-[0_4px_40px_rgba(0,0,0,0.55)] border-b border-amber-500/15"
+            : "bg-gradient-to-b from-black/40 to-transparent"
+        }`}
       >
-        <path
-          d="M 0 0 C 350 250, 650 750, 1000 1000"
-          fill="none"
-          stroke="#381400"
-          strokeWidth="16"
-          strokeLinecap="square"
-        />
-        <path
-          d="M 0 0 C 350 250, 650 750, 1000 1000"
-          fill="none"
-          stroke="#92400e"
-          strokeWidth="7"
-          strokeDasharray="20 10"
-          strokeLinecap="square"
-        />
-      </svg>
+        <div className="max-w-[1400px] mx-auto px-4 md:px-8 lg:px-14">
+          <div className="flex items-center justify-between h-18 lg:h-20">
 
-      {/* ── 3. FLYING SEA DRAGON (TOP-LEFT SKY - HIGH IN AIR, NO OVERLAP WITH WATER SHIP) ── */}
-      <div
-        ref={dragonRef}
-        className="absolute top-12 sm:top-16 lg:top-20 left-6 sm:left-12 lg:left-20 z-20 pointer-events-none w-56 sm:w-72 md:w-[420px] lg:w-[520px] xl:w-[580px] max-w-[46vw] animate-[floatDragon_7s_ease-in-out_infinite]"
-      >
-        <img
-          src={flyingDragonImg}
-          alt="Flying Sea Dragon"
-          className="w-full h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.5)]"
-          loading="eager"
-        />
-      </div>
+            {/* ── LEFT: Three partner logos ── */}
+            <div className="flex items-center gap-3">
+              {/* RVSCET */}
+              <a
+                href="#home"
+                className="group flex items-center justify-center w-10 h-10 rounded-full hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-all duration-300 overflow-hidden p-0 shadow-md"
+                title="RVSCET"
+              >
+                <img
+                  src={logoRvscet}
+                  alt="RVSCET Logo"
+                  className="w-full h-full object-contain rounded-full group-hover:scale-110 transition-transform duration-300"
+                />
+              </a>
 
-      {/* ── 4. WATER PIRATE SHIP (BOTTOM-LEFT SEA - FACING RIGHT & UPWARDS) ── */}
-      <div
-        ref={waterShipRef}
-        className="absolute bottom-0 sm:bottom-4 lg:bottom-8 left-0 sm:left-2 lg:left-6 z-20 pointer-events-none w-72 sm:w-96 md:w-[520px] lg:w-[640px] xl:w-[740px] max-w-[52vw] animate-[bobSea_5s_ease-in-out_infinite]"
-      >
-        <img
-          src={waterShipImg}
-          alt="Enemy Pirate Ship on Water"
-          className="w-full h-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.55)]"
-          loading="eager"
-        />
-      </div>
+              {/* Divider pip */}
+              <span className="hidden sm:block w-px h-6 bg-white/20 rounded-full" />
 
+              {/* HELIX */}
+              <a
+                href="#home"
+                className="group flex items-center justify-center w-10 h-10 rounded-full hover:shadow-[0_0_16px_rgba(212,175,55,0.6)] transition-all duration-300 overflow-hidden p-0 shadow-md"
+                title="Helix"
+              >
+                <img
+                  src={logoHelix}
+                  alt="Helix Logo"
+                  className="w-full h-full object-contain rounded-full group-hover:scale-110 transition-transform duration-300"
+                />
+              </a>
 
+              {/* Divider pip */}
+              <span className="hidden sm:block w-px h-6 bg-white/20 rounded-full" />
 
-      {/* Navbar */}
-      <Navbar ref={navbarRef} />
+              {/* HackQubit Shield logo */}
+              <a
+                href="#home"
+                className="group flex items-center justify-center w-10 h-10 transition-all duration-300 p-0"
+                title="HackQubit Emblem"
+              >
+                <img
+                  src={logoRed}
+                  alt="HackQubit Shield Logo"
+                  className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                />
+              </a>
 
-      {/* ── 6. HERO MAIN CONTENT ── */}
-      <HeroContent
-        refs={{
-          subtitle: subtitleRef,
-          headingLine1: headingLine1Ref,
-          headingLine2: headingLine2Ref,
-          description: descriptionRef,
-          buttons: buttonsRef,
-        }}
-      />
+              {/* Divider before site name */}
+              <span className="hidden md:block w-px h-8 bg-white/20 rounded-full mx-1" />
 
-      {/* Social Icons & Scroll Indicator */}
-      <div className="relative z-30 flex items-center justify-between px-6 sm:px-12 pb-8">
-        <SocialIcons ref={socialRef} />
-        <ScrollIndicator ref={scrollIndicatorRef} />
-      </div>
+              {/* Site Name */}
+              <a href="#home" className="hidden md:flex flex-col leading-none group">
+                <span className="font-cinzel text-base font-black text-white tracking-widest drop-shadow-[0_0_12px_rgba(212,175,55,0.9)] group-hover:text-amber-400 transition-colors duration-300">
+                  HACK QUIBIT 2.0
+                </span>
+                <span className="font-cinzel text-[8px] text-amber-400/80 tracking-[0.4em] uppercase mt-0.5 drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
+                  2.0 — Sail & Code
+                </span>
+              </a>
+            </div>
 
-      {/* Floating Keyframe Styles */}
-      <style>{`
-        @keyframes floatDragon {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-18px) rotate(2deg); }
-        }
-        @keyframes floatSky {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-16px) rotate(1.5deg); }
-        }
-        @keyframes bobSea {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(12px) rotate(-1.5deg); }
-        }
-      `}</style>
-    </section>
+            {/* ── CENTER: Nav Links (Desktop) ── */}
+            <div className="hidden lg:flex items-center gap-0.5">
+              {NAV_LINKS.map((link, i) => (
+                <a
+                  key={link.label}
+                  ref={(el) => (linkRefs.current[i] = el)}
+                  href={link.href}
+                  onMouseEnter={() => handleLinkHover(i)}
+                  onMouseLeave={() => handleLinkLeave(i)}
+                  className="relative px-2.5 xl:px-3.5 py-2 font-cinzel text-[12px] xl:text-[13px] font-semibold text-white/80 tracking-wide transition-colors duration-300 group whitespace-nowrap"
+                >
+                  {link.label}
+                  {/* Amber underline glow */}
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[1.5px] rounded-full bg-gradient-to-r from-transparent via-amber-400 to-transparent group-hover:w-4/5 transition-all duration-500" />
+                </a>
+              ))}
+            </div>
+
+            {/* ── RIGHT: Register CTA ── */}
+            <div className="hidden lg:flex items-center gap-3">
+              {/* CTA — Register Now */}
+              <a
+                href="https://forms.gle/STi1SKZ8uK1fCVQr7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative group flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-lg font-cinzel text-[13px] text-slate-950 font-black tracking-wider transition-all duration-400 hover:from-amber-400 hover:to-amber-500 hover:shadow-[0_0_28px_rgba(212,175,55,0.45)] overflow-hidden"
+              >
+                {/* Shimmer sweep */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+                <Compass className="w-4 h-4 relative z-10 transition-transform duration-500 group-hover:rotate-45" />
+                <span className="relative z-10">Register Now</span>
+              </a>
+            </div>
+
+            {/* ── Mobile Hamburger ── */}
+            <div className="relative z-50">
+              <HamburgerToggle isOpen={isMobileOpen} toggle={() => setIsMobileOpen(!isMobileOpen)} />
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom border glow line */}
+        {isScrolled && (
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
+        )}
+      </nav>
+
+      {/* Mobile Slide-in Menu */}
+      <PirateMobileMenu isOpen={isMobileOpen} close={() => setIsMobileOpen(false)} />
+    </>
   );
-};
+});
 
-export default Hero;
+Navbar.displayName = "Navbar";
 
+export default Navbar;
