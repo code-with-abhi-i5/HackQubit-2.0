@@ -32,6 +32,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Raleway';
+  src: url('./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-[#D4AF37]: #D4AF37;
   --color-pirate-bg: #E0F2FE; /* Sky light */
@@ -47,6 +55,7 @@
   --font-pirate: 'Pirata One', serif;
   --font-cormorant: 'Cormorant Garamond', serif;
   --font-inter: 'Cormorant Garamond', serif; /* Map inter to cormorant for global body font consistency */
+  --font-raleway: 'Raleway', sans-serif;
 }
 
 @layer base {

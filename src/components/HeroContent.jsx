@@ -14,7 +14,7 @@ const HeroContent = ({ refs }) => {
       {/* Slogan Below Heading */}
       <p
         ref={refs.description}
-        className="font-cinzel text-base sm:text-xl lg:text-2xl text-white font-normal max-w-2xl leading-relaxed mb-10 text-left"
+        className="font-raleway text-base sm:text-xl lg:text-2xl text-white font-normal max-w-2xl leading-relaxed mb-10 text-left"
       >
         “Sail the High Seas of Innovation, Unearth Rare Code Treasures & Conquer the Digital Ocean.”
       </p>
