@@ -130,7 +130,7 @@ const Hero = () => {
         {/* =========================================
           FOG / MIST BOTTOM BLEND
       ========================================= */}
-        <div className="absolute bottom-0 left-0 w-full h-48 sm:h-64 z-20 bg-gradient-to-b from-transparent via-[#E0F2FE]/80 to-[#E0F2FE] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-32 sm:h-48 z-20 bg-gradient-to-b from-transparent via-[#E0F2FE]/70 to-[#E0F2FE] pointer-events-none" />
 
 
         {/* =========================================

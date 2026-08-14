@@ -58,10 +58,10 @@ const Navbar = forwardRef((props, ref) => {
     <>
       <nav
         ref={ref}
-        className={`fixed top-0 left-0 w-full z-40 transition-all duration-500 ${isScrolled
-          ? "backdrop-blur-2xl bg-[#0a0f1d]/92 shadow-[0_4px_40px_rgba(0,0,0,0.55)] border-b border-amber-500/15"
-          : "bg-gradient-to-b from-black/40 to-transparent"
-          } ${!isVisible ? "lg:-translate-y-full" : "translate-y-0"}`}
+        className={`fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 w-[95%] max-w-[1200px] z-40 transition-all duration-500 rounded-full border border-amber-500/20 ${isScrolled
+          ? "backdrop-blur-sm bg-black/10 shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
+          : "bg-transparent shadow-none border-transparent"
+          } ${!isVisible ? "lg:-translate-y-[150%]" : "translate-y-0"}`}
       >
         <div className="max-w-[1400px] mx-auto px-4 md:px-8 lg:px-14">
           <div className="flex items-center justify-between h-14 lg:h-16">
@@ -122,7 +122,7 @@ const Navbar = forwardRef((props, ref) => {
                   HACK QUBIT 2.0
                 </span>
                 <span className="font-cinzel text-[7px] text-amber-400/80 tracking-[0.4em] uppercase mt-0.5 drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
-                  2.0 — Sail & Code
+                  24 HR HACKATHON
                 </span>
               </a>
             </div>
@@ -168,10 +168,7 @@ const Navbar = forwardRef((props, ref) => {
           </div>
         </div>
 
-        {/* Bottom border glow line */}
-        {isScrolled && (
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-amber-500/30 to-transparent" />
-        )}
+        {/* Optional inner glow/shadow for the pill could go here, but removed the full-width bottom border */}
       </nav>
 
       {/* Mobile Slide-in Menu */}
