@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Navbar from "./Navbar";
 import HeroContent from "./HeroContent";
-import ScrollIndicator from "./ScrollIndicator";
 
 import hackQubitVideo from "../assets/HackQubit2.0.mp4";
 
@@ -167,7 +166,7 @@ const Hero = () => {
           pb-8
         "
         >
-          <ScrollIndicator ref={scrollIndicatorRef} />
+          {/* Scroll Indicator Removed as requested */}
         </div>
       </section>
     </>
