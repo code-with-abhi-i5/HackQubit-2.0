@@ -97,10 +97,10 @@ const Navbar = forwardRef((props, ref) => {
 
               {/* Site Name */}
               <a href="#home" className="hidden md:flex flex-col leading-none group">
-                <span className="font-cinzel text-base font-black text-white tracking-widest drop-shadow-[0_0_8px_rgba(212,175,55,0.5)] group-hover:text-amber-400 transition-colors duration-300">
-                  HackQubit
+                <span className="font-cinzel text-base font-black text-white tracking-widest drop-shadow-[0_0_12px_rgba(212,175,55,0.9)] group-hover:text-amber-400 transition-colors duration-300">
+                  HACK QUIBIT 2.0
                 </span>
-                <span className="font-cinzel text-[8px] text-amber-400/80 tracking-[0.4em] uppercase mt-0.5">
+                <span className="font-cinzel text-[8px] text-amber-400/80 tracking-[0.4em] uppercase mt-0.5 drop-shadow-[0_0_8px_rgba(0,0,0,0.8)]">
                   2.0 — Sail & Code
                 </span>
               </a>
