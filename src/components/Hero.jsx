@@ -30,6 +30,8 @@ const Hero = () => {
 
     let scrollTriggerInstance = null;
 
+    let frameReq = null;
+
     const setupVideoScroll = () => {
       if (!video.duration || !Number.isFinite(video.duration)) {
         return;
@@ -45,23 +47,18 @@ const Hero = () => {
         // Start when Hero reaches top of screen
         start: "top top",
 
-        // 2500px scrolling controls entire video
-        end: "+=2500",
+        // Scroll distance
+        end: "+=2000",
 
         // Keep Hero on screen while scrubbing video
         pin: true,
 
-        // Scroll position controls progress with smoothing
-        scrub: 1.5,
+        // Lower scrub value makes it highly responsive (almost no lag behind the scroll)
+        scrub: 0.5,
 
         onUpdate: (self) => {
-          if (!video.duration) return;
-
-          const newTime = self.progress * video.duration;
-
-          // Prevent unnecessary updates
-          if (Math.abs(video.currentTime - newTime) > 0.01) {
-            video.currentTime = newTime;
+          if (video.readyState >= 1) {
+            video.currentTime = self.progress * video.duration;
           }
         },
       });
