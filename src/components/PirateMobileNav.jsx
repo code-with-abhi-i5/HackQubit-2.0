@@ -14,32 +14,17 @@ const NAV_ITEMS = [
   { label: 'Contact',    href: '#footer',      icon: PhoneCall },
 ];
 
+import navIcon from '../assets/images/nav.png';
+
 /* ── Hamburger / X toggle ── */
 export const HamburgerToggle = ({ isOpen, toggle }) => {
-  const line1 = useRef(null);
-  const line2 = useRef(null);
-  const line3 = useRef(null);
-
-  useEffect(() => {
-    if (isOpen) {
-      gsap.to(line1.current, { y: 7,  rotate: 45,  duration: 0.35, ease: 'back.out(1.5)' });
-      gsap.to(line2.current, { opacity: 0, scaleX: 0, duration: 0.2 });
-      gsap.to(line3.current, { y: -7, rotate: -45, duration: 0.35, ease: 'back.out(1.5)' });
-    } else {
-      gsap.to([line1.current, line3.current], { y: 0, rotate: 0, duration: 0.35, ease: 'back.out(1.5)' });
-      gsap.to(line2.current, { opacity: 1, scaleX: 1, duration: 0.3, delay: 0.1 });
-    }
-  }, [isOpen]);
-
   return (
     <button
       onClick={toggle}
-      className="lg:hidden flex flex-col items-center justify-center w-10 h-10 gap-0 rounded-full border border-amber-400/30 bg-amber-400/10 hover:bg-amber-400/25 hover:border-amber-400/60 transition-all duration-300"
+      className="lg:hidden flex items-center justify-center w-12 h-12 transition-transform hover:scale-110 p-1"
       aria-label="Toggle menu"
     >
-      <span ref={line1} className="block w-5 h-[1.5px] bg-amber-200 rounded-full origin-center" />
-      <span ref={line2} className="block w-5 h-[1.5px] bg-amber-200 rounded-full origin-center mt-[5px]" />
-      <span ref={line3} className="block w-5 h-[1.5px] bg-amber-200 rounded-full origin-center mt-[5px]" />
+      <img src={navIcon} alt="Menu Icon" className="w-full h-full object-contain drop-shadow-md" />
     </button>
   );
 };
