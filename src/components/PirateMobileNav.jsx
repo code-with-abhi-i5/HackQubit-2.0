@@ -63,11 +63,9 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
 
       {/* Drawer — pirate sky theme */}
       <div
-        className="fixed top-0 right-0 w-4/5 max-w-sm h-full lg:hidden flex flex-col pt-6 px-6 pb-10 overflow-y-auto"
+        className="fixed top-0 right-0 w-4/5 max-w-sm h-full lg:hidden flex flex-col pt-6 px-6 pb-10 overflow-y-auto bg-white/10 backdrop-blur-xl"
         style={{
           zIndex: 48,
-          background: 'linear-gradient(160deg, #7fb3d3 0%, #a8cfe0 30%, #c8e4ef 55%, #e8d5a0 80%, #d4a843 100%)',
-          borderLeft: '2px solid rgba(212,175,55,0.5)',
           boxShadow: '-20px 0 80px rgba(100,60,0,0.35)',
           transform: isOpen ? 'translateX(0)' : 'translateX(110%)',
           visibility: isOpen ? 'visible' : 'hidden',
