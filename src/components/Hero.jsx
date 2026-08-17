@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import Navbar from "./Navbar";
 import HeroContent from "./HeroContent";
-import hackQubitVideo from "../assets/HackQubit2.0.mp4";
+import hackQubitVideo from "../assets/heroSection.mp4";
 
 const Hero = ({ onOpenRegister }) => {
   const heroRef = useRef(null);
