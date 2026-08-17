@@ -61,11 +61,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 
   body {
@@ -73,8 +77,8 @@
     background-color: #E0F2FE;
     color: #0F172A;
     overflow-x: hidden;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
     font-size: 1.125rem;
     line-height: 1.6;
     letter-spacing: 0.03em;
@@ -86,10 +90,15 @@
     color: #D4AF37;
   }
 
-  ::-webkit-scrollbar {
-    display: none;
+  ::-webkit-scrollbar,
+  *::-webkit-scrollbar {
+    display: none !important;
+    width: 0px !important;
+    height: 0px !important;
+    background: transparent !important;
   }
 }
+
 
 @layer utilities {
   .text-shadow-gold {

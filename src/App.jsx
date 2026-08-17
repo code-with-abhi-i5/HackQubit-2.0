@@ -2,8 +2,9 @@ import React, { Component, useState, useCallback } from "react";
 import {
   Hero, About, Timeline, PrizePool, ProblemStatements,
   SponsorPackage, SponsorPerks, OurSponsors,
-  Footer, ScrollToTop, Loader, PirateWaveDivider, Gallery, FAQ
+  Footer, Loader, PirateWaveDivider, Gallery, FAQ
 } from "./components";
+
 import PirateCaptainGuide from "./components/PirateCaptainGuide";
 import PirateParrotCompanion from "./components/PirateParrotCompanion";
 import DoubloonCursorTrail from "./components/DoubloonCursorTrail";
@@ -84,9 +85,9 @@ function App() {
         {/* FAQ → Footer */}
         <FAQ />
         <Footer />
-        <ScrollToTop />
 
         {/* Unfurlable Vintage Wax-Sealed Registration Scroll Modal */}
+
         <PirateRegistrationModal
           isOpen={isRegisterModalOpen}
           onClose={() => setIsRegisterModalOpen(false)}
