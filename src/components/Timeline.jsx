@@ -247,16 +247,19 @@ const TreasureMapTimeline = () => {
   ];
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
+
     let ctx;
-    // Delay setup slightly so SVG layout & loader settle before GSAP calculates MotionPath alignment
-    const timer = setTimeout(() => {
+    const initGSAP = () => {
+      if (ctx) ctx.revert();
+
       ctx = gsap.context(() => {
         if (shipRef.current && pathRef.current) {
           // Realistic Sailing Motion along path with natural rotation (Front bow oriented along path)
           gsap.to(shipRef.current, {
             motionPath: {
-              path: pathRef.current,
-              align: pathRef.current,
+              path: "#voyage-path",
+              align: "#voyage-path",
               autoRotate: 90,
               alignOrigin: [0.5, 0.5],
               start: 0,
@@ -311,13 +314,37 @@ const TreasureMapTimeline = () => {
             },
           });
         });
-
-        ScrollTrigger.refresh();
       }, sectionRef);
-    }, 250);
+
+      ScrollTrigger.refresh();
+    };
+
+    // Run initial setup after brief tick
+    const timer = setTimeout(initGSAP, 300);
+
+    // Re-refresh when fonts load on production Vercel
+    if (typeof document !== "undefined" && document.fonts) {
+      document.fonts.ready.then(() => {
+        ScrollTrigger.refresh();
+      });
+    }
+
+    const handleLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", handleLoad);
+
+    // ResizeObserver ensures production layout changes (e.g. image loads) refresh triggers
+    let ro;
+    if (typeof ResizeObserver !== "undefined" && sectionRef.current) {
+      ro = new ResizeObserver(() => {
+        ScrollTrigger.refresh();
+      });
+      ro.observe(sectionRef.current);
+    }
 
     return () => {
       clearTimeout(timer);
+      window.removeEventListener("load", handleLoad);
+      if (ro) ro.disconnect();
       if (ctx) ctx.revert();
     };
   }, []);
