@@ -12,9 +12,8 @@ import {
   Sun, 
   Hourglass, 
   Swords, 
-  Crown, 
-  Map, 
   Trophy,
+  Map, 
   Compass,
   Sparkles
 } from "lucide-react";
@@ -75,13 +74,13 @@ const MILESTONES = [
     id: "awards", day: "Day 2", time: "03:00 PM",
     title: "Claim Your Bounty", subtitle: "Closing & Awards",
     desc: "The ultimate pirate claims the greatest treasure. Legends are born today!",
-    Icon: Crown, color: "#8B7A1A",
+    Icon: Trophy, color: "#D4AF37",
     isFinal: true,
   },
 ];
 
-/* ── Precise Path passing through all 9 milestone nodes ── */
-const PATH_D = "M 375,140 C 560,140 640,280 440,340 C 240,400 120,520 340,580 C 560,640 640,780 420,840 C 200,900 120,1020 340,1080 C 560,1140 640,1280 420,1340 C 240,1400 200,1480 375,1540 L 375,1700";
+/* ── Precise S-Curve Path passing through all 9 well-spaced milestone nodes ── */
+const PATH_D = "M 375,120 C 470,120 560,230 470,340 C 370,450 190,470 280,580 C 370,690 560,710 470,820 C 370,930 190,950 280,1060 C 370,1170 560,1190 470,1300 C 370,1410 190,1430 280,1540 C 370,1650 560,1670 470,1780 C 380,1890 375,1950 375,2020";
 
 /* ── Hand-Drawn Paper Map Sketch Overlay SVGs (Islands, Ships, Kraken & Grid) ── */
 const PaperMapSketches = () => (
@@ -91,16 +90,17 @@ const PaperMapSketches = () => (
     <path d="M 580,450 Q 590,440 600,450 Q 610,460 620,450" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
     <path d="M 150,800 Q 160,790 170,800 Q 180,810 190,800" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
     <path d="M 550,1150 Q 560,1140 570,1150 Q 580,1160 590,1150" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
+    <path d="M 160,1650 Q 170,1640 180,1650 Q 190,1660 200,1650" stroke="#7A4E2D" strokeWidth="1.5" fill="none" />
     
-    {/* Hand-Drawn Island 1 (Skull Island Sketch) near y=450 */}
+    {/* Hand-Drawn Island 1 (Skull Island Sketch) near y=420 */}
     <g transform="translate(100, 420) scale(0.85)">
       <path d="M 10 40 Q 30 10 70 20 Q 110 30 100 70 Q 80 100 40 90 Q 5 80 10 40 Z" fill="#8B6B3F" opacity="0.15" stroke="#5C3A1E" strokeWidth="1.5" strokeDasharray="3 2" />
       <path d="M 35 45 Q 45 30 65 45" fill="none" stroke="#5C3A1E" strokeWidth="1" />
       <text x="35" y="65" fontSize="9" fontFamily="Pirata One" fill="#5C3A1E">Isle of Code</text>
     </g>
 
-    {/* Hand-Drawn Island 2 (Treasure Cove Sketch) near y=1200 */}
-    <g transform="translate(560, 1180) scale(0.9)">
+    {/* Hand-Drawn Island 2 (Treasure Cove Sketch) near y=1400 */}
+    <g transform="translate(560, 1400) scale(0.9)">
       <path d="M 20 20 Q 60 5 90 35 Q 110 75 70 95 Q 20 110 10 60 Z" fill="#8B6B3F" opacity="0.15" stroke="#5C3A1E" strokeWidth="1.5" strokeDasharray="3 2" />
       <text x="22" y="55" fontSize="9" fontFamily="Pirata One" fill="#5C3A1E">Bounty Cove</text>
     </g>
@@ -111,25 +111,25 @@ const PaperMapSketches = () => (
       <line x1="15" y1="20" x2="15" y2="5" stroke="#5C3A1E" strokeWidth="1.5" />
       <path d="M 15 5 Q 25 10 15 17 Z" fill="#7A4E2D" />
     </g>
-    <g transform="translate(140, 1400) scale(0.65)">
+    <g transform="translate(140, 1850) scale(0.65)">
       <path d="M 0 20 L 30 20 L 25 30 L 5 30 Z" fill="#5C3A1E" />
       <line x1="15" y1="20" x2="15" y2="5" stroke="#5C3A1E" strokeWidth="1.5" />
       <path d="M 15 5 Q 25 10 15 17 Z" fill="#7A4E2D" />
     </g>
 
     {/* Sea Monster Sketch (Kraken Tentacles) */}
-    <g transform="translate(580, 680) scale(0.6)" opacity="0.8">
+    <g transform="translate(580, 720) scale(0.6)" opacity="0.8">
       <path d="M 10,50 Q 20,10 40,30 Q 30,70 10,50 Z" fill="#5C3A1E" />
       <path d="M 30,60 Q 50,20 70,40 Q 50,80 30,60 Z" fill="#5C3A1E" />
       <path d="M 50,70 Q 80,30 95,55 Q 70,95 50,70 Z" fill="#5C3A1E" />
     </g>
 
     {/* Map Grid Coordinates Line Markings */}
-    <line x1="50" y1="0" x2="50" y2="1850" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
-    <line x1="700" y1="0" x2="700" y2="1850" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
+    <line x1="50" y1="0" x2="50" y2="2150" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
+    <line x1="700" y1="0" x2="700" y2="2150" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
     <line x1="0" y1="400" x2="750" y2="400" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
     <line x1="0" y1="1000" x2="750" y2="1000" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
-    <line x1="0" y1="1500" x2="750" y2="1500" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
+    <line x1="0" y1="1600" x2="750" y2="1600" stroke="#8B6B3F" strokeWidth="0.5" strokeDasharray="6 6" />
   </svg>
 );
 
@@ -154,16 +154,27 @@ const CompassRose = () => (
 /* ── Island Node SVG with Icon ── */
 const IslandNode = ({ Icon, isFinal, color }) => (
   <div className="relative group cursor-pointer">
-    {isFinal && <div className="absolute inset-0 rounded-full bg-amber-400 animate-ping opacity-40 scale-150" />}
+    {isFinal && (
+      <>
+        <div className="absolute inset-0 rounded-full bg-amber-400 animate-ping opacity-35 scale-150" />
+        <div className="absolute -inset-2 rounded-full bg-amber-400/20 blur-md animate-pulse" />
+      </>
+    )}
     <div
-      className="w-14 h-14 rounded-full flex items-center justify-center border-4 transition-all duration-300 group-hover:scale-125 relative z-10 shadow-[0_10px_25px_rgba(0,0,0,0.3)] group-hover:shadow-[0_15px_35px_rgba(212,175,55,0.4)]"
+      className={`w-14 h-14 rounded-full flex items-center justify-center border-4 transition-all duration-300 group-hover:scale-125 relative z-10 shadow-[0_10px_25px_rgba(0,0,0,0.3)] group-hover:shadow-[0_15px_35px_rgba(212,175,55,0.5)] ${
+        isFinal ? "ring-4 ring-amber-400/50" : ""
+      }`}
       style={{
-        background: `radial-gradient(circle at 30% 30%, ${color}44, ${color}cc)`,
-        borderColor: color,
-        boxShadow: `0 8px 24px ${color}55, inset 0 2px 4px rgba(255,255,255,0.4)`
+        background: isFinal
+          ? "radial-gradient(circle at 30% 30%, #fef08a, #d97706)"
+          : `radial-gradient(circle at 30% 30%, ${color}44, ${color}cc)`,
+        borderColor: isFinal ? "#F59E0B" : color,
+        boxShadow: isFinal
+          ? "0 10px 30px rgba(245,158,11,0.6), inset 0 2px 6px rgba(255,255,255,0.7)"
+          : `0 8px 24px ${color}55, inset 0 2px 4px rgba(255,255,255,0.4)`
       }}
     >
-      <Icon className="w-6 h-6 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]" strokeWidth={2.2} />
+      <Icon className={`w-7 h-7 ${isFinal ? "text-amber-950" : "text-white"} drop-shadow-[0_2px_4px_rgba(0,0,0,0.6)]`} strokeWidth={2.4} />
     </div>
     <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-amber-800 rounded-full border-2 border-amber-300 flex items-center justify-center text-amber-200 text-[10px] font-bold z-20 shadow-md">
       ✦
@@ -178,17 +189,17 @@ const TreasureMapTimeline = () => {
   const shipRockRef = useRef(null);
   const pathRef = useRef(null);
 
-  // Exact 9 Node Positions along Height = 1850
+  // Exact 9 Generously Spaced Node Positions along Height = 2150
   const NODES = [
-    { x: 375, y: 140 },  // 0. Set Sail! (Boat starts exactly here)
-    { x: 440, y: 340 },  // 1. Opening
-    { x: 340, y: 580 },  // 2. Hacking
-    { x: 420, y: 840 },  // 3. Lunch
-    { x: 340, y: 1080 }, // 4. Midnight
-    { x: 420, y: 1340 }, // 5. Dawn
-    { x: 375, y: 1540 }, // 6. Drop Anchor
-    { x: 375, y: 1620 }, // 7. Battle of Wits
-    { x: 375, y: 1700 }, // 8. Bounty Trophy
+    { x: 375, y: 120 },  // 0. Set Sail! (Boat starts here) -> Card Right
+    { x: 470, y: 340 },  // 1. Opening -> Card Left
+    { x: 280, y: 580 },  // 2. Hacking -> Card Right
+    { x: 470, y: 820 },  // 3. Lunch -> Card Left
+    { x: 280, y: 1060 }, // 4. Midnight -> Card Right
+    { x: 470, y: 1300 }, // 5. Dawn -> Card Left
+    { x: 280, y: 1540 }, // 6. Drop Anchor -> Card Right
+    { x: 470, y: 1780 }, // 7. Battle of Wits -> Card Left
+    { x: 375, y: 2020 }, // 8. Bounty Trophy -> Card Right / Center
   ];
 
   useEffect(() => {
@@ -231,7 +242,7 @@ const TreasureMapTimeline = () => {
 
       // Glowing golden trail drawn in sync with scroll
       if (pathRef.current) {
-        const length = pathRef.current.getTotalLength?.() || 2600;
+        const length = pathRef.current.getTotalLength?.() || 2900;
         gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
         gsap.to(pathRef.current, {
           strokeDashoffset: 0,
@@ -261,7 +272,6 @@ const TreasureMapTimeline = () => {
         });
       });
     }, sectionRef);
-
 
     const refreshST = () => {
       ScrollTrigger.refresh();
@@ -408,13 +418,13 @@ const TreasureMapTimeline = () => {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto hidden sm:block" style={{ maxWidth: 750, minHeight: 1850 }}>
+      <div className="relative z-10 mx-auto hidden sm:block" style={{ maxWidth: 750, minHeight: 2150 }}>
         {/* Hand-Drawn Paper Map Sketch Overlay */}
         <PaperMapSketches />
 
         <svg
           className="absolute inset-0 w-full h-full"
-          viewBox="0 0 750 1850"
+          viewBox="0 0 750 2150"
           preserveAspectRatio="xMidYMid meet"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -521,7 +531,7 @@ const TreasureMapTimeline = () => {
               className="milestone-card absolute"
               style={{
                 left: `${(node.x / 750) * 100}%`,
-                top: `${(node.y / 1850) * 100}%`,
+                top: `${(node.y / 2150) * 100}%`,
                 transform: "translate(-50%, -50%)",
                 zIndex: 20,
               }}
@@ -607,25 +617,11 @@ const TreasureMapTimeline = () => {
             </div>
           );
         })}
-
-        {/* ── Ultimate Bounty Trophy ── */}
-        <div
-          className="absolute z-20"
-          style={{ left: `${(375 / 750) * 100}%`, top: `${(1700 / 1850) * 100}%`, transform: "translate(-50%, -50%)" }}
-        >
-          <motion.div
-            animate={{ y: [0, -8, 0] }}
-            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-            className="p-3.5 rounded-full bg-amber-400 border-2 border-amber-600 shadow-[0_15px_35px_rgba(212,175,55,0.6)] cursor-pointer"
-            title="The Ultimate Treasure!"
-          >
-            <Trophy className="w-9 h-9 text-amber-950" />
-          </motion.div>
-        </div>
       </div>
     </section>
   );
 };
 
 export default TreasureMapTimeline;
+
 
