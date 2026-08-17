@@ -13,27 +13,33 @@ const Navbar = forwardRef((props, ref) => {
   const isScrolled = useScrollPosition(50);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const lastScrollY = useRef(0);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      if (typeof window !== 'undefined') {
-        const currentScrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          const shouldBeVisible = currentScrollY <= lastScrollY.current || currentScrollY <= 100;
+          
+          if (shouldBeVisible !== isVisibleRef.current) {
+            isVisibleRef.current = shouldBeVisible;
+            setIsVisible(shouldBeVisible);
+          }
 
-        // Hide on scroll down, show on scroll up
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setIsVisible(false);
-        } else {
-          setIsVisible(true);
-        }
-
-        setLastScrollY(currentScrollY);
+          lastScrollY.current = currentScrollY;
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
+  }, []);
+
   const linkRefs = useRef([]);
 
   const handleLinkHover = (index) => {

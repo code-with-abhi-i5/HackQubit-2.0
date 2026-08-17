@@ -1,15 +1,9 @@
 import { useRef, useEffect } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import Navbar from "./Navbar";
 import HeroContent from "./HeroContent";
-
 import hackQubitVideo from "../assets/HackQubit2.0.mp4";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const Hero = () => {
+const Hero = ({ onOpenRegister }) => {
   const heroRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -18,123 +12,67 @@ const Hero = () => {
   const headingLine1Ref = useRef(null);
   const descriptionRef = useRef(null);
   const buttonsRef = useRef(null);
-  const scrollIndicatorRef = useRef(null);
 
   useEffect(() => {
-    const hero = heroRef.current;
     const video = videoRef.current;
-
-    if (!hero || !video) {
-      return;
-    }
-
-    let scrollTriggerInstance = null;
-
-    let frameReq = null;
-
-    const setupVideoScroll = () => {
-      if (!video.duration || !Number.isFinite(video.duration)) {
-        return;
+    if (video) {
+      video.muted = true;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay fallback
+        });
       }
-
-      // Start video from the first frame
-      video.pause();
-      video.currentTime = 0;
-
-      scrollTriggerInstance = ScrollTrigger.create({
-        trigger: hero,
-
-        // Start when Hero reaches top of screen
-        start: "top top",
-
-        // Scroll distance
-        end: "+=2000",
-
-        // Keep Hero on screen while scrubbing video
-        pin: true,
-
-        // Lower scrub value makes it highly responsive (almost no lag behind the scroll)
-        scrub: 0.5,
-
-        onUpdate: (self) => {
-          if (video.readyState >= 1) {
-            video.currentTime = self.progress * video.duration;
-          }
-        },
-      });
-
-      ScrollTrigger.refresh();
-    };
-
-    // Video metadata is already available
-    if (video.readyState >= 1) {
-      setupVideoScroll();
-    } else {
-      video.addEventListener("loadedmetadata", setupVideoScroll, {
-        once: true,
-      });
     }
-
-    return () => {
-      video.removeEventListener("loadedmetadata", setupVideoScroll);
-
-      if (scrollTriggerInstance) {
-        scrollTriggerInstance.kill();
-      }
-
-      video.pause();
-
-      ScrollTrigger.refresh();
-    };
   }, []);
 
   return (
     <>
       {/* =========================================
-          NAVBAR (Moved outside pinned section to prevent scrolling glitch)
+          NAVBAR
       ========================================= */}
       <div className="relative z-50">
-        <Navbar ref={navbarRef} />
+        <Navbar ref={navbarRef} onOpenRegister={onOpenRegister} />
       </div>
 
       <section
         ref={heroRef}
         id="home"
-        className="relative w-full h-screen overflow-hidden bg-black"
+        className="relative w-full h-screen overflow-hidden bg-black transform-gpu"
+        style={{ contain: "paint" }}
       >
         {/* =========================================
-          HACKQUBIT 2.0 VIDEO BACKGROUND
+          HACKQUBIT 2.0 VIDEO BACKGROUND (LOOP)
       ========================================= */}
-
         <video
           ref={videoRef}
           src={hackQubitVideo}
+          autoPlay
+          loop
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 z-0 w-full h-full object-cover"
+          className="absolute inset-0 z-0 w-full h-full object-cover transform-gpu"
+          style={{ willChange: "transform", transform: "translate3d(0,0,0)" }}
         />
 
         {/* =========================================
           VIDEO OVERLAY
       ========================================= */}
-
-        <div className="absolute inset-0 z-10 bg-black/20 pointer-events-none" />
-
-        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-transparent to-black/50 pointer-events-none" />
+        <div className="absolute inset-0 z-10 bg-black/20 pointer-events-none transform-gpu" />
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/20 via-transparent to-black/50 pointer-events-none transform-gpu" />
 
         {/* =========================================
           FOG / MIST BOTTOM BLEND
       ========================================= */}
-        <div className="absolute bottom-0 left-0 w-full h-32 sm:h-48 z-20 bg-gradient-to-b from-transparent via-[#E0F2FE]/70 to-[#E0F2FE] pointer-events-none" />
-
+        <div className="absolute bottom-0 left-0 w-full h-32 sm:h-48 z-20 bg-gradient-to-b from-transparent via-[#E0F2FE]/70 to-[#E0F2FE] pointer-events-none transform-gpu" />
 
         {/* =========================================
           HACKQUBIT 2.0 CONTENT
       ========================================= */}
-
-        <div className="relative z-20 h-full flex items-center">
+        <div className="relative z-20 h-full flex items-center transform-gpu">
           <HeroContent
+            onOpenRegister={onOpenRegister}
             refs={{
               subtitle: subtitleRef,
               headingLine1: headingLine1Ref,
@@ -143,31 +81,11 @@ const Hero = () => {
             }}
           />
         </div>
-
-        {/* =========================================
-          SOCIAL ICONS + SCROLL INDICATOR
-      ========================================= */}
-
-        <div
-          className="
-          absolute
-          left-0
-          right-0
-          bottom-0
-          z-30
-          flex
-          items-center
-          justify-between
-          px-6
-          sm:px-12
-          pb-8
-        "
-        >
-          {/* Scroll Indicator Removed as requested */}
-        </div>
       </section>
     </>
   );
 };
 
 export default Hero;
+
+

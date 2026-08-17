@@ -19,25 +19,41 @@ const DoubloonCursorTrail = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    const handleMouseMove = (e) => {
-      // Spawn 2-3 gold doubloon spark particles on mouse move
-      for (let i = 0; i < 2; i++) {
-        particles.push({
-          x: e.clientX,
-          y: e.clientY,
-          vx: (Math.random() - 0.5) * 2.5,
-          vy: (Math.random() - 0.5) * 2.5 - 1,
-          size: Math.random() * 6 + 3,
-          alpha: 1,
-          decay: Math.random() * 0.03 + 0.02,
-          color: Math.random() > 0.3 ? "#f59e0b" : "#fbbf24", // Golden colors
-        });
+    let isRunning = false;
+
+    const startAnimation = () => {
+      if (!isRunning) {
+        isRunning = true;
+        animationFrameId = requestAnimationFrame(render);
       }
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    const handleMouseMove = (e) => {
+      // Spawn 1-2 particles on mouse move, capped at 25 max
+      if (particles.length < 25) {
+        particles.push({
+          x: e.clientX,
+          y: e.clientY,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 2 - 0.8,
+          size: Math.random() * 5 + 2.5,
+          alpha: 0.9,
+          decay: Math.random() * 0.03 + 0.025,
+          color: Math.random() > 0.3 ? "#f59e0b" : "#fbbf24",
+        });
+      }
+      startAnimation();
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     const render = () => {
+      if (particles.length === 0) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        isRunning = false;
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = particles.length - 1; i >= 0; i--) {
@@ -55,15 +71,8 @@ const DoubloonCursorTrail = () => {
         ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
 
-        // Draw small gold doubloon coin spark circle
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Inner shine
-        ctx.fillStyle = "#fffbe0";
-        ctx.beginPath();
-        ctx.arc(p.x - p.size * 0.2, p.y - p.size * 0.2, p.size * 0.4, 0, Math.PI * 2);
         ctx.fill();
 
         ctx.restore();
@@ -72,7 +81,6 @@ const DoubloonCursorTrail = () => {
       animationFrameId = requestAnimationFrame(render);
     };
 
-    render();
 
     return () => {
       window.removeEventListener("resize", handleResize);

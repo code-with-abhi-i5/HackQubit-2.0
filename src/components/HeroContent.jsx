@@ -5,9 +5,9 @@ const HeroContent = ({ refs }) => {
   return (
     <div className="relative z-20 flex flex-col items-center justify-center max-w-4xl lg:max-w-none w-full px-6 sm:px-12 lg:px-20 pt-12 md:pt-28 pb-16 text-center mx-auto">
 
-      <div className="relative mb-6 group select-none text-center">
+      <div className="relative mb-6 select-none text-center transform-gpu">
         <div ref={refs.headingLine1} className="w-full">
-          <h1 className="font-cinzel text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 via-amber-400 to-amber-700 drop-shadow-[0_4px_12px_rgba(212,175,55,0.7)] tracking-widest leading-none uppercase filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.5)]">
+          <h1 className="font-cinzel text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow-200 via-amber-400 to-amber-600 tracking-widest leading-none uppercase drop-shadow-[0_4px_16px_rgba(212,175,55,0.6)]">
             HACK QUBIT 2.0
           </h1>
         </div>
@@ -16,10 +16,11 @@ const HeroContent = ({ refs }) => {
       {/* Slogan Below Heading */}
       <p
         ref={refs.description}
-        className="font-raleway text-base sm:text-xl lg:text-2xl text-white font-normal max-w-2xl leading-relaxed mb-10 text-center mx-auto"
+        className="font-raleway text-base sm:text-xl lg:text-2xl text-white font-normal max-w-2xl leading-relaxed mb-10 text-center mx-auto drop-shadow-md"
       >
         “Sail the High Seas of Innovation, Unearth Rare Code Treasures & Conquer the Digital Ocean.”
       </p>
+
 
       {/* Two Clean Action Buttons: Registration & Learn More */}
       <div ref={refs.buttons} className="flex flex-row flex-nowrap items-center justify-center gap-3 sm:gap-6 w-full">
