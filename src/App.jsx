@@ -10,6 +10,10 @@ import DoubloonCursorTrail from "./components/DoubloonCursorTrail";
 import PirateRegistrationModal from "./components/PirateRegistrationModal";
 import { AnimatePresence } from "framer-motion";
 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
+
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
@@ -41,6 +45,12 @@ function App() {
 
   const handleLoadingComplete = useCallback(() => {
     setLoading(false);
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 150);
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 1000);
   }, []);
 
   return (

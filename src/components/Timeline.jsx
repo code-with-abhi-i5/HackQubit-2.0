@@ -247,68 +247,79 @@ const TreasureMapTimeline = () => {
   ];
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      if (shipRef.current && pathRef.current) {
-        // Realistic Sailing Motion along path with natural rotation (Front bow oriented along path)
-        gsap.to(shipRef.current, {
-          motionPath: {
-            path: pathRef.current,
-            align: pathRef.current,
-            autoRotate: 90,
-            alignOrigin: [0.5, 0.5],
-            start: 0,
-            end: 1,
-          },
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1.2,
-          },
+    let ctx;
+    // Delay setup slightly so SVG layout & loader settle before GSAP calculates MotionPath alignment
+    const timer = setTimeout(() => {
+      ctx = gsap.context(() => {
+        if (shipRef.current && pathRef.current) {
+          // Realistic Sailing Motion along path with natural rotation (Front bow oriented along path)
+          gsap.to(shipRef.current, {
+            motionPath: {
+              path: pathRef.current,
+              align: pathRef.current,
+              autoRotate: 90,
+              alignOrigin: [0.5, 0.5],
+              start: 0,
+              end: 1,
+            },
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 60%",
+              end: "bottom 70%",
+              scrub: 1.2,
+              invalidateOnRefresh: true,
+            },
+          });
+
+          // Gentle Swaying Water Pitch (Wave rocking)
+          gsap.to(shipRef.current, {
+            rotate: "+=4",
+            yoyo: true,
+            repeat: -1,
+            duration: 2.2,
+            ease: "sine.easeInOut",
+          });
+        }
+
+        if (pathRef.current) {
+          const length = pathRef.current.getTotalLength?.() || 2600;
+          gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
+          gsap.to(pathRef.current, {
+            strokeDashoffset: 0,
+            ease: "none",
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 60%",
+              end: "bottom 70%",
+              scrub: 1,
+              invalidateOnRefresh: true,
+            },
+          });
+        }
+
+        gsap.utils.toArray(".milestone-card").forEach((card) => {
+          gsap.from(card, {
+            opacity: 0,
+            scale: 0.85,
+            y: 25,
+            duration: 0.6,
+            ease: "back.out(1.5)",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+            },
+          });
         });
 
-        // Gentle Swaying Water Pitch (Wave rocking)
-        gsap.to(shipRef.current, {
-          rotate: "+=4",
-          yoyo: true,
-          repeat: -1,
-          duration: 2.2,
-          ease: "sine.easeInOut",
-        });
-      }
+        ScrollTrigger.refresh();
+      }, sectionRef);
+    }, 250);
 
-      if (pathRef.current) {
-        const length = pathRef.current.getTotalLength?.() || 2600;
-        gsap.set(pathRef.current, { strokeDasharray: length, strokeDashoffset: length });
-        gsap.to(pathRef.current, {
-          strokeDashoffset: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 80%",
-            end: "bottom 70%",
-            scrub: 1,
-          },
-        });
-      }
-
-      gsap.utils.toArray(".milestone-card").forEach((card) => {
-        gsap.from(card, {
-          opacity: 0,
-          scale: 0.85,
-          y: 25,
-          duration: 0.6,
-          ease: "back.out(1.5)",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-          },
-        });
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
+    return () => {
+      clearTimeout(timer);
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
