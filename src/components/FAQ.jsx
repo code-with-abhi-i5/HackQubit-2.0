@@ -6,33 +6,41 @@ import GoldRainParticles from './GoldRainParticles';
 
 const faqs = [
   {
-    question: "Who can participate?",
-    answer: "Both school and college students can participate! Whether you're a high schooler with big ideas or a college coder ready to conquer — all skill levels and institutions are welcome aboard the HackQubit ship. A valid student ID is required at check-in."
+    question: "What should I bring to the hackathon?",
+    answer: "Bring your laptop, charger, required accessories, college ID/student ID, and any other essentials you may need during the 24-hour event."
   },
   {
-    question: "Is there a registration fee?",
-    answer: "Yes, there is a registration fee of ₹700 per team. This covers your workspace, meals during the 24-hour hackathon, swag kit, and access to all workshops and mentorship sessions."
+    question: "Are there any costs to participate?",
+    answer: "Yes, participants need to pay the applicable registration fee.\n\nImportant: Once registration is completed, the registration fee is non-refundable. Refunds will not be possible after registration."
   },
   {
-    question: "What is the team size?",
-    answer: "Teams must have a minimum of 2 members and a maximum of 4 members. Solo participation is not allowed — every great pirate crew needs a team! You can form your crew beforehand or find teammates during our team-building session."
+    question: "What are the judging criteria?",
+    answer: "Projects will be evaluated based on:\n• Innovation & Creativity — 30%\n• Technical Implementation — 25%\n• User Experience & Design — 20%\n• Business Viability — 15%\n• Presentation Quality — 10%"
   },
   {
-    question: "What should I bring?",
-    answer: "Bring your laptop, charger, student ID, and a pirate's spirit! We recommend comfortable clothes and a sleeping bag if you plan to rest overnight. All meals and snacks are provided throughout the 24-hour voyage."
+    question: "Can I work on a pre-existing project?",
+    answer: "No. All projects must be started from scratch during the hackathon.\n\nHowever, you can use existing APIs, frameworks, and open-source libraries."
   },
   {
-    question: "Do I need to know how to code?",
-    answer: "Coding knowledge is helpful but not mandatory! Hackathons also need designers, product managers, storytellers, and presenters. Beginner workshops will also be held to help first-timers get started."
+    question: "What technologies can I use?",
+    answer: "You're free to use any programming languages, frameworks, APIs, and tools you're comfortable with."
   },
   {
-    question: "When are problem statements revealed?",
-    answer: "Problem statements are revealed live on the spot at the start of the event — no prior knowledge or pre-built code allowed. This ensures fair competition and tests real-time problem-solving skills under pressure!"
+    question: "Can I attend the hackathon remotely?",
+    answer: "No. The hackathon is an offline event and will be conducted at RVS College of Engineering and Technology."
   },
   {
-    question: "What happens after the hackathon?",
-    answer: "After the 24 hours, teams present their projects to a panel of judges. Winners are announced at the Grand Finale ceremony. All participants receive certificates, and top projects get featured in our post-event showcase."
+    question: "What happens if I can't stay for the full 24 hours?",
+    answer: "Participants are expected to participate throughout the 24-hour hackathon. If someone cannot stay for the full duration, they should coordinate with the organizers regarding their situation."
   },
+  {
+    question: "Whom can I contact for additional queries?",
+    answer: "For additional queries, participants can contact the HackQubit/HELIX organizing team through the official contact details provided by the organizers."
+  },
+  {
+    question: "What prizes can I win?",
+    answer: "The total prize pool is over ₹30,000, along with exciting goodies worth thousands.\n\n🥇 1st Place — ₹15,000\n🥈 2nd Place — ₹10,000\n🥉 3rd Place — ₹5,000"
+  }
 ];
 
 const FAQ = () => {
@@ -134,7 +142,7 @@ const FAQ = () => {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <div className="px-6 py-4 font-cinzel text-amber-900 font-bold text-sm leading-relaxed border-t border-amber-200/60 bg-amber-50/50">
+                    <div className="px-6 py-4 font-cinzel text-amber-900 font-bold text-sm leading-relaxed border-t border-amber-200/60 bg-amber-50/50 whitespace-pre-line">
                       {faq.answer}
                     </div>
                   </motion.div>
