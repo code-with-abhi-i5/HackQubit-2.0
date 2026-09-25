@@ -13,7 +13,7 @@ const SECTION_DIALOGUES = {
   "problem-statements": "The secret scrolls shall be revealed on hackathon day! 📜",
   sponsorship: "Our mighty allies fund this grand voyage! ⚓",
   "sponsorship-perks": "Sponsors get the finest treasures & glory! 👑",
-  "our-sponsors": "The fleet of partners be assembling soon! 🚢",
+  "our-sponsors": "Behold the mighty fleet of patrons backing our voyage! ⚓🚢",
   faq: "Got questions? This old captain has answers! 🦜",
 };
 

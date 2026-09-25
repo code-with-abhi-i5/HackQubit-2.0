@@ -4,8 +4,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Anchor, Flag, Coins, Crown, Medal, Shield, Skull, Compass, Sparkles } from "lucide-react";
 import sponsorTitleImg from "../assets/images/our sponsore.png";
 import sponsorPackImg from "../assets/images/our pack.png";
-import izzkiLogo from "../assets/images/izzki tech.jpg";
-import hdfcLogo from "../assets/images/hdfc.png";
+import izzkiLogo from "../assets/images/logo-1.png";
+import royalEnfieldLogo from "../assets/images/royal_enfield_logo.png";
+import orbingerLogo from "../assets/images/orbinger_logo.png";
 
 // Import 3 Pirate Character Assets
 import pirateCaptainImg from "../assets/images/pirate_captain.png";
@@ -639,31 +640,31 @@ const Sponsorship = () => {
             </h3>
           </div>
 
-          <div className="flex flex-wrap justify-center items-center gap-12 sm:gap-24 opacity-90">
-            <div className="past-sponsor-item flex flex-col items-center gap-5 cursor-pointer group">
-              <div className="rounded-xl overflow-hidden border-2 border-pirate-gold/40 shadow-[0_0_15px_rgba(212,175,55,0.15)] group-hover:border-pirate-gold transition-all duration-500 bg-white/5 p-1">
-                <img src={izzkiLogo} alt="Izzki Tech Pvt Ltd" className="h-16 sm:h-20 object-contain" loading="lazy" />
+          <div className="flex flex-wrap justify-center items-center gap-10 sm:gap-16 opacity-95">
+            <div className="past-sponsor-item flex flex-col items-center gap-4 cursor-pointer group">
+              <div className="rounded-xl overflow-hidden border-2 border-pirate-gold/50 shadow-[0_0_15px_rgba(212,175,55,0.2)] group-hover:border-pirate-gold transition-all duration-500 bg-white p-3 h-20 sm:h-24 w-44 sm:w-56 flex items-center justify-center">
+                <img src={royalEnfieldLogo} alt="Royal Enfield" className="max-h-full max-w-full object-contain filter drop-shadow-xs" loading="lazy" />
               </div>
-              <span className="font-cinzel text-lg sm:text-xl font-bold text-pirate-gold/70 group-hover:text-pirate-gold">
-                Izzki Tech Pvt Ltd
+              <span className="font-cinzel text-lg sm:text-xl font-bold text-pirate-gold/80 group-hover:text-pirate-gold">
+                Royal Enfield
               </span>
             </div>
 
-            <div className="past-sponsor-item flex flex-col items-center gap-5 cursor-pointer group">
-              <div className="rounded-xl overflow-hidden border-2 border-[#ED232A]/40 shadow-[0_0_15px_rgba(237,35,42,0.15)] group-hover:border-[#ED232A] transition-all duration-500 bg-white p-2">
-                <img src={hdfcLogo} alt="HDFC Bank" className="h-16 sm:h-20 object-contain" loading="lazy" />
+            <div className="past-sponsor-item flex flex-col items-center gap-4 cursor-pointer group">
+              <div className="rounded-xl overflow-hidden border-2 border-pirate-gold/50 shadow-[0_0_15px_rgba(212,175,55,0.2)] group-hover:border-pirate-gold transition-all duration-500 bg-white p-2 h-20 sm:h-24 w-36 sm:w-44 flex items-center justify-center">
+                <img src={izzkiLogo} alt="Izzki Tech Solutions" className="max-h-full max-w-full object-contain" loading="lazy" />
               </div>
-              <span className="font-cinzel text-lg sm:text-xl font-bold text-[#ED232A]/70 group-hover:text-[#ED232A]">
-                HDFC Bank
+              <span className="font-cinzel text-lg sm:text-xl font-bold text-pirate-gold/80 group-hover:text-pirate-gold">
+                Izzki Tech Solutions
               </span>
             </div>
 
-            <div className="past-sponsor-item flex flex-col items-center gap-5 cursor-pointer group">
-              <div className="w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center bg-black/50 border-2 border-[#00E5FF]/40 rounded-xl shadow-[0_0_15px_rgba(0,229,255,0.15)] group-hover:border-[#00E5FF] transition-all duration-500">
-                <span className="text-4xl sm:text-5xl group-hover:rotate-[360deg] transition-transform duration-1000">🌐</span>
+            <div className="past-sponsor-item flex flex-col items-center gap-4 cursor-pointer group">
+              <div className="rounded-xl overflow-hidden border-2 border-pirate-gold/50 shadow-[0_0_15px_rgba(212,175,55,0.2)] group-hover:border-pirate-gold transition-all duration-500 bg-white p-2 h-20 sm:h-24 w-28 sm:w-32 flex items-center justify-center">
+                <img src={orbingerLogo} alt="Orbinger India" className="max-h-full max-w-full object-contain" loading="lazy" />
               </div>
-              <span className="font-cinzel text-lg sm:text-xl font-bold text-[#00E5FF]/70 group-hover:text-[#00E5FF]">
-                Orbinger
+              <span className="font-cinzel text-lg sm:text-xl font-bold text-pirate-gold/80 group-hover:text-pirate-gold">
+                Orbinger India
               </span>
             </div>
           </div>
