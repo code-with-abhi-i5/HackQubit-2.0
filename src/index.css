@@ -166,4 +166,24 @@
       linear-gradient(180deg, rgba(224, 242, 254, 0.6) 0%, transparent 30%, transparent 70%, rgba(224, 242, 254, 0.9) 100%),
       linear-gradient(0deg, rgba(224, 242, 254, 0.8) 0%, transparent 40%);
   }
+
+  @keyframes scrollLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll-left {
+    display: flex;
+    width: max-content;
+    animation: scrollLeft 22s linear infinite;
+    will-change: transform;
+  }
+
+  .animate-scroll-left:hover {
+    animation-play-state: paused;
+  }
 }

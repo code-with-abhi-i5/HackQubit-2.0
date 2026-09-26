@@ -64,20 +64,21 @@ function App() {
       </AnimatePresence>
 
       <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>
-        {/* Hero Section at the top (NO Dividers or Sidebars) */}
         <Hero onOpenRegister={() => setIsRegisterModalOpen(true)} />
 
         <About onOpenRegister={() => setIsRegisterModalOpen(true)} />
+
+        {/* ── OUR SPONSORS (RIGHT BELOW ABOUT) ── */}
+        <OurSponsors />
 
         {/* Timeline → Prize Pool → Problem Statements */}
         <Timeline />
         <PrizePool />
         <ProblemStatements />
 
-        {/* Sponsor Package → Sponsor Perks → Our Sponsors */}
+        {/* Sponsor Package → Sponsor Perks */}
         <SponsorPackage />
         <SponsorPerks />
-        <OurSponsors />
 
         {/* Our Past Gallery */}
         <Gallery />

@@ -7,7 +7,7 @@ export const SITE_NAME = "HackQubit 2.0";
 export const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Crew", href: "#crew" },
+  { label: "Sponsors", href: "#our-sponsors" },
   { label: "Treasures", href: "#prizes" },
   { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#footer" },

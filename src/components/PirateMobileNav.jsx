@@ -8,7 +8,7 @@ const NAV_ITEMS = [
   { label: 'About',      href: '#about',       icon: Info },
   { label: 'Timeline',   href: '#timeline',    icon: Clock },
   { label: 'Prize Pool', href: '#prizes',      icon: DollarSign },
-  { label: 'Sponsors',   href: '#sponsorship', icon: Users },
+  { label: 'Sponsors',   href: '#our-sponsors', icon: Users },
   { label: 'Gallery',    href: '#gallery',     icon: ImageIcon },
   { label: 'FAQ',        href: '#faq',         icon: HelpCircle },
   { label: 'Contact',    href: '#footer',      icon: PhoneCall },
