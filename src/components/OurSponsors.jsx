@@ -16,21 +16,18 @@ const SPONSORS_DATA = [
     logo: royalEnfieldLogo,
     website: "https://www.royalenfield.com",
     logoClass: "max-h-12 sm:max-h-14 w-auto object-contain",
-    tagline: "Powering the Odyssey",
   },
   {
     name: "Izzki Tech Solutions",
     logo: izzkiLogo,
     website: "https://izzki.com",
     logoClass: "max-h-12 sm:max-h-14 w-auto object-contain",
-    tagline: "Technology Partner",
   },
   {
     name: "Orbinger India",
     logo: orbingerLogo,
     website: "https://orbingerindia.com",
     logoClass: "max-h-12 sm:max-h-14 w-auto object-contain",
-    tagline: "Innovation Partner",
   },
 ];
 
@@ -137,16 +134,11 @@ const OurSponsors = () => {
                   />
                 </div>
 
-                {/* Company Name & Tag */}
-                <div className="mt-2 flex flex-col items-center gap-1">
-                  <span className="font-cinzel text-sm sm:text-base font-bold text-amber-950 group-hover:text-amber-800 transition-colors duration-300 flex items-center gap-1.5">
-                    {sponsor.name}
-                    <ExternalLink className="w-3.5 h-3.5 text-amber-700/60 group-hover:text-amber-700 transition-colors" />
-                  </span>
-                  <span className="font-raleway text-[11px] text-amber-800/80 font-bold tracking-wider uppercase">
-                    {sponsor.tagline}
-                  </span>
-                </div>
+                {/* Company Name */}
+                <span className="font-cinzel text-sm sm:text-base font-bold text-amber-950 group-hover:text-amber-800 transition-colors duration-300 mt-2 flex items-center gap-1.5">
+                  {sponsor.name}
+                  <ExternalLink className="w-3.5 h-3.5 text-amber-700/60 group-hover:text-amber-700 transition-colors" />
+                </span>
               </a>
             ))}
           </div>
