@@ -31,7 +31,7 @@ const SPONSORS_DATA = [
   },
 ];
 
-// Replicate sponsors to create a continuous, seamless infinite loop
+// Repeat sponsors array to guarantee a seamless, infinite loop
 const MARQUEE_SPONSORS = [
   ...SPONSORS_DATA,
   ...SPONSORS_DATA,
@@ -108,13 +108,8 @@ const OurSponsors = () => {
           </motion.p>
         </div>
 
-        {/* ── HORIZONTAL INFINITE LEFT-SCROLLING SPONSORS MARQUEE ── */}
-        <div className="relative w-full overflow-hidden py-4 mb-10">
-          {/* Subtle Left & Right Edge Gradient Blur Shadows */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-r from-pirate-bg via-pirate-bg/80 to-transparent z-20" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-28 bg-gradient-to-l from-pirate-bg via-pirate-bg/80 to-transparent z-20" />
-
-          {/* Continuous Left-Scrolling Marquee Track */}
+        {/* ── SMOOTH CONTINUOUS HORIZONTAL LEFT-SCROLL TRACK ── */}
+        <div className="w-full overflow-hidden py-4 my-2 mb-10">
           <div className="animate-scroll-left flex items-center gap-6 py-2 cursor-pointer">
             {MARQUEE_SPONSORS.map((sponsor, index) => (
               <a
@@ -122,10 +117,10 @@ const OurSponsors = () => {
                 href={sponsor.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex flex-col items-center justify-between p-4 sm:p-5 rounded-2xl bg-white/95 hover:bg-white border-2 border-amber-800/25 hover:border-amber-600 shadow-md hover:shadow-xl hover:shadow-amber-900/15 transition-all duration-300 hover:-translate-y-1.5 text-center w-64 sm:w-72 shrink-0"
+                className="group flex flex-col items-center justify-between p-5 sm:p-6 rounded-2xl bg-white/95 hover:bg-white border-2 border-amber-800/20 hover:border-amber-600 shadow-md hover:shadow-xl hover:shadow-amber-900/15 transition-all duration-300 hover:-translate-y-1.5 text-center w-72 sm:w-80 shrink-0 min-h-[170px]"
               >
                 {/* Logo Area */}
-                <div className="w-full h-16 sm:h-20 flex items-center justify-center p-2">
+                <div className="w-full h-20 sm:h-22 flex items-center justify-center p-2">
                   <img
                     src={sponsor.logo}
                     alt={sponsor.name}
@@ -135,10 +130,12 @@ const OurSponsors = () => {
                 </div>
 
                 {/* Company Name */}
-                <span className="font-cinzel text-sm sm:text-base font-bold text-amber-950 group-hover:text-amber-800 transition-colors duration-300 mt-2 flex items-center gap-1.5">
-                  {sponsor.name}
-                  <ExternalLink className="w-3.5 h-3.5 text-amber-700/60 group-hover:text-amber-700 transition-colors" />
-                </span>
+                <div className="mt-2 flex items-center justify-center gap-1.5">
+                  <span className="font-cinzel text-base sm:text-lg font-bold text-amber-950 group-hover:text-amber-800 transition-colors duration-300">
+                    {sponsor.name}
+                  </span>
+                  <ExternalLink className="w-4 h-4 text-amber-700/50 group-hover:text-amber-700 transition-colors" />
+                </div>
               </a>
             ))}
           </div>
