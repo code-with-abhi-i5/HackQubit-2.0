@@ -3,7 +3,8 @@
 // ============================================
 
 export const TRACK_CATEGORIES = [
-  { id: "all", label: "All Bounties", icon: "Compass", count: 15 },
+  { id: "all", label: "All Bounties", icon: "Compass", count: 16 },
+  { id: "sponsored", label: "Sponsored Track", icon: "Award", count: 1 },
   { id: "healthcare", label: "Healthcare & Biotech", icon: "Activity", count: 3 },
   { id: "ai-ml", label: "AI / Machine Learning", icon: "Brain", count: 3 },
   { id: "cybersecurity", label: "Cybersecurity & Privacy", icon: "Shield", count: 3 },
@@ -12,6 +13,44 @@ export const TRACK_CATEGORIES = [
 ];
 
 export const PROBLEM_STATEMENTS = [
+  // ── SPONSORED / INDUSTRY TRACK (1) ──
+  {
+    id: "ps-sponsored-01",
+    number: "Sponsored PS",
+    domain: "Sponsored Track",
+    category: "sponsored",
+    tags: [
+      "Sponsored Track",
+      "Open-Source CRM",
+      "Docker Compose",
+      "Self-Hosted",
+      "PostgreSQL/MySQL",
+      "RBAC",
+      "Voice Calling & Recording",
+      "WhatsApp Business API",
+      "Email (SMTP/IMAP)",
+      "SMS Integration",
+      "Object Storage"
+    ],
+    title: "Research, Deploy & Present an Open-Source CRM (Self-Hosted Full-Stack CRM with Communication Integrations)",
+    badge: "Sponsored Track • Enterprise Cloud & CRM",
+    brief:
+      "Find and deploy the best suitable open-source CRM that can be fully hosted on a local server and provides complete Frontend + Backend source code. Teams must research and benchmark 3–5 leading open-source CRMs (evaluating features, UI/UX, tech stack, community support, licensing, customization, and deployment requirements), containerize and deploy the selected solution locally via Docker Compose (Frontend, Backend, PostgreSQL/MySQL database, and persistent Object/File Storage for documents & audio recordings), configure 5-tier Role-Based Access Control (RBAC), and establish an end-to-end integration path for omni-channel communications (Email, Voice Calling with call recording, WhatsApp Business/Cloud API, and SMS).",
+    mustBuild: [
+      "Research & Benchmark 3–5 Open-Source CRMs: In-depth comparison covering features, modern UI/UX, tech stack, community support, licensing (AGPL/Apache/MIT), customization flexibility, and deployment overhead to justify your final selection.",
+      "Complete Source Code & Local Repository: Clone and deliver full frontend, backend/API, database schemas, and supporting services in a structured repository ready for developer modification and extension.",
+      "Docker & Docker Compose Deployment: Complete multi-container orchestration for local server hosting, including Frontend, Backend, Relational Database (PostgreSQL or MySQL), and Object/File Storage (MinIO or S3-compatible) with persistent Docker volumes.",
+      "Core CRM Features & 5-Tier RBAC: Standard lead, contact, company/account, and opportunity deal pipelines, tasks, follow-ups, notes, calendar, history, documents, dashboard reports, and strict Role-Based Access Control (Super Admin, Admin, Manager, Sales Executive, Support/User) with configurable module permissions.",
+      "Omni-Channel Communication Architecture: Native or API-integrated pipelines for: (1) Email (send/receive via SMTP/IMAP linked to customer timeline), (2) Voice Calling (incoming/outgoing calls, logs, audio recording securely saved to object storage, linked to contacts), (3) WhatsApp (official WhatsApp Business/Cloud API integration), and (4) SMS (configurable gateway with communication log).",
+      "Deployment Deliverables & Live Demo: Provide .env.example, database setup/seed scripts, storage configuration, API integration documentation, admin demo credentials, and prepare a local server presentation detailing architecture, RBAC, workflows, and future scalability."
+    ],
+    deliverables:
+      "CRM comparison report & selection rationale; complete source code in local Git repo; production-ready Docker Compose deployment with persistent volumes & .env.example; database migration/seed instructions; object storage setup for call recordings & attachments; admin credentials for the local demo; API/integration documentation for Email, Voice, WhatsApp, and SMS; and a live presentation demo running on local server.",
+    keyChallenge:
+      "Deploying a fully self-hosted full-stack CRM on Docker with persistent object storage for call recordings, granular 5-tier RBAC enforcement, and designing unified omni-channel communication workflows (Voice WebRTC/SIP, WhatsApp Cloud API, Email, SMS) linked directly to customer timelines."
+  },
+
+
   // ── HEALTHCARE & BIOTECH (3) ──
   {
     id: "ps-01",

@@ -76,7 +76,10 @@ function App() {
     };
   }, []);
 
-  const navigateToProblems = useCallback(() => {
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const navigateToProblems = useCallback((cat = "all") => {
+    setActiveCategory(typeof cat === "string" ? cat : "all");
     setCurrentPage("problems");
     window.location.hash = "problems";
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -112,7 +115,7 @@ function App() {
 
       {/* Conditionally Render Either Dedicated Problem Statements Page OR Main Voyage */}
       {currentPage === "problems" ? (
-        <ProblemStatementsPage onBack={navigateToHome} />
+        <ProblemStatementsPage onBack={navigateToHome} initialCategory={activeCategory} />
       ) : (
         <main className={`bg-pirate-bg min-h-screen relative ${loading ? "h-screen overflow-hidden" : ""}`}>
           <Hero onOpenProblems={navigateToProblems} />

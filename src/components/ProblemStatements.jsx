@@ -12,19 +12,20 @@ import GoldRainParticles from "./GoldRainParticles";
 import TiltCard from "./TiltCard";
 
 const TRACKS = [
-  { title: "Healthcare & Biotech", count: "3 Bounties", badge: "Track 01", emblem: emblemCompassMap },
-  { title: "AI / Machine Learning", count: "3 Bounties", badge: "Track 02", emblem: emblemSkullAnchor },
-  { title: "Cybersecurity & Privacy", count: "3 Bounties", badge: "Track 03", emblem: emblemTreasureChest },
-  { title: "Web3 & Blockchain", count: "3 Bounties", badge: "Track 04", emblem: emblemPirateShip },
-  { title: "AI Agents Systems", count: "3 Bounties", badge: "Track 05", emblem: emblemCompassMap },
+  { title: "Sponsored Track", count: "1 Bounty", badge: "Sponsored", emblem: emblemTreasureChest, category: "sponsored" },
+  { title: "Healthcare & Biotech", count: "3 Bounties", badge: "Track 01", emblem: emblemCompassMap, category: "healthcare" },
+  { title: "AI / Machine Learning", count: "3 Bounties", badge: "Track 02", emblem: emblemSkullAnchor, category: "ai-ml" },
+  { title: "Cybersecurity & Privacy", count: "3 Bounties", badge: "Track 03", emblem: emblemTreasureChest, category: "cybersecurity" },
+  { title: "Web3 & Blockchain", count: "3 Bounties", badge: "Track 04", emblem: emblemPirateShip, category: "web3" },
+  { title: "AI Agents Systems", count: "3 Bounties", badge: "Track 05", emblem: emblemCompassMap, category: "agents" },
 ];
 
 const ProblemStatements = ({ onOpenProblems }) => {
   const sectionRef = useRef(null);
 
-  const handleOpen = () => {
+  const handleOpen = (category = "all") => {
     if (onOpenProblems) {
-      onOpenProblems();
+      onOpenProblems(category);
     } else {
       window.location.hash = "problems";
     }
@@ -71,7 +72,7 @@ const ProblemStatements = ({ onOpenProblems }) => {
         >
           <Sparkles className="w-4 h-4 text-amber-900 animate-pulse" />
           <span className="font-cinzel text-xs tracking-widest text-amber-950 uppercase font-extrabold">
-            15 Challenge Scrolls Unfurled
+            16 Challenge Scrolls Unfurled
           </span>
         </motion.div>
 
@@ -98,7 +99,7 @@ const ProblemStatements = ({ onOpenProblems }) => {
 
           <div className="flex flex-col items-center justify-center gap-4 relative z-10 pt-8">
             <h3 className="font-cinzel text-2xl sm:text-3xl font-extrabold text-amber-950">
-              All 15 Bounties Unlocked
+              All 16 Bounties Unlocked
             </h3>
 
             <p className="font-raleway text-sm sm:text-base text-amber-900 font-bold max-w-md leading-relaxed">
@@ -108,7 +109,7 @@ const ProblemStatements = ({ onOpenProblems }) => {
             {/* Main Action Button to open Problem Statements Page */}
             <button
               type="button"
-              onClick={handleOpen}
+              onClick={() => handleOpen("all")}
               className="mt-4 inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 hover:from-amber-800 hover:to-amber-950 text-amber-50 font-cinzel text-sm sm:text-base font-black tracking-wider shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 cursor-pointer"
             >
               <Compass className="w-5 h-5 text-amber-300" />
@@ -119,11 +120,11 @@ const ProblemStatements = ({ onOpenProblems }) => {
         </div>
 
         {/* Tracks Grid Preview with Top Vintage Emblems & 3D Tilt */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 pt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-6">
           {TRACKS.map((t) => (
             <div
               key={t.badge}
-              onClick={handleOpen}
+              onClick={() => handleOpen(t.category)}
               className="cursor-pointer"
             >
               <TiltCard

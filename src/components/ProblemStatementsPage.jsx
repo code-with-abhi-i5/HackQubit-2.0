@@ -17,7 +17,8 @@ import {
   Coins,
   Bot,
   Shield,
-  FileText
+  FileText,
+  Award
 } from "lucide-react";
 import { PROBLEM_STATEMENTS, TRACK_CATEGORIES } from "../constants/problemStatementsData";
 import logoRed from "../assets/images/logo_red.png";
@@ -29,6 +30,8 @@ import GoldRainParticles from "./GoldRainParticles";
 
 const getCategoryIcon = (category) => {
   switch (category) {
+    case "sponsored":
+      return Award;
     case "healthcare":
       return Activity;
     case "ai-ml":
@@ -81,26 +84,48 @@ ${problem.keyChallenge}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.35, delay: Math.min(index * 0.05, 0.4) }}
       className={`group relative rounded-3xl border-2 transition-all duration-300 overflow-hidden text-amber-950 ${
-        isExpanded
+        problem.category === "sponsored"
+          ? isExpanded
+            ? "border-amber-600 bg-white shadow-2xl ring-4 ring-amber-500/30"
+            : "border-amber-500/60 bg-gradient-to-b from-amber-50/40 via-white to-white shadow-xl hover:border-amber-600 hover:shadow-2xl"
+          : isExpanded
           ? "border-amber-700 bg-white shadow-2xl ring-2 ring-amber-500/30"
           : "border-amber-900/20 bg-white/95 hover:border-amber-700/60 hover:shadow-xl"
       }`}
     >
       {/* Top Accent Gradient Bar */}
-      <div className="h-2 w-full bg-gradient-to-r from-amber-700 via-amber-500 to-amber-800" />
+      <div
+        className={`h-2 w-full ${
+          problem.category === "sponsored"
+            ? "bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-700"
+            : "bg-gradient-to-r from-amber-700 via-amber-500 to-amber-800"
+        }`}
+      />
 
       {/* Main Card Header */}
       <div className="p-6 sm:p-8">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
           <div className="flex items-center gap-2.5">
             {/* Number Badge */}
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-800 text-amber-50 font-cinzel text-xs font-black tracking-wider shadow-sm">
+            <span
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full font-cinzel text-xs font-black tracking-wider shadow-sm ${
+                problem.category === "sponsored"
+                  ? "bg-gradient-to-r from-amber-600 to-amber-800 text-amber-50 ring-1 ring-amber-400"
+                  : "bg-amber-800 text-amber-50"
+              }`}
+            >
               <IconComponent className="w-3.5 h-3.5" />
               {problem.number}
             </span>
 
             {/* Domain Badge */}
-            <span className="px-3 py-1 rounded-full bg-amber-500/15 border border-amber-800/25 text-amber-900 font-cinzel text-xs font-bold tracking-wide">
+            <span
+              className={`px-3 py-1 rounded-full font-cinzel text-xs font-bold tracking-wide border ${
+                problem.category === "sponsored"
+                  ? "bg-amber-100 text-amber-950 border-amber-400/80 font-black"
+                  : "bg-amber-500/15 border-amber-800/25 text-amber-900"
+              }`}
+            >
               {problem.domain}
             </span>
           </div>
@@ -131,9 +156,27 @@ ${problem.keyChallenge}
         </h3>
 
         {/* Sub-badge / Track identifier */}
-        <div className="text-[11px] font-cinzel font-extrabold text-amber-800/90 tracking-widest uppercase mb-4">
+        <div className="text-[11px] font-cinzel font-extrabold text-amber-800/90 tracking-widest uppercase mb-3">
           ⚓ {problem.badge}
         </div>
+
+        {/* Technology & Concept Tags */}
+        {problem.tags && problem.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {problem.tags.map((tag, tIdx) => (
+              <span
+                key={tIdx}
+                className={`px-2.5 py-0.5 rounded-md font-raleway text-[11px] font-bold ${
+                  problem.category === "sponsored"
+                    ? "bg-amber-100/90 border border-amber-300 text-amber-950 shadow-2xs"
+                    : "bg-amber-100/60 border border-amber-200/80 text-amber-900"
+                }`}
+              >
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
 
         {/* Problem in Brief */}
         <div className="rounded-2xl bg-amber-50/70 border border-amber-200/80 p-4 sm:p-5 mb-5 shadow-inner">
@@ -219,11 +262,18 @@ ${problem.keyChallenge}
   );
 };
 
-const ProblemStatementsPage = ({ onBack }) => {
-  const [selectedCategory, setSelectedCategory] = useState("all");
+const ProblemStatementsPage = ({ onBack, initialCategory = "all" }) => {
+  const [selectedCategory, setSelectedCategory] = useState(initialCategory || "all");
   const [searchQuery, setSearchQuery] = useState("");
   const [expandedCards, setExpandedCards] = useState({});
   const [expandAll, setExpandAll] = useState(false);
+
+  // Sync selectedCategory when initialCategory prop changes
+  useEffect(() => {
+    if (initialCategory) {
+      setSelectedCategory(initialCategory);
+    }
+  }, [initialCategory]);
 
   // Scroll to top upon mount
   useEffect(() => {
@@ -262,7 +312,8 @@ const ProblemStatementsPage = ({ onBack }) => {
         ps.number.toLowerCase().includes(query) ||
         ps.domain.toLowerCase().includes(query) ||
         ps.brief.toLowerCase().includes(query) ||
-        ps.keyChallenge.toLowerCase().includes(query);
+        ps.keyChallenge.toLowerCase().includes(query) ||
+        (ps.tags && ps.tags.some((tag) => tag.toLowerCase().includes(query)));
 
       return matchesCategory && matchesSearch;
     });
