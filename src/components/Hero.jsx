@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import HeroContent from "./HeroContent";
 import hackQubitVideo from "../assets/heroSection.mp4";
 
-const Hero = ({ onOpenRegister }) => {
+const Hero = ({ onOpenProblems }) => {
   const heroRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -32,7 +32,7 @@ const Hero = ({ onOpenRegister }) => {
           NAVBAR
       ========================================= */}
       <div className="relative z-50">
-        <Navbar ref={navbarRef} onOpenRegister={onOpenRegister} />
+        <Navbar ref={navbarRef} onOpenProblems={onOpenProblems} />
       </div>
 
       <section
@@ -72,7 +72,7 @@ const Hero = ({ onOpenRegister }) => {
       ========================================= */}
         <div className="relative z-20 h-full flex items-center transform-gpu">
           <HeroContent
-            onOpenRegister={onOpenRegister}
+            onOpenProblems={onOpenProblems}
             refs={{
               subtitle: subtitleRef,
               headingLine1: headingLine1Ref,

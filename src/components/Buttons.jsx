@@ -39,14 +39,12 @@ const Buttons = forwardRef((props, ref) => {
         <span className="relative z-10">{HERO_CONTENT.primaryBtn}</span>
         <ArrowRight className="relative z-10 w-4 h-4 transition-transform duration-500 group-hover:translate-x-1.5" />
       </a>
-      {/* Register Button */}
+      {/* Problem Statements Button */}
       <a
-        href="https://forms.gle/STi1SKZ8uK1fCVQr7"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="px-6 py-2 bg-red-800 text-white rounded hover:bg-red-900 transition-colors"
+        href="#problems"
+        className="px-6 py-2 bg-amber-800 text-white rounded hover:bg-amber-900 transition-colors"
       >
-        Register
+        Problem Statements
       </a>
       {/* Learn More Button */}
       <a

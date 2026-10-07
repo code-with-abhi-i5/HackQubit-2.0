@@ -10,7 +10,7 @@ const SECTION_DIALOGUES = {
   about: "Ahoy! Welcome aboard, matey! This be HackQubit 2.0! 🏴‍☠️",
   timeline: "Follow the treasure map, crew! Every stop be a milestone! 🗺️",
   prizes: "Arrr! There be gold for the bravest coders! 💰",
-  "problem-statements": "The secret scrolls shall be revealed on hackathon day! 📜",
+  "problem-statements": "The 13 bounty scrolls be unfurled! Choose your quest, matey! 📜⚔️",
   sponsorship: "Our mighty allies fund this grand voyage! ⚓",
   "sponsorship-perks": "Sponsors get the finest treasures & glory! 👑",
   "our-sponsors": "Behold the mighty fleet of patrons backing our voyage! ⚓🚢",

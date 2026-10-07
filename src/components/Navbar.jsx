@@ -153,18 +153,17 @@ const Navbar = forwardRef((props, ref) => {
 
             {/* ── RIGHT: Actions ── */}
             <div className="flex items-center gap-3">
-              {/* CTA — Register Now (Desktop) */}
-              <a
-                href="https://forms.gle/STi1SKZ8uK1fCVQr7"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden lg:flex relative group items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full font-cinzel text-[13px] text-slate-950 font-black tracking-wider transition-all duration-400 hover:from-amber-400 hover:to-amber-500 hover:shadow-[0_0_28px_rgba(212,175,55,0.45)] overflow-hidden"
+              {/* CTA — Problem Statements (Desktop) */}
+              <button
+                type="button"
+                onClick={props.onOpenProblems || (() => { window.location.hash = "problems"; })}
+                className="hidden lg:flex relative group items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-amber-500 to-amber-600 rounded-full font-cinzel text-[13px] text-slate-950 font-black tracking-wider transition-all duration-400 hover:from-amber-400 hover:to-amber-500 hover:shadow-[0_0_28px_rgba(212,175,55,0.45)] overflow-hidden cursor-pointer"
               >
                 {/* Shimmer sweep */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                 <Compass className="w-4 h-4 relative z-10 transition-transform duration-500 group-hover:rotate-45" />
-                <span className="relative z-10">Register Now</span>
-              </a>
+                <span className="relative z-10">Problem Statements</span>
+              </button>
 
               {/* ── Mobile Hamburger ── */}
               <div className="relative z-50 lg:hidden">
@@ -178,7 +177,11 @@ const Navbar = forwardRef((props, ref) => {
       </nav>
 
       {/* Mobile Slide-in Menu */}
-      <PirateMobileMenu isOpen={isMobileOpen} close={() => setIsMobileOpen(false)} />
+      <PirateMobileMenu
+        isOpen={isMobileOpen}
+        close={() => setIsMobileOpen(false)}
+        onOpenProblems={props.onOpenProblems}
+      />
     </>
   );
 });

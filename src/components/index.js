@@ -22,3 +22,4 @@ export { default as Gallery } from "./Gallery";
 export { default as FAQ } from "./FAQ";
 export { default as PirateWaveDivider } from "./PirateWaveDivider";
 export { default as PirateRopeCannonSidebar } from "./PirateRopeCannonSidebar";
+export { default as ProblemStatementsPage } from "./ProblemStatementsPage";

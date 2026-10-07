@@ -1,7 +1,7 @@
 import React from "react";
 import { ClipboardCheck, Command } from "lucide-react";
 
-const HeroContent = ({ refs }) => {
+const HeroContent = ({ refs, onOpenProblems }) => {
   return (
     <div className="relative z-20 flex flex-col items-center justify-center max-w-4xl lg:max-w-none w-full px-6 sm:px-12 lg:px-20 pt-12 md:pt-28 pb-16 text-center mx-auto">
 
@@ -22,18 +22,17 @@ const HeroContent = ({ refs }) => {
       </p>
 
 
-      {/* Two Clean Action Buttons: Registration & Learn More */}
+      {/* Two Clean Action Buttons: Problem Statements & Learn More */}
       <div ref={refs.buttons} className="flex flex-row flex-nowrap items-center justify-center gap-3 sm:gap-6 w-full">
-        {/* Registration Button */}
-        <a
-          href="https://forms.gle/STi1SKZ8uK1fCVQr7"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 px-5 sm:px-10 py-3 sm:py-4 rounded-full font-cinzel text-xs sm:text-base font-extrabold text-amber-50 bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 hover:from-amber-800 hover:to-amber-950 shadow-xl hover:shadow-amber-900/30 hover:scale-105 transition-all duration-300 uppercase tracking-widest border border-amber-600/40 text-center whitespace-nowrap"
+        {/* Problem Statements Button */}
+        <button
+          type="button"
+          onClick={onOpenProblems || (() => { window.location.hash = "problems"; })}
+          className="flex items-center gap-2 px-5 sm:px-10 py-3 sm:py-4 rounded-full font-cinzel text-xs sm:text-base font-extrabold text-amber-50 bg-gradient-to-r from-amber-700 via-amber-800 to-amber-900 hover:from-amber-800 hover:to-amber-950 shadow-xl hover:shadow-amber-900/30 hover:scale-105 transition-all duration-300 uppercase tracking-widest border border-amber-600/40 text-center whitespace-nowrap cursor-pointer"
         >
           <ClipboardCheck className="w-4 h-4 sm:w-5 sm:h-5" />
-          <span>Registration</span>
-        </a>
+          <span>Problem Statements</span>
+        </button>
 
         {/* Learn More Button */}
         <a

@@ -51,7 +51,7 @@ const Footer = () => {
                 { label: "Home Base", href: "#home" },
                 { label: "Voyage Map", href: "#timeline" },
                 { label: "Prize Treasures", href: "#prizes" },
-                { label: "Problem Statements", href: "#problem-statements" },
+                { label: "Problem Statements", href: "#problems" },
                 { label: "Sponsorship Packages", href: "#sponsorship" },
                 { label: "Sponsorship Perks", href: "#sponsorship-perks" },
                 { label: "FAQ & Rules", href: "#faq" },

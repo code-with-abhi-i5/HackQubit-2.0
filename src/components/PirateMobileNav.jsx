@@ -45,7 +45,7 @@ export const HamburgerToggle = ({ isOpen, toggle }) => {
 };
 
 /* ── Mobile slide-in drawer ── */
-export const PirateMobileMenu = ({ isOpen, close }) => {
+export const PirateMobileMenu = ({ isOpen, close, onOpenProblems }) => {
   return (
     <>
       {/* Backdrop */}
@@ -90,16 +90,21 @@ export const PirateMobileMenu = ({ isOpen, close }) => {
 
         {/* Top CTA */}
         <div className="mb-6 pb-6 border-b border-amber-900/20 relative z-10">
-          <a
-            href="https://forms.gle/STi1SKZ8uK1fCVQr7"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={close}
-            className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 bg-gradient-to-r from-amber-600 to-amber-800 rounded-full font-cinzel text-sm text-amber-50 font-black tracking-wider shadow-lg hover:shadow-[0_0_24px_rgba(180,120,20,0.5)] transition-all duration-300"
+          <button
+            type="button"
+            onClick={() => {
+              close();
+              if (onOpenProblems) {
+                onOpenProblems();
+              } else {
+                window.location.hash = "problems";
+              }
+            }}
+            className="w-full flex items-center justify-center gap-2.5 py-3.5 px-6 bg-gradient-to-r from-amber-600 to-amber-800 rounded-full font-cinzel text-sm text-amber-50 font-black tracking-wider shadow-lg hover:shadow-[0_0_24px_rgba(180,120,20,0.5)] transition-all duration-300 cursor-pointer"
           >
             <Compass className="w-4 h-4" />
-            Register Now
-          </a>
+            Problem Statements
+          </button>
         </div>
 
         {/* Nav items */}

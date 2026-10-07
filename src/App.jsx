@@ -1,14 +1,23 @@
-import React, { Component, useState, useCallback } from "react";
+import React, { Component, useState, useCallback, useEffect } from "react";
 import {
-  Hero, About, Timeline, PrizePool, ProblemStatements,
-  SponsorPackage, SponsorPerks, OurSponsors,
-  Footer, Loader, PirateWaveDivider, Gallery, FAQ
+  Hero,
+  About,
+  Timeline,
+  PrizePool,
+  ProblemStatements,
+  SponsorPackage,
+  SponsorPerks,
+  OurSponsors,
+  Footer,
+  Loader,
+  Gallery,
+  FAQ,
+  ProblemStatementsPage,
 } from "./components";
 
 import PirateCaptainGuide from "./components/PirateCaptainGuide";
 import PirateParrotCompanion from "./components/PirateParrotCompanion";
 import DoubloonCursorTrail from "./components/DoubloonCursorTrail";
-import PirateRegistrationModal from "./components/PirateRegistrationModal";
 import { AnimatePresence } from "framer-motion";
 
 import { gsap } from "gsap";
@@ -42,7 +51,45 @@ class ErrorBoundary extends Component {
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false);
+
+  // Router state: 'home' or 'problems'
+  const isProblemsHash = () =>
+    typeof window !== "undefined" &&
+    (window.location.hash === "#problems" || window.location.hash === "#problem-statements");
+
+  const [currentPage, setCurrentPage] = useState(() => (isProblemsHash() ? "problems" : "home"));
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (isProblemsHash()) {
+        setCurrentPage("problems");
+      } else {
+        setCurrentPage("home");
+      }
+    };
+
+    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener("popstate", handleHashChange);
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("popstate", handleHashChange);
+    };
+  }, []);
+
+  const navigateToProblems = useCallback(() => {
+    setCurrentPage("problems");
+    window.location.hash = "problems";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const navigateToHome = useCallback(() => {
+    setCurrentPage("home");
+    window.location.hash = "home";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+  }, []);
 
   const handleLoadingComplete = useCallback(() => {
     setLoading(false);
@@ -63,45 +110,43 @@ function App() {
         {loading && <Loader key="loader" onLoadingComplete={handleLoadingComplete} />}
       </AnimatePresence>
 
-      <main className={`bg-pirate-bg min-h-screen relative ${loading ? 'h-screen overflow-hidden' : ''}`}>
-        <Hero onOpenRegister={() => setIsRegisterModalOpen(true)} />
+      {/* Conditionally Render Either Dedicated Problem Statements Page OR Main Voyage */}
+      {currentPage === "problems" ? (
+        <ProblemStatementsPage onBack={navigateToHome} />
+      ) : (
+        <main className={`bg-pirate-bg min-h-screen relative ${loading ? "h-screen overflow-hidden" : ""}`}>
+          <Hero onOpenProblems={navigateToProblems} />
 
-        <About onOpenRegister={() => setIsRegisterModalOpen(true)} />
+          <About />
 
-        {/* ── OUR SPONSORS (RIGHT BELOW ABOUT) ── */}
-        <OurSponsors />
+          {/* ── OUR SPONSORS (RIGHT BELOW ABOUT) ── */}
+          <OurSponsors />
 
-        {/* Timeline → Prize Pool → Problem Statements */}
-        <Timeline />
-        <PrizePool />
-        <ProblemStatements />
+          {/* Timeline → Prize Pool → Problem Statements */}
+          <Timeline />
+          <PrizePool />
+          <ProblemStatements onOpenProblems={navigateToProblems} />
 
-        {/* Sponsor Package → Sponsor Perks */}
-        <SponsorPackage />
-        <SponsorPerks />
+          {/* Sponsor Package → Sponsor Perks */}
+          <SponsorPackage />
+          <SponsorPerks />
 
-        {/* Our Past Gallery */}
-        <Gallery />
+          {/* Our Past Gallery */}
+          <Gallery />
 
-        {/* FAQ → Footer */}
-        <FAQ />
-        <Footer />
+          {/* FAQ → Footer */}
+          <FAQ />
+          <Footer />
 
-        {/* Unfurlable Vintage Wax-Sealed Registration Scroll Modal */}
-
-        <PirateRegistrationModal
-          isOpen={isRegisterModalOpen}
-          onClose={() => setIsRegisterModalOpen(false)}
-        />
-
-        {/* Fixed Position Pirate Captain Guide & Interactive Parrot Companion */}
-        {!loading && (
-          <>
-            <PirateCaptainGuide />
-            <PirateParrotCompanion />
-          </>
-        )}
-      </main>
+          {/* Fixed Position Pirate Captain Guide & Interactive Parrot Companion */}
+          {!loading && (
+            <>
+              <PirateCaptainGuide />
+              <PirateParrotCompanion />
+            </>
+          )}
+        </main>
+      )}
     </ErrorBoundary>
   );
 }
